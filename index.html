@@ -251,8 +251,9 @@ button.cr:hover, .cr[aria-pressed="true"] { background: var(--paper); }
 .rw { background: var(--paper); border-radius: 4px; }
 .rw-h { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 6px 10px; align-items: center; width: 100%; padding: 9px 8px 9px 11px; min-height: 46px; border-radius: 4px; }
 .rw-l { grid-column: 1; font-size: .9rem; line-height: 1.25; }
-.rw-v { grid-column: 2; text-align: right; font-weight: 650; font-size: .9rem; line-height: 1.2; max-width: 10.5rem; }
+.rw-v { grid-column: 2; text-align: right; font-weight: 650; font-size: .9rem; line-height: 1.2; max-width: 10.5rem; text-wrap: balance; }     /* balance: a value on two lines never leaves one word, or half of "G-code", alone */
 .rw-v small, .mx-cell small { display: block; font-weight: 500; color: var(--soft); font-size: .75rem; }
+.rw-v small { text-wrap: wrap; }     /* the small line under the value wraps as it did */
 .rw-h > .lv { grid-column: 3; }
 .rw-h > .chev { grid-column: 4; }
 .rw-b { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
@@ -279,6 +280,7 @@ button.cr:hover, .cr[aria-pressed="true"] { background: var(--paper); }
 .it-h.inc .it-a { text-align: left; white-space: normal; font-size: .86rem; }
 .it-h.inc .it-a small { font-size: .8rem; }
 .lg-a.inc { white-space: normal; max-width: 9.5rem; text-wrap: balance; font-size: .86rem; line-height: 1.25; }
+@media (min-width: 720px) { .lg-a.inc { max-width: none; } }     /* a wide row has room for it on one line */
 .sp { display: flex; height: 6px; border-radius: 2px; overflow: hidden; gap: 2px; }
 .sp i { display: block; min-width: 3px; background: currentColor; }
 .sp i.m { opacity: .45; }
@@ -429,6 +431,13 @@ details[open] > summary .chev svg, .rw.open > .rw-h .chev svg, .mx-lab.open .che
 .lg-a, .lg-k { font-weight: 650; font-size: .95rem; white-space: nowrap; text-align: right; }
 .lg-c { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 3px 14px; align-items: center; font-size: .8rem; color: var(--soft); line-height: 1.35; }
 .lg-c .sp { flex: 0 0 100%; max-width: 15rem; color: var(--ink); margin-bottom: 2px; }
+@media (max-width: 719px) { .lg-c .sp { margin-right: max(0px, calc(100% - 15rem)); } }     /* on a phone the figures always start under the bar, so a short one does not sit beside it */
+/* a phone narrower than 360 px: a row's value, or its "Included in...", moves under the name, so no text prints over another */
+@media (max-width: 359px) {
+  .rw-v { grid-column: 1 / -1; grid-row: 2; text-align: left; max-width: none; }
+  .lg-a.inc { grid-column: 1 / 3; grid-row: 2; text-align: left; max-width: none; }
+  .lg-h > .chev { grid-column: 3; grid-row: 1; }
+}
 .lg .rw-p { padding: 0 8px 10px; }
 .lg .it { background: var(--paper); }
 .legend { font-size: .82rem; color: var(--soft); line-height: 1.5; padding: 4px 2px 0; }
@@ -602,8 +611,7 @@ body.edit-text svg [data-t][data-ch] { fill: var(--risk-mid); }
 </head>
 <body>
 <div id="app"></div>
-<!-- Edits made from the page's own edit mode are kept in this block. Carry it over when rebuilding the page. -->
-<script type="application/json" id="bid-data">{"text": {"ts.0.6.src": "me", "cmp.st.2": "Shell Design", "cmp.st.3": "PCB Design", "cmp.st.4": "Mold Design", "cmp.st.5": "Physical Molds", "cmp.st.1": "Shape Design", "cost.lab": "Other machinery", "cost.comp": "Compute maintenance", "cost.lic": "Software licenses", "ts.2.3.v": "0.1mm at most under 20 N", "ts.3.3.v": "0.1mm at most", "ts.3.2.v": "0.1mm at most", "ts.3.4.v": "0.1mm at most", "ts.2.0.v": "2,510 N (256kg) at least", "ts.0.6.m": "Subject to change upon style investigation.", "ts.2.1.v": "160 N (16kg) with no permanent change", "ts.2.2.v": "120 N (12kg) on each with no permanent change", "ts.2.4.m": "No audible noise (less than 45db when measured up close in a quiet room) at any of the loads above.", "ts.3.1.v": "Within 5 gf", "ts.5.3.m": "Potentially on a Raytac module.", "ts.6.0.m": "Injection molded from pellets with short carbon fibers dispersed through the plastic.", "ts.6.1.m": "Only the real carbon suspended in the composite can shown, but you’ve marked you prefer to hide even that which is okay too.", "letter.2": "My aim for this project would be to build an objectively better mouse. Every target in the specification has numerical way to measure it, so both of our quality standards are met. You would work directly with me, a native English speaker based in the United States, with a call every week from the first shape to the last file.", "letter.3": "Every price is exact to eliminate confusion and so you can plan better. I eat any extra unexpected costs. Each price is built from my time at {rate} an hour, fixed fees and materials, and every line shows how it was calculated. Where I propose a target that differs from your brief, it is marked as proposed.", "letter.1": "Thank you for the opportunity to bid on this project. I have used your brief out as a target specification, and added some of my own requirements beside yours. I’ve laid out five different packages, priced for the five levels of engagement you’d need to have to realize this mouse idea. The least expensive from me is just giving you a head start and provide the hardest part, the shape for you. With the most premium package you have no obligations other than weekly calls, at the end of the work you would have psychical molds in your possession, optimized by the same designer you made the mouse structure for coherency, and manufactured outside of China to prevent cloning.", "cmp.value.s": "The price, along with the total value of the package from the extras thrown in at no added cost", "sp.1": "**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut and from someone who actually cares about their reputation."}, "num": {"deposit.cap": 7990, "consult.shape": 7560, "shape.first": 4990}}</script>
+<script type="application/json" id="bid-data">{"text": {"ts.0.6.src": "me", "cmp.st.2": "Shell Design", "cmp.st.3": "PCB Design", "cmp.st.4": "Mold Design", "cmp.st.5": "Physical Molds", "cmp.st.1": "Shape Design", "cost.lab": "Other machinery", "cost.comp": "Compute maintenance", "cost.lic": "Software licenses", "ts.2.3.v": "0.1mm at most under 20 N", "ts.3.3.v": "0.1mm at most", "ts.3.2.v": "0.1mm at most", "ts.3.4.v": "0.1mm at most", "ts.2.0.v": "2,510 N (256kg) at least", "ts.0.6.m": "Subject to change upon style investigation.", "ts.2.1.v": "160 N (16kg) with no permanent change", "ts.2.2.v": "120 N (12kg) on each with no permanent change", "ts.2.4.m": "No audible noise (less than 45db when measured up close in a quiet room) at any of the loads above.", "ts.3.1.v": "Within 5 gf", "ts.5.3.m": "Subject to change depending on supply and demand the month before release.", "ts.6.0.m": "Injection molded from pellets with short carbon fibers dispersed through the plastic.", "ts.6.1.m": "Only the real carbon suspended in the composite can be shown, but you’ve marked you prefer to hide even that which is okay too.", "letter.2": "My aim for this project would be to build an objectively better mouse. Every target in the specification has a numerical way to measure it. This ensures a binary way to measure that both of our quality standards are met.", "letter.3": "Every price in this document is intentionally exact to eliminate confusion, hopefully allowing you to plan better. This also means I eat any extra unexpected costs that occur on my end, and do not ask for more payout other than what we specifically agree on here (obviously unless you ask to change scope to another package). Each price is built from my time at {rate} an hour, fixed fees and materials, this way every price shows how it was calculated. Anywhere that I propose a target that differs from your brief is only marked as proposed.", "letter.1": "Thank you for the opportunity to bid on this project. I used your brief as a target specification and added some of my own requirements beside yours. I’ve also laid out five different available packages, priced for the five levels of engagement you’d need to have to realize this mouse idea. The least expensive package, Shape Consultation, is just me giving you a head start and providing the hardest part, the shape, for you. With the most premium package, you have no obligations other than weekly calls. At the end of the work you would have physical molds in your possession, optimized by the same designer who made the mouse structure for coherency. With the Turnkey Tooling package, these molds would be manufactured outside of China to prevent cloning and then sent to a factory of our choice.", "cmp.value.s": "The price, along with the total value of the package from the extras thrown in at no added cost", "sp.1": "**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut and from someone who actually cares about their reputation.", "ts.1.1.m": "Under 30 g is offered only as a set which requires at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.", "ts.2.1.m": "Applied across the grip zones. Above the key pinch of about 98 in 100 men aged 20 to 29: 156 N, the mean plus two standard deviations.", "ts.2.2.m": "Pressed at the fingertip position. Above the tip pinch of about 98 in 100 men aged 20 to 29: 115 N.", "ts.4.0.m": "So the wheel carries into future models to save on future production costs and so the user can service it with a replacement easier.", "ts.4.0.v": "Standard socket and footprint, hot-swap", "mat.ref.why": "Finalmouse SLX, any available colorway.", "ad.pcb1.t": "Bespoke mouse and dongle PCBs, designed by me", "ad.pcb0.s": "The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them. Cost of whatever the factory charges for the PCB is not included.", "thanks": "Thank you for considering this bid. I am happy to walk through any part of it with you."}, "num": {"deposit.cap": 7990, "consult.shape": 7560, "shape.first": 4990}}</script>
 <script id="bid-content">
 /* Kyomi bid: every word on the page. The owner can change any of these from the page's edit mode;
    changes are kept in the bid-data block, not here. Words in {braces} fill in automatically.
@@ -633,10 +641,10 @@ var BID_TEXT = {
 
   /* ---- the target ---- */
   'target.title': 'Target Specification',
-  'target.intro': 'What the design is held to: the number, and how it is measured. Select an area to see every target.',
+  'target.intro': 'Every target the design is held to, with its number and how it is measured. Select an area to see them all.',
   'target.key.you': 'From your brief',
   'target.key.me': 'My requirement',
-  'target.key.prop': 'Proposed target, to agree at kickoff',
+  'target.key.prop': 'Proposed target, to agree on at kickoff',
   'target.len.h': 'Length',
   'target.len.me': 'This mouse: {len} mm',
   'target.len.a': 'ULX Small',
@@ -694,19 +702,14 @@ var BID_TEXT = {
   'pk.hint': 'Select a row to see what it covers, how its cost splits between labor and materials, and its options. The bars show where the package sits among those options.',
   'pkg.consult.name': 'Shape Consultation',
   'pkg.consult.line': 'A single shape, printed and shipped, with no minimum commitment.',
-  'pkg.consult.value': 'Good value when only the shape is missing and your own team does the rest.',
   'pkg.design.name': 'Structural Design',
   'pkg.design.line': 'Shape, shell and internals, and a factory found to build your PCBs and write their firmware, ready for you to prototype.',
-  'pkg.design.value': 'Good value when a factory will prototype and tool the mouse around its own board, and you want the structure, its source files and the right factory first.',
   'pkg.tested.name': 'Complete Design',
   'pkg.tested.line': 'Everything in {pkgDesign}, plus my PCBs for the mouse and dongle and their firmware, with shell and boards proven together in working prototypes before tooling.',
-  'pkg.tested.value': 'Good value when shell and board must be proven together, in your hand, before steel is cut. Each round takes about a week, not {low} to {high}.',
   'pkg.production.name': 'Production Ready',
   'pkg.production.line': 'Everything in {pkgTested}, plus the mold designs and G-code for every part, ready for any toolmaker.',
-  'pkg.production.value': 'Good value when you want to own the mold designs and the G-code as well as the PCBs, and take them to any toolmaker.',
   'pkg.all.name': 'Turnkey Tooling',
-  'pkg.all.line': 'Everything in {pkgProduction}, plus the steel tools built and trialled, and finished sample mice at under 30 g.',
-  'pkg.all.value': 'Good value when you want one person answerable from the first shape to the sample mice, with under 30 g verified before tooling.',
+  'pkg.all.line': 'Everything in {pkgProduction}, plus the steel tools built and trialed, and finished sample mice at under 30 g.',
   'pk.base': 'Base',
   'pk.plus': '+ add-ons',
   'pk.now.add': 'With your add-ons: {total}',
@@ -733,7 +736,7 @@ var BID_TEXT = {
   'row.paint': 'Painted colorway samples',
   'row.molds': 'Mold design and G-code, every part',
   'row.mc': 'Material science consultation and negotiation',
-  'row.tools': 'Steel tools, built and trialled',
+  'row.tools': 'Steel tools, built and trialed',
   'row.samples': 'Finished sample mice',
   'row.calls': 'Weekly calls',
   'row.support': 'Production support',
@@ -769,6 +772,7 @@ var BID_TEXT = {
   'cell.files.consult': 'Shape surface',
   'cell.files.consult.sub': '.STEP',
   'cell.proto': '{rounds} rounds',
+  'cell.proto.1': '1 round',
   'cell.proto.sub': 'in {material}',
   'cell.mc.sub': 'no added cost',
   'cell.added': 'added',
@@ -810,15 +814,15 @@ var BID_TEXT = {
   'rw.from': 'It comes with {from} and every package above it.',
   'rw.from.only': 'It comes with {from}.',
   'rw.nocharge': 'No separate charge.',
-  'rw.what.art': 'A plain base is standard: clean and minimalist, as specified in your brief.',
-  'rw.what.files': 'The complete source is yours: native .F3D and neutral .STEP, so the design can be changed later with or without me. {pkgProduction} and {pkgAll} add the mold designs and the G-code.',
+  'rw.what.art': 'A plain base is standard, clean and minimalist, as your brief specifies.',
+  'rw.what.files': 'The complete source is yours, in native .F3D and neutral .STEP, so the design can be changed later with or without me. {pkgProduction} and {pkgAll} add the mold designs and the G-code.',
   'rw.what.files.consult': 'The exterior surface of the shape, as a .STEP file.',
   'rw.what.credit': 'You may name me as the designer of the mouse.',
   'rw.what.credit.consult': 'My involvement stays confidential. It may be disclosed only with my written consent.',
   'rw.what.calls': 'A {callMin}-minute video call every week, at a time set at kickoff. You see the work as it happens and steer it, and I get the decisions that keep each round moving. Included in every package at no added cost.',
   'extras.title': 'Extras Included',
   'extras.worth': 'Worth {worth}, at no added cost.',
-  'pk.note.consult': 'A confidential engagement: I do not promote the mouse, and my involvement may not be disclosed without my written consent. One fixed price, with no add-ons.',
+  'pk.note.consult': 'A confidential engagement. I do not promote the mouse, and my involvement may not be disclosed without my written consent. One fixed price, with no add-ons.',
   'pk.note.all': 'The seven steel tools are a fixed {tools} of this price. Everything else comes to {rest}.',
   'mx.corner': 'Select a package to see its price. Select a row to see what it covers, how its cost splits and its options. The bars show where each package sits among the options.',
   'mx.choose': 'Select',
@@ -845,35 +849,27 @@ var BID_TEXT = {
   'ad.shapes.step.sx': '{total} in total, including {extra} at no added cost. Each additional shape is {fee}.',
   'ad.sym.t': 'Symmetrical',
   'ad.sym.s': 'As specified in your brief.',
-  'ad.sym.v': 'Good value for a mouse meant for either hand, as in your brief.',
   'ad.asym.t': 'Asymmetrical',
   'ad.asym.s': 'Shape fees double, because an asymmetrical shape is about three times the work.',
-  'ad.asym.v': 'Good value only when a one-handed, ergonomic shape is the plan.',
   'ad.shapes.math': 'The first shape is a fixed {first} ({hFirst}). Each shape after it is a fixed {next} ({hNext}). {share} of each fee is materials, {print} of it for the two finished prints. Six paid shapes is the minimum.',
-  'ad.shapes.v': 'Good value when the shape decides the product. Each added shape comes back in about a week, where a factory revision takes {low} to {high} weeks.',
 
-  'ad.weight.i': 'Under 30 g is offered only as a set: material-matched prototypes, so the strength of the shell is verified before tooling, and the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. Under 34 g and under 38 g are available with any prototype plan.',
+  'ad.weight.i': 'Under 30 g only comes as a set. It needs material-matched prototypes, so the strength of the shell is verified before tooling, and the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. Under 34 g and under 38 g work with any prototype plan.',
   'ad.weight.i.no': 'Under 30 g comes only with prototypes in a material close to the molded one and the PCBs I design, so it starts at {from}. {package} is offered under 34 g or under 38 g, with any prototype plan.',
   'ad.W30.t': 'Under 30 g, with matched prototypes and my PCBs',
-  'ad.W30.s': 'The target in your brief: a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a mouse PCB designed as a load-bearing part of the structure.',
-  'ad.W30.v': 'Good value when under 30 g is the headline of the launch. Its strength is checked in a material close to the molded one before tooling.',
+  'ad.W30.s': 'The target in your brief, with a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a mouse PCB designed as a load-bearing part of the structure.',
   'ad.W30.from': 'Offered from {from} up, where the prototypes and my PCBs are part of the package.',
   'ad.W30.split': '{structure} for the structure and {protos} for the prototypes.',
   'ad.W30.split3': '{structure} for the structure, {protos} for the prototypes and {board} for the PCBs.',
   'ad.W34.t': 'Under 34 g',
   'ad.W34.s': 'A lighter lattice pass.',
-  'ad.W34.v': 'Good value when a weight near the ULX Small is light enough and the prototypes can stay in nylon.',
   'ad.W38.t': 'Under 38 g',
   'ad.W38.s': 'Walls and ribs only, with no full lattice.',
-  'ad.W38.v': 'Good value when stiffness and price matter more than the last few grams.',
-  'ad.weight.math': 'Weights are without skates. Every target keeps the same pass mark: the shell holds 256 kg in simulation.',
-  'ad.pcb.i': 'The mouse and its dongle talk over one radio link, so their boards come as a set. Either way, I find the factory that builds them. Its own boards are the default, as in your brief. I can design both instead, around the shell and the weight target rather than the other way round. From {pkgTested} up, the boards are mine.',
+  'ad.weight.math': 'Weights are without skates. Whichever target you choose, the shell still has to hold 256 kg in simulation.',
+  'ad.pcb.i': 'The mouse and its dongle talk over one radio link, so their boards come as a set. The factory’s own boards are the default, as in your brief. I can design both instead, around the shell and the weight target rather than the other way around. Either way, I find the factory that builds them. From {pkgTested} up, the boards are mine.',
   'ad.pcb0.t': 'The factory’s PCBs',
   'ad.pcb0.s': 'The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them.',
-  'ad.pcb0.v': 'Good value when the factory’s boards already suit the shape, and the weight target is 34 g or more. Offered with {pkgDesign}.',
   'ad.pcb1.t': 'PCBs I design, mouse and dongle',
-  'ad.pcb1.s': 'A matched radio set: the mouse’s main board and the dongle’s receiver, designed together for 8 kHz. Schematic, layout and two assembled prototype runs of each, to the minimums in this bid. The files are yours.',
-  'ad.pcb1.v': 'Good value when the boards should fit the mouse, not the mouse the boards. It also frees the mold designs from one factory’s board outline.',
+  'ad.pcb1.s': 'The mouse’s main board and the dongle’s receiver, designed together as a matched radio set for 8 kHz. Schematic, layout and two assembled prototype runs of each, to the minimums in this bid. The files are yours.',
   'ad.pcb.tied': 'Under 30 g keeps the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. To use the factory’s boards, change the weight target first.',
   'ad.notwith.pkg': 'Not with {package}',
   'ad.pcb.stays': '{package} is offered only on the PCBs I design, so the shell and the boards are designed and tested as one. To build on the factory’s boards, choose {pkgDesign}.',
@@ -884,30 +880,20 @@ var BID_TEXT = {
   'ad.fw0.t': 'The factory’s firmware',
   'ad.fw0.s': 'The firmware that comes with the factory’s electronics.',
   'ad.fw0.s.board': 'The factory, or a developer you choose, writes the firmware for the PCBs I design.',
-  'ad.fw0.v': 'Good value when the factory’s firmware already reaches the latency you want.',
-  'ad.fw0.v.board': 'Good value when you already have a firmware developer who can write for the board.',
   'ad.fw1.t': 'Basic firmware, under 300 µs',
   'ad.fw1.s': 'Firmware for the mouse and its dongle, with latency under 300 µs.',
-  'ad.fw1.v': 'Good value when you want firmware of your own at a sound latency, without paying for the last 200 µs.',
-  'ad.fw1.v.in': 'Good value when under 300 µs is all the launch needs, and you want firmware of your own.',
   'ad.fw2.t': 'Low-latency firmware, under 100 µs',
   'ad.fw2.s': 'Latency under 100 µs, with the sensor’s polling synchronized to the game. The mouse and the dongle are written around each other to reach it.',
-  'ad.fw2.v': 'Good value when latency is a headline number of the launch.',
-  'ad.fw2.v.in': 'Good value when latency is a headline number of the launch. It comes with the package.',
 
   'ad.proto.i': 'Printed in MJF PA12 or PPA-CF and priced per round. Fewer rounds lower the price and raise the risk carried into tooling.',
   'ad.pr0.t': 'None',
   'ad.pr0.s': 'No prototypes are included. You receive the files and arrange testing yourself.',
-  'ad.pr0.v': 'Good value when your own team or factory will build and test the prototypes.',
   'ad.pr2.t': 'Minimal',
   'ad.pr2.s': '{n} rounds in MJF PA12. The lowest-cost route to a working mouse, and the highest risk.',
-  'ad.pr2.v': 'Good value when the shape is settled and only fit and layout need a check.',
   'ad.pr4.t': 'Standard',
   'ad.pr4.s': '{n} rounds in MJF PA12. Shape, fit and layout proven in printed nylon.',
-  'ad.pr4.v': 'Good value for most projects: shape, fit and layout proven before tooling, a round a week.',
   'ad.pr6.t': 'Material-matched',
   'ad.pr6.s': '{n} rounds in PPA-CF. Refined in a material close to the molded composite.',
-  'ad.pr6.v': 'Good value when a tooling mistake would cost more than the rounds: the seven steel tools in this bid are {tools}. Stiffness, weight and click feel are checked in a material close to the molded one.',
   'ad.rounds': 'Rounds',
   'ad.rounds.s': 'In {material}, {each} a round.',
   'ad.rounds.none': 'Rounds can be added one at a time.',
@@ -915,7 +901,7 @@ var BID_TEXT = {
   'risk.cap': 'Risk carried into the molds',
   'risk.none.l': 'Untested',
   'risk.none.t': 'No working prototype is included. Unless you prototype independently, the first complete mouse is the one that comes out of the mold.',
-  'risk.min.l': 'Minimal testing: higher risk',
+  'risk.min.l': 'Minimal testing, higher risk',
   'risk.min.t': 'One or two rounds leave little margin to find problems, so the molded result is less predictable.',
   'risk.mid.l': 'Moderate risk',
   'risk.mid.t': 'Shape, fit and layout are proven. Stiffness, weight and click feel are approximate, because PA12 is softer than the molded composite.',
@@ -927,86 +913,65 @@ var BID_TEXT = {
   'proto.ppacf': 'PPA-CF',
   'proto.pa12.mat': 'MJF PA12 prints from a print service, two sets a round, one working mouse shipped to you',
   'proto.ppacf.mat': 'PPA-CF filament, hardened nozzles and reprints, one working mouse shipped to you',
-  'why.m': '{each} a round: {hours} × {rate}, plus {mat} of materials',
-  'why.pa12': 'Printed nylon from a print service. It is accurate and economical, and well suited to judging shape, fit and button layout. It is softer than the molded composite, so stiffness, weight and click feel are only approximate.',
+  'why.m': '{each} a round, which is {hours} × {rate} plus {mat} of materials',
+  'why.pa12': 'Printed nylon from a print service. It is accurate, and well suited to judging shape, fit and button layout. It is softer than the molded composite, so stiffness, weight and click feel are only approximate.',
   'why.ppacf': 'A carbon-fiber-filled material, much closer to the composite that will be molded. More rounds are included, so stiffness, weight and click feel can be refined and confirmed before tooling. The molds are the most expensive step, and once they are cut the design cannot be changed.',
   'ad.proto.math': 'In each round I print every part, assemble a working mouse, test weight, balance, click feel and glide, ship you a working copy, and revise the CAD. Donor electronics for the working mice are purchased once ({donor}).',
 
-  'ad.wheel.i': 'Billed in three stages, so you can stop after any of them: design, mold design, G-code.',
+  'ad.wheel.i': 'The wheel is billed in three stages, and you can stop after any of them. The design comes first, then the mold design, then the G-code.',
   'ad.wh1.t': 'Design',
   'ad.wh1.s': 'The wheel itself.',
-  'ad.wh1.v': 'Good value when your factory makes its own wheel tools.',
   'ad.wh2.t': 'With mold design',
-  'ad.wh2.s': 'Two molds: core and tire.',
-  'ad.wh2.v': 'Good value when you want the wheel molded to this design by any toolmaker.',
+  'ad.wh2.s': 'Two molds, one for the core and one for the tire.',
   'ad.wh3.t': 'With mold design and G-code',
   'ad.wh3.s': 'The machining programs for both molds.',
-  'ad.wh3.v': 'Good value when the toolmaker should cut steel from finished programs, with nothing left to reinterpret.',
 
-  'ad.dongle.i': 'Two levels of housing. The receiver inside it comes with the PCBs: the factory’s, or the one I design with the mouse’s board. A screen is one further option. The dongle’s firmware is written with the mouse’s, and is priced there.',
+  'ad.dongle.i': 'Two levels of housing. The receiver inside comes with the PCBs, either the factory’s or the one I design with the mouse’s board. A screen is one more option. The dongle’s firmware is written with the mouse’s and priced there.',
   'ad.DB.t': 'Basic',
   'ad.DB.s': 'Housing design around the receiver. 1 revision.',
-  'ad.DB.v': 'Good value when the housing only has to match the mouse, and your factory will make its mold.',
   'ad.DS.t': 'Standard',
   'ad.DS.s': 'Adds the housing’s mold design and G-code. 2 revisions.',
-  'ad.DS.v': 'Good value when the dongle is molded alongside the mouse and its tool should be ready at the same time.',
   'ad.screen.h': 'Screen on the Dongle',
   'ad.screen.i': 'A screen goes with either level. With the factory’s PCBs, I design the housing around it and the factory adds the display to its receiver. With mine, the display goes on the receiver board I design.',
   'ad.sc0.t': 'No screen',
   'ad.sc0.s': 'A plain receiver.',
-  'ad.sc0.v': 'Good value when the dongle only has to connect.',
   'ad.sc1.t': 'Screen',
   'ad.sc1.s': 'A display on the dongle. I choose the part with the factory, which adds it to its receiver, and I design the housing around it.',
   'ad.sc1.s.mine': 'A display on the dongle. I choose and test the part, add it to the receiver board I design, and design the housing around it.',
   'ad.sc1.fw': 'What it shows is part of my firmware.',
   'ad.sc1.fw.sup': 'With the factory’s firmware, the factory writes what it shows.',
-  'ad.sc1.v': 'Good value when the dongle sits in view on the desk and should show the mouse’s status at a glance.',
 
-  'ad.art.i': 'A plain base is standard. Artwork comes with 2 or 4 revisions.',
+  'ad.art.i': 'Artwork for the base comes with 2 or 4 revisions.',
   'ad.art0.t': 'Plain base',
   'ad.art0.s': 'Clean and minimalist, as specified in your brief.',
-  'ad.art0.v': 'Good value when the base stays clean, as in your brief.',
   'ad.art2.t': 'Artwork, 2 revisions',
-  'ad.art2.v': 'Good value when the base shows in product photos.',
   'ad.art4.t': 'Artwork, 4 revisions',
-  'ad.art4.v': 'Good value when the artwork carries the brand and needs room to change.',
 
   'ad.mc.i': 'I propose the carbon fiber composite grade and the coating, and negotiate with the material supplier on your behalf.',
-  'ad.mc0.t': 'Not included',
+  'ad.mc0.t': 'No consultation',
   'ad.mc0.s': 'You select the material grade and coating and deal with the supplier yourself.',
-  'ad.mc0.v': 'Good value when your own engineers already know the grade and the finisher.',
   'ad.mc1.t': 'Add consultation and negotiation',
   'ad.mc1.s': 'Included at no added cost with {pkgProduction} and {pkgAll}.',
-  'ad.mc1.v': 'Good value when the composite grade or the coating is still undecided, or you want a second voice with the material supplier.',
 
-  'ad.tm.i': 'The shop that builds the steel tools from my mold designs and G-code.',
+  'ad.tm.i': 'Choose where the steel tools are built. Either toolmaker works from my mold designs and G-code.',
   'ad.vn.t': 'Vietnam',
   'ad.vn.s': 'All seven steel tools for a fixed {tools}.',
-  'ad.vn.v': 'Good value when price leads: the same seven tools for about {share} of the US price.',
   'ad.us.t': 'United States',
   'ad.us.s': 'The same seven tools for a fixed {tools}.',
-  'ad.us.v': 'Good value when production will run in the United States, so the tools are built where they will be used.',
   'ad.tm.math': 'The price for the tools is fixed. It does not change with the toolmaker’s quote.',
-  'ad.sup.i': 'Support starts at handoff and runs for the months you choose: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples. The hours count across the whole period, so a busy first month is covered.',
+  'ad.sup.i': 'Support starts at handoff and runs for the months you choose. I answer questions from you and your factory, make the design changes production needs, and review the first production samples. The hours count across the whole period, so a busy first month is covered.',
   'ad.sup0.t': 'No support',
   'ad.sup0.s': 'Work after handoff is quoted as it comes up.',
   'ad.sup.t': '{n} months',
   'ad.sup.s': 'Up to {hours} of my time across the {n} months after handoff.',
-  'ad.sup0.v': 'Good value when your factory has built mice like this before and won’t need the designer.',
-  'ad.sup3.v': 'Good value for a first production run with an experienced factory.',
-  'ad.sup6.v': 'Good value when the molds are new and the first production samples will need a second look.',
-  'ad.sup12.v': 'Good value when a second run or a variant of the mouse is planned within the year.',
-  'ad.qc.i': 'I work on the factory floor as production starts, {week} hours a week: checking parts and finished mice against the specification, solving problems where they happen, and reporting to you every day.',
+  'ad.qc.i': 'I work on the factory floor {week} hours a week as production starts. I check parts and finished mice against the specification, solve problems where they happen, and report to you every day.',
   'ad.qc0.t': 'None',
   'ad.qc0.s': 'The factory’s own quality control.',
   'ad.qc.t1': '1 month at the factory',
   'ad.qc.t': '{n} months at the factory',
   'ad.qc.s': 'Quality control in person, on the production line.',
-  'ad.qc0.v': 'Good value when your factory has made a mouse like this before.',
-  'ad.qc1.v': 'Good value for the first production run, when most problems show up.',
-  'ad.qc2.v': 'Good value when production ramps up over several weeks, or a second line starts.',
-  'ad.qc.math': 'A month on site is four weeks on the factory floor at {week} hours a week: {hours}. Its only expenses are a round-trip flight of {fly} for the stay and housing near the factory at {stay} a month.',
-  'ad.qc.math.mine': 'A month on site is four weeks on the factory floor at {week} hours a week: {hours}, and housing near the factory at {stay} a month. The round-trip flight, about {fly}, is on me. How the mouse turns out reflects on my work, so I share the cost of being there.',
+  'ad.qc.math': 'A month on site is four weeks on the factory floor at {week} hours a week, so {hours}. Its only expenses are a round-trip flight of {fly} for the stay and housing near the factory at {stay} a month.',
+  'ad.qc.math.mine': 'A month on site is four weeks on the factory floor at {week} hours a week, so {hours}, plus housing near the factory at {stay} a month. The round-trip flight, about {fly}, is on me. How the mouse turns out reflects on my work, so I share the cost of being there.',
   'math.qc': '{hours} × {rate}, plus {exp} for the flight and housing',
   'math.qc.stay': '{hours} × {rate}, plus {exp} of housing',
   'math.qc.more': '{hours} × {rate} beyond the month included, plus {exp} of housing',
@@ -1022,14 +987,14 @@ var BID_TEXT = {
   'pr.sum.worth': 'Work worth {worth} at no added cost',
   'kinds.title': 'Materials by Kind',
   'kinds.sub': 'What is bought, then each running cost',
-  'kinds.note': 'Running costs are the share of my software, equipment and upkeep that this work uses. No option carries less than {min} in materials.',
+  'kinds.note': 'Running costs are the share of my software, equipment and upkeep that this work uses. An option you add or switch to carries at least {min} in materials.',
   'tot.pkg': '{package} package',
   'tot.pkg.ch': '{package}, with your changes',
   'tot.pkg.add': '{package} + add-ons',
   'tot.base': '{package} as it comes',
   'tot.addons': 'Your add-ons',
   'tot.changes': 'Your changes',
-  'tot.range': 'A fixed price for this selection. A change to the brief, or a further round of revision, is quoted before it starts.',
+  'tot.range': 'A fixed price for this selection. A new shape, or a change to the brief or its targets, is quoted before it starts.',
   'tot.fixed': 'Fixed price',
   'tot.time': 'Labor',
   'tot.mat': 'Materials',
@@ -1066,13 +1031,14 @@ var BID_TEXT = {
   'calc.CS1': '{first} first-shape fee, plus {nomin} for taking it without the six-shape minimum, less the materials',
   'calc.CS2': 'Fixed fee of {fee}, less the materials. Covers {hours}',
   'calc.protomat': '{n} rounds × {each}',
+  'calc.protomat.1': '1 round × {each}',
   'calc.tool.vn': 'Fixed price for all seven tools, built in Vietnam',
   'calc.tool.us': 'Fixed price for all seven tools, built in the United States',
-  'what.SH1': 'Research, reference measurement and the first full shape in CAD, with top, side, front and back views. Printed twice: one for my testing, one shipped to you.',
+  'what.SH1': 'Research, reference measurement and the first full shape in CAD, with top, side, front and back views. Printed twice, one for my testing and one shipped to you.',
   'what.SHN': 'Each one is a full revision of the shape in CAD, printed twice, with one shipped to you.',
   'what.SHX': 'More revisions of the shape, each printed twice with one shipped to you, at no added cost in this package.',
-  'what.PR': 'Every round: print each part, build a working mouse, test weight, balance, click feel and glide, ship you a working copy, then revise the CAD.',
-  'what.CS1': 'Research, reference measurement and one full shape: the exterior surface as a .STEP file. Inside a project of six or more shapes this fee is {first}. On its own it is {single}.',
+  'what.PR': 'Every round I print each part, build a working mouse, test weight, balance, click feel and glide, ship you a working copy, then revise the CAD.',
+  'what.CS1': 'Research, reference measurement and one full shape, with the exterior surface as a .STEP file. Inside a project of six or more shapes this fee is {first}. On its own it is {single}.',
   'what.CS2': 'One 3D-printed shell, finished and shipped to you, plus calls and my recommendations in writing.',
   'what.T': 'Top shell, main clicks, base, side buttons and power switch, scroll wheel core, scroll wheel tire and dongle housing. The price is fixed. It does not change with the toolmaker’s quote.',
   'incl.label': 'Included',
@@ -1093,6 +1059,7 @@ var BID_TEXT = {
   'vs.d.h': 'The Same Hours, in Dollars',
   'vs.d.s': 'Labor for the {hours} in this selection',
   'vs.d.fr': '{n} American freelancers',
+  'vs.d.fr.1': 'An American freelancer',
   'vs.d.cn': 'A design firm in Shenzhen',
   'fr.g': 'American freelancers',
   'fr.id': 'Industrial designer',
@@ -1116,18 +1083,18 @@ var BID_TEXT = {
   'fr.note.mat': 'None of these figures includes materials.',
   'sp.h': 'What You Get',
   'sp.1': '**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut.',
-  'sp.2': '**One person answerable.** The person who shapes the mouse also engineers it, tests it and designs its molds, so nothing is lost between hand-offs.',
-  'sp.3': '**Native English, based in the United States.** You work with the designer directly, in clear English, with no translator or account manager in between.',
+  'sp.2': '**One person answerable.** I shape the mouse, engineer it, test it and design its molds, so nothing gets lost in a handoff.',
+  'sp.3': '**Native English, based in the United States.** You work with me directly, in clear English, with no translator or account manager in between.',
   'sp.4': '**A call every week.** {callMin} minutes with the person doing the work. You see the mouse as it takes shape and steer it, and I get your decisions while they still save time. Each call ends with a written summary of what was decided and what comes next.',
   'sp.5': '**Speed.** {a} to {b} iterations in the time a factory turns one.',
   'sp.8': '**Revisions until you’re satisfied.** I keep refining the look until it’s what you had in mind, and aesthetic changes within reason are never billed as extra rounds, as they are at many studios. Realizing your vision is my job, so if it isn’t happening, that’s on me, not you.',
   'cv.h': 'How You’re Covered',
   'cv.intro': 'What keeps the risk of this project on my side.',
-  'cv.1': '**A fixed price.** Every figure here is exact. If something costs me more than I planned, that’s mine to absorb, and a change you ask for is quoted before it starts.',
+  'cv.1': '**A fixed price.** Every figure here is exact. If something costs me more than I planned, that’s mine to absorb, and a change to the brief is quoted before it starts.',
   'cv.2': '**Stop at any milestone.** You pay for the work done up to that point, and the files for all of it are yours.',
-  'cv.3': '**Everything is yours.** As each milestone is paid, the design and its source files are yours and, from {pkgProduction} up, the mold designs and G-code, so any toolmaker can quote the same tools.',
-  'cv.4': '**My mistakes are mine to fix.** If anything I designed misses the specification we agreed, I correct the design at no charge, during the project and for a year after handoff.',
-  'cv.5': '**Support after handoff.** {supLow} to {supHigh} months of production support come with every full package, and it can run to {supMax}: answers for you and your factory within a business day, and the design changes production needs.',
+  'cv.3': '**Everything is yours.** As each milestone is paid, the design and its source files become yours. From {pkgProduction} up that includes the mold designs and G-code, so any toolmaker can quote the same tools.',
+  'cv.4': '**My mistakes are mine to fix.** If anything I designed misses the specification we agreed on, I correct the design at no charge, during the project and for a year after handoff.',
+  'cv.5': '**Support after handoff.** {supLow} or {supHigh} months of production support come with every full package, and it can run to {supMax}. I answer questions from you and your factory and make the design changes production needs.',
   'cv.6': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen, and the flight there is on me. {qcIn} of it comes with {pkgAll}.',
   'cv.6.none': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen, and the flight there is on me.',
   'cv.6.fly': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen. {qcIn} of it comes with {pkgAll}.',
@@ -1171,13 +1138,13 @@ var BID_TEXT = {
   'item.CL.mat': 'Click and button test prints',
   'item.CL.matwhy': 'Printed click and button mechanisms, to test the feel',
   'item.IL.name': 'Internal layout and electronics fit',
-  'item.IL.what': 'Sensor slightly forward of centre, a hot-swap encoder, and a 200 mAh or larger LiPo positioned to balance the mouse vertically and horizontally between the thumb and ring finger. Fitted to the factory’s board, or to the PCB I design.',
+  'item.IL.what': 'Sensor slightly forward of center, a hot-swap encoder, and a 200 mAh or larger LiPo positioned to balance the mouse vertically and horizontally between the thumb and ring finger. Fitted to the factory’s board, or to the PCB I design.',
   'item.PB.name': 'Mouse PCB design',
-  'item.PB.what': 'Schematic and layout for the mouse’s main board, to the minimums in this bid: PAW3955 or better, nRF54LM20A or better, 8 kHz wired and wireless. Two assembled prototype runs, and the manufacturing files. Designed with the dongle’s receiver as one radio set. Under 30 g, the board is designed as a load-bearing part of the structure.',
+  'item.PB.what': 'Schematic and layout for the mouse’s main board, with a PAW3955 or better, an nRF54LM20A or better, and 8 kHz wired and wireless, the minimums in this bid. Two assembled prototype runs, and the manufacturing files. It is designed with the dongle’s receiver as one radio set, and under 30 g it is designed as a load-bearing part of the structure.',
   'item.PB.mat': 'Prototype boards and parts',
   'item.PB.matwhy': 'Two assembled prototype runs',
   'item.DR.name': 'Dongle PCB design',
-  'item.DR.what': 'Schematic and layout for the dongle’s receiver, designed with the mouse’s board as one radio set: 8 kHz, on the same nRF54LM20A-class chip. Two assembled prototype runs, and the manufacturing files.',
+  'item.DR.what': 'Schematic and layout for the dongle’s receiver, designed with the mouse’s board as one radio set for 8 kHz on the same nRF54LM20A-class chip. Two assembled prototype runs, and the manufacturing files.',
   'item.DR.mat': 'Dongle prototype boards and a dev kit',
   'item.DR.matwhy': 'An nRF54LM20 development kit and two assembled prototype runs',
   'item.FB.name': 'Mouse and dongle firmware, basic',
@@ -1189,16 +1156,16 @@ var BID_TEXT = {
   'item.SP3.name': 'Production support, 3 months',
   'item.SP6.name': 'Production support, 6 months',
   'item.SP12.name': 'Production support, 12 months',
-  'item.SP3.what': 'For the 3 months after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples.',
-  'item.SP6.what': 'For the 6 months after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples.',
-  'item.SP12.what': 'For the year after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of production samples as they come.',
+  'item.SP3.what': 'For the 3 months after handoff, I answer questions from you and your factory, make the design changes production needs, and review the first production samples.',
+  'item.SP6.what': 'For the 6 months after handoff, I answer questions from you and your factory, make the design changes production needs, and review the first production samples.',
+  'item.SP12.what': 'For the year after handoff, I answer questions from you and your factory, make the design changes production needs, and review production samples as they come.',
   'line.QC.1': 'Quality control on site, 1 month',
   'line.QC': 'Quality control on site, {n} months',
   'line.QX.1': 'Quality control on site, 1 month',
   'line.QX': 'Quality control on site, {n} months',
   'line.QX.more.1': 'Quality control on site, 1 more month',
   'line.QX.more': 'Quality control on site, {n} more months',
-  'item.QC.what': 'On the factory floor as production starts: parts and finished mice checked against the specification, problems solved where they happen, and a report to you every day.',
+  'item.QC.what': 'On the factory floor as production starts, checking parts and finished mice against the specification, solving problems where they happen, and reporting to you every day.',
   'calc.incl.qc': 'Included. {hours} × {rate}, plus {exp} for the flight and housing, if billed',
   'calc.incl.qc.stay': 'Included. {hours} × {rate}, plus {exp} of housing, if billed',
   'qc.fly': 'Round-trip flight',
@@ -1219,11 +1186,11 @@ var BID_TEXT = {
   'item.BS.mat': 'Base test prints',
   'item.BS.matwhy': 'Printed base sections',
   'item.WD.name': 'Scroll wheel design',
-  'item.WD.what': 'A wheel of your own, sized to a standard encoder so it carries into future models: plastic core, silicone tire, heat-baked coating harder than 7H.',
+  'item.WD.what': 'A wheel of your own, sized to a standard encoder so it carries into future models, with a plastic core, a silicone tire and a heat-baked coating harder than 7H.',
   'item.WD.mat': 'Scroll wheel test prints',
   'item.WD.matwhy': 'Printed wheels, to test the fit on an encoder',
   'item.AH.name': 'Assembly, tolerances and handoff files',
-  'item.AH.what': 'Tolerance and assembly checks, then the handoff: full .F3D and .STEP source files.',
+  'item.AH.what': 'Tolerance and assembly checks, then the handoff of the full .F3D and .STEP source files.',
   'item.DB.name': 'Dongle Basic',
   'item.DB.what': 'Housing design in the mouse’s design language, built around the receiver. 1 revision.',
   'item.DB.mat': 'Dongle test prints',
@@ -1233,7 +1200,7 @@ var BID_TEXT = {
   'item.DS.mat': 'Dongle test prints',
   'item.DS.matwhy': 'Printed housings',
   'item.DP.name': 'Dongle screen',
-  'item.DP.what': 'A display on the dongle: the part chosen and tested, the housing designed around it, and what it shows added to the firmware. With my PCBs it goes on the receiver board I design. With the factory’s, the factory adds it to its own.',
+  'item.DP.what': 'A display on the dongle. I choose and test the part, design the housing around it, and add what it shows to the firmware. With my PCBs it goes on the receiver board I design, and with the factory’s the factory adds it to its own.',
   'item.DP.mat': 'Displays and test builds',
   'item.DP.matwhy': 'Display modules, connectors and the prints or boards to test them',
   'item.RN.name': 'Colorway renders',
@@ -1248,16 +1215,16 @@ var BID_TEXT = {
   'item.DFM.what': 'A check that every part can be molded in carbon fiber composite before any mold is designed.',
   'item.DFM.mat': 'Mold-flow and CAM screening runs',
   'item.DFM.matwhy': 'First-pass runs on every part, before any mold is designed',
-  'item.MT.name': 'Mold design and G-code: top shell',
+  'item.MT.name': 'Top shell mold design and G-code',
   'item.MT.what': 'The mold design and its machining programs.',
-  'item.MK.name': 'Mold design and G-code: main clicks',
-  'item.MK.what': 'Left and right click: the mold design and its machining programs.',
-  'item.MB.name': 'Mold design and G-code: base',
+  'item.MK.name': 'Main click mold design and G-code',
+  'item.MK.what': 'The mold design and machining programs for the left and right clicks.',
+  'item.MB.name': 'Base mold design and G-code',
   'item.MB.what': 'The mold design and its machining programs.',
-  'item.MS.name': 'Mold design and G-code: side buttons and power switch',
+  'item.MS.name': 'Side button and power switch mold design and G-code',
   'item.MS.what': 'The mold design and its machining programs.',
   'item.WM.name': 'Scroll wheel mold design',
-  'item.WM.what': 'Two molds: the plastic core and the silicone tire.',
+  'item.WM.what': 'Two molds, one for the plastic core and one for the silicone tire.',
   'item.WG.name': 'Scroll wheel G-code',
   'item.WG.what': 'Machining programs for both wheel molds.',
   'item.TM.name': 'Toolmaker sourcing and management',
@@ -1278,67 +1245,71 @@ var BID_TEXT = {
   'mat.coat.why': 'Trial coats on sample shells',
   'mat.freight': 'Freight for tools and samples',
   'mat.freight.why': 'Shipping for the steel tools and the sample mice',
-  'mat.donor': 'Donor electronics: three PAW3955-class 8K mice',
+  'mat.donor': 'Donor electronics from three PAW3955-class 8K mice',
   'mat.donor.why': 'Bought once. They give the prototypes working electronics until your boards exist',
   'mat.prints': 'Two finished prints of each shape, one shipped to you',
   'mat.prints.why': '{n} × {print}, inside the fixed fee',
-  'mat.consult': 'A reference mouse, the print and shipping',
+  'mat.consult': 'The finished print and its shipping',
   'mat.consult.why': 'Inside the fixed price',
 
   /* ---- how the work runs ---- */
   'wk.title': 'Payment, Timeline and Terms',
   'pay.h': 'Payment',
-  'pay.1': '**Deposit: {deposit}** for this package. That is {pct} of its price, capped at {cap}, paid before work begins and credited against your first invoices.',
-  'pay.2': '**An invoice at each milestone** for the lines completed at that stage: {milestones}.',
+  'pay.1': '**The deposit is {deposit}** for this package. That is {pct} of its price, capped at {cap}, paid before work begins and credited against your first invoices.',
+  'pay.2': '**An invoice at each milestone** for the lines completed by then. The milestones are {milestones}.',
   'ms.shapes': 'shapes signed off',
   'ms.proto': 'each prototype round',
   'ms.molds': 'mold files',
   'ms.tools': 'tool trials',
   'ms.handoff': 'final handoff',
-  'pay.3': '**Shape fees are fixed:** {first} for the first shape and {next} for each one after.',
+  'list.and': 'and',
+  'pay.3': '**Shape fees are fixed.** The first shape is {first} and each one after it is {next}.',
   'pay.4': '**Steel tools** are a fixed price, paid on the toolmaker’s payment schedule.',
-  'pay.5': 'The price is for the scope in this bid. Aesthetic revisions are part of it: I refine surfaces, lines, proportions, details and colorways until you are satisfied, within the agreed shapes and their targets. A new shape, or a change to the brief or its targets, is quoted before it starts.',
+  'pay.5': 'The price is for the scope in this bid, and aesthetic revisions are part of it. I refine surfaces, lines, proportions, details and colorways until you are satisfied, within the agreed shapes and their targets. A new shape, or a change to the brief or its targets, is quoted before it starts.',
   'pay.c1': '**{deposit} to start**, paid before work begins.',
   'pay.c2': '**{balance} on delivery** of the shape file and the printed shell.',
   'pay.c3': 'The price is fixed. Nothing further is billed.',
   'tl.h': 'Timeline',
   'tl.lead': 'About {weeks} weeks of work.',
   'tl.range': '{a} to {b}',
-  'tl.p': '{hours} at about {pace} hours a week, plus your review time, with a {callMin}-minute call every week. Dates are agreed at kickoff.',
-  'tl.p.build': '{hours} at about {pace} hours a week, plus your review time and the toolmaker’s build time, with a {callMin}-minute call every week. Dates are agreed at kickoff.',
+  'tl.p': '{hours} at about {pace} hours a week, plus your review time, with a {callMin}-minute call every week. Dates are set at kickoff.',
+  'tl.p.build': '{hours} at about {pace} hours a week, plus your review time and the toolmaker’s build time, with a {callMin}-minute call every week. Dates are set at kickoff.',
   'tl.b.shapes': 'Shapes',
   'tl.b.eng': 'Engineering',
   'tl.b.proto': 'Prototypes',
   'tl.b.mold': 'Mold design and G-code',
   'tl.b.build': 'Tools, trials and samples',
   'tl.b.consult': 'Shape, print and calls',
-  'tl.s.kick': 'Kickoff: the brief and your selection are confirmed, and the deposit is paid.',
+  'tl.s.kick': 'Kickoff. We confirm the brief and your selection, and the deposit is paid.',
   'tl.s.shapes': 'Shapes, one at a time. Each is printed and shipped, and you choose the direction.',
-  'tl.s.eng': 'Engineering: structure, clicks, base, internals, wheel and dongle.',
-  'tl.s.fab': 'A factory found for your PCBs and firmware: shortlist, quotes, samples and an introduction.',
-  'tl.s.fab.pcb': 'A factory found to build the PCBs: shortlist, quotes, samples and an introduction.',
-  'tl.s.pcb': 'The PCBs for the mouse and its dongle, as one radio set: schematic, layout and two assembled prototype runs of each.',
+  'tl.s.eng': 'Engineering of the structure, clicks, base, internals, wheel and dongle.',
+  'tl.s.fab': 'Finding a factory for your PCBs and firmware, with a shortlist, quotes, samples and an introduction.',
+  'tl.s.fab.pcb': 'Finding a factory to build the PCBs, with a shortlist, quotes, samples and an introduction.',
+  'tl.s.pcb': 'The PCBs for the mouse and its dongle, designed as one radio set, with two assembled prototype runs of each.',
   'tl.s.fw.1': 'The firmware for the mouse and its dongle, with latency under 300 µs.',
   'tl.s.fw.2': 'The firmware for the mouse and its dongle, with latency under 100 µs and the sensor’s polling synchronized to the game.',
   'tl.s.proto': '{n} prototype rounds in {material}, each ending with a working mouse delivered to you.',
+  'tl.s.proto.1': '1 prototype round in {material}, ending with a working mouse delivered to you.',
   'tl.s.molds': 'Moldability review, then mold design and G-code for every part.',
   'tl.s.tools': 'Tool build, trial shots and corrections.',
   'tl.s.samples': 'Nine finished sample mice.',
   'tl.s.sup': 'Production support for {n} months after handoff.',
   'tl.s.qc.1': 'Quality control on site at the factory as production starts, for 1 month.',
   'tl.s.qc': 'Quality control on site at the factory as production starts, for {n} months.',
-  'tl.after': 'Production support and quality control on site come after handoff: {after} of work that adds no weeks to the project.',
+  'tl.after': 'Production support and quality control on site come after handoff, so their {after} of work adds no weeks to the project.',
+  'tl.after.sup': 'Production support comes after handoff, so its {after} of work adds no weeks to the project.',
+  'tl.after.qc': 'Quality control on site comes after handoff, so its {after} of work adds no weeks to the project.',
   'tl.s.handoff': 'Handoff of the source files.',
   'tl.c.1': 'The shape, in CAD.',
   'tl.c.2': 'The printed shell, finished and shipped to you.',
   'tl.c.3': 'Calls and my recommendations in writing.',
   'mo.h': 'Mold Design and Tooling',
   'mo.1': 'In {pkgProduction} and {pkgAll} I design every mold and write its G-code.',
-  'mo.2': 'The files are yours. Any toolmaker can quote, build or repair the tools from them, so you can compare quotes on one design and you are never tied to one shop.',
-  'mo.3': 'The toolmaker cuts and finishes the steel and runs trial shots. You do not pay a shop for its own mold design and programming.',
+  'mo.2': 'The files are yours. Any toolmaker can quote, build or repair the tools from them, so you can compare quotes on one design and you are never tied to one toolmaker.',
+  'mo.3': 'The toolmaker cuts and finishes the steel and runs trial shots, and you do not pay for its own mold design and programming.',
   'mo.4': 'In {pkgAll} the seven tools are built outside China, in Vietnam unless you choose otherwise, for one fixed price.',
   'mo.5': 'That price does not change with the toolmaker’s quote, and no tool is ordered without your approval.',
-  'mo.6': 'A shop that chooses to redo the programming adds its own time.',
+  'mo.6': 'A toolmaker that chooses to redo the programming adds its own time.',
   'mo.7': '',
   'mo.8': '',
   'nd.h': 'What I Need From You',
@@ -1364,7 +1335,7 @@ var BID_TEXT = {
   'tm.2': 'The files for each milestone are yours once its invoice is paid.',
   'tm.3': 'You may stop at any milestone. You pay for the lines completed and the work in progress up to that point, and the files for all of it are yours.',
   'tm.4': 'Invoices are due within 14 days.',
-  'tm.5': 'If anything I designed misses the specification we agreed, I correct the design at no charge, during the project and for a year after handoff.',
+  'tm.5': 'If anything I designed misses the specification we agreed on, I correct the design at no charge, during the project and for a year after handoff.',
   'tm.6': 'I’ll sign your NDA before work begins. Nothing about the project is shown or shared without your written consent.',
   'tm.7': '',
   'tm.8': '',
@@ -1386,27 +1357,29 @@ var BID_TEXT = {
   'sum.tools': 'Of which steel tools, fixed price: {tools}',
   'sum.deposit': 'Deposit to start: {deposit}',
   'sum.ch.shapes': '{n} paid shapes ({total} in total)',
+  'sum.ch.shapes.1': '{n} paid shape ({total} in total)',
   'sum.ch.asym': 'Asymmetrical shape',
   'sum.ch.weight': 'Weight target under {g} g',
   'sum.ch.proto': '{n} prototype rounds in {material}',
+  'sum.ch.proto.1': '1 prototype round in {material}',
   'sum.ch.noproto': 'No prototype rounds',
   'sum.ch.pcb.1': 'Mouse and dongle PCBs designed by me',
   'sum.ch.pcb.0': 'Mouse and dongle PCBs from the factory',
   'sum.ch.fw.0': 'Mouse and dongle firmware from the factory',
-  'sum.ch.fw.1': 'Mouse and dongle firmware: basic, under 300 µs',
-  'sum.ch.fw.2': 'Mouse and dongle firmware: low latency, under 100 µs',
-  'sum.ch.wheel.1': 'Scroll wheel: design only',
-  'sum.ch.wheel.2': 'Scroll wheel: design and mold design',
-  'sum.ch.wheel.3': 'Scroll wheel: design, mold design and G-code',
+  'sum.ch.fw.1': 'Basic mouse and dongle firmware under 300 µs',
+  'sum.ch.fw.2': 'Low-latency mouse and dongle firmware under 100 µs',
+  'sum.ch.wheel.1': 'Scroll wheel design only',
+  'sum.ch.wheel.2': 'Scroll wheel design and mold design',
+  'sum.ch.wheel.3': 'Scroll wheel design with mold design and G-code',
   'sum.ch.dongle': 'Dongle {level}',
   'sum.ch.screen.1': 'Dongle screen',
-  'sum.ch.art': 'Base artwork, {n} revisions',
+  'sum.ch.art': 'Base artwork with {n} revisions',
   'sum.ch.mc': 'Material science consultation and negotiation',
   'sum.ch.us': 'US toolmaker',
-  'sum.ch.sup': 'Production support: {n} months',
+  'sum.ch.sup': 'Production support for {n} months',
   'sum.ch.nosup': 'No production support',
-  'sum.ch.qc.1': 'Quality control on site: 1 month',
-  'sum.ch.qc': 'Quality control on site: {n} months',
+  'sum.ch.qc.1': 'Quality control on site for 1 month',
+  'sum.ch.qc': 'Quality control on site for {n} months',
   'sum.ch.noqc': 'No quality control on site',
   'thanks': 'Thank you for considering this bid. I am glad to walk through any part of it with you.',
   'thanks.sign': 'Brock Liddicoat',
@@ -1431,15 +1404,15 @@ var BID_SPEC = [
   ] },
   { h: 'Weight and Balance', s: 'Under {wt} g without skates, balanced vertically and horizontally', rows: [
     ['Weight in your brief', 'Under 30.0 g', 'Assembled with the battery, skates removed, on a scale that reads to 0.01 g.', 'you'],
-    ['Weight in this selection', 'Under {wt}.0 g', 'Under 30 g is offered only as a set: at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.', 'me', 'full'],
-    ['Balance', 'Centred vertically and horizontally', 'The centre of mass sits between the thumb and ring-finger contact points, in height and along the length. The battery is positioned to put it there.', 'both'],
+    ['Weight in this selection', 'Under {wt}.0 g', 'Under 30 g only comes as a set, with at least {n} prototype rounds in PPA-CF so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.', 'me', 'full'],
+    ['Balance', 'Centered vertically and horizontally', 'The center of mass sits between the thumb and ring-finger contact points, in height and along the length. The battery is positioned to put it there.', 'both'],
     ['Balance test', 'Level within 2°', 'Pinched at the thumb and ring-finger contact points and lifted, the mouse stays level front to back and side to side.', 'prop'],
     ['Battery', '200 mAh or more', 'Lithium polymer, counted inside the weight target and positioned to balance the mouse vertically and horizontally.', 'me']
   ] },
   { h: 'Structure and Rigidity', s: 'The shell holds 256 kg in simulation, with no flex and no creak', rows: [
     ['Shell load', '256 kg at least (2,511 N)', 'Finite element simulation, with the load applied at every local minimum of the shell.', 'me'],
-    ['Side squeeze: thumb against ring and little finger', '160 N with no permanent change', 'Applied across the grip zones. Above the key pinch of about 98 in 100 men aged 20 to 29: 156 N, the mean plus two standard deviations (Mathiowetz et al., 1985).', 'prop'],
-    ['Main clicks: index and middle finger', '120 N on each with no permanent change', 'Pressed at the fingertip position. Above the tip pinch of about 98 in 100 men aged 20 to 29: 115 N, from the same study.', 'prop'],
+    ['Side squeeze, thumb against ring and little finger', '160 N with no permanent change', 'Applied across the grip zones. That is above the key pinch of about 98 in 100 men aged 20 to 29, which is 156 N, the mean plus two standard deviations (Mathiowetz et al., 1985).', 'prop'],
+    ['Main clicks, index and middle finger', '120 N on each with no permanent change', 'Pressed at the fingertip position. That is above the tip pinch of about 98 in 100 men aged 20 to 29, which is 115 N, from the same study.', 'prop'],
     ['Flex in use', '0.2 mm at most under 20 N', 'Movement of the shell at each finger position, measured on a force tester.', 'prop'],
     ['Creak', 'None', 'No audible noise at any of the loads above.', 'you']
   ] },
@@ -1465,7 +1438,7 @@ var BID_SPEC = [
     ['Sensor position', '5 mm ahead of mid-length', '54.5 mm from the front of a 119 mm mouse. Your brief asks for slightly forward of center.', 'prop'],
     ['Polling rate', '8,000 Hz', 'Wired and wireless.', 'me'],
     ['Wireless chip', 'nRF54LM20A or better', '', 'me'],
-    ['Receiver', 'Standard 2.4 GHz', 'Comes as a set with the mouse’s board: the factory’s, or one I design with it. The dongle housing is designed around it.', 'you']
+    ['Receiver', 'Standard 2.4 GHz', 'Comes as a set with the mouse’s board, either the factory’s or one I design with it. The dongle housing is designed around it.', 'you']
   ] },
   { h: 'Material and Finish', s: 'Carbon fiber composite, with no imitation weave', rows: [
     ['Material', 'Carbon fiber composite', 'Injection molded from pellets with short carbon fibers dispersed through the plastic. There is no weave.', 'both'],
@@ -1501,7 +1474,7 @@ var BID_NUM = {
   shape: {
     first: 5000,                              // first shape, fixed fee
     next: 1250,                               // each shape after it, fixed fee
-    print: 250,                               // bought inside each fee: two finished prints, one shipped
+    print: 80,                                // bought inside each fee: two finished prints, one shipped
     minPaid: 6,                               // full projects start at six paid shapes
     hFirst: [65, 80],
     hNext: [12, 16],
@@ -1513,7 +1486,7 @@ var BID_NUM = {
     extras: 1000,                             // finished shell, calls and written recommendations
     hShape: [65, 80],
     hExtras: [7, 13],
-    mat: [300, 520]                           // bought for it: a reference mouse, the print, shipping
+    mat: [80, 170]                            // bought for it: the finished print and its shipping, at what a shape's prints cost. The client owns the reference mice
   },
   /* paid shapes are charged; extra shapes are included at no added cost.
      pcb: the PCBs I design, the mouse's board and the dongle's receiver, which talk over one radio link and so come as a set.
@@ -1593,7 +1566,7 @@ var BID_NUM = {
   /* working prototypes, per round */
   proto: {
     pa12:  { h: [10, 14], m: [240, 480] },
-    ppacf: { h: [14, 20], m: [300, 600] },
+    ppacf: { h: [10, 15], m: [180, 360] },     // printed in-house: six rounds stay under 7,000
     plan: { min: 2, std: 4, max: 6 },         // rounds in the Minimal, Standard and Material-matched plans.
                                               // Under 30 g is only offered with the Material-matched plan: PPA-CF, at least max rounds.
     donor: [90, 240],                         // donor electronics, bought once
@@ -1601,7 +1574,8 @@ var BID_NUM = {
   },
   /* what is bought for a package as a whole, not for one line item */
   mat: {
-    ref: [600, 1000], paint: [1000, 1400],     // paint: three colorways, the shells to paint, booth and spray upkeep
+    ref: [0, 0],                               // reference mice to buy for the client: none, as Kyomi owns the ones in its brief
+    paint: [1000, 1400],                       // paint: three colorways, the shells to paint, booth and spray upkeep
     resin: [1210, 1210], coat: [500, 1500], freight: [400, 1200]
   },
   /* steel tools: one fixed price for all seven, by where they are built. Not a range: if the toolmaker
@@ -1894,7 +1868,7 @@ function makeBid(N) {
     /* materials: what is bought, and each line's running costs. of names the line a material belongs to. */
     var mat = function (key, amt, more) { var o = { id: 'M', kind: 'mat', mat: key, amt: amt }; if (more) for (var k in more) o[k] = more[k]; return push('mat', o); };
     var runs = {};
-    mat('mat.ref', N.mat.ref);
+    if (N.mat.ref && N.mat.ref[1] > 0) mat('mat.ref', N.mat.ref);      // reference mice, only when there are any to buy
     lines.filter(function (l) { return l.kind === 'hours' && l.item; }).forEach(function (l) {
       var it = l.it || N.items[l.item];
       if (it.m && it.m[1] > 0) mat('item.' + l.item, it.m, { of: l.id });
@@ -2324,6 +2298,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function priceHTML(r) { return r[0] === r[1] ? B.usd(r[0]) : B.usd(r[0]) + '<wbr>–' + B.usd(r[1]); }
   function changedFromBase() { return JSON.stringify(cfg) !== JSON.stringify(B.defaults(cfg.pkg)); }
   function pctText() { return B.num(NUMS.deposit.pct) + '%'; }
+  /* a list as a sentence says it: a, b and c */
+  function listOf(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' ' + plain('list.and') + ' ' + a[a.length - 1]; }
   /* a package's color: on marks only (bars, dots, swatches), never on text */
   function pc(k) { return '<i class="pc" style="background:var(--p-' + k + ')"></i>'; }
   function val(key, vars) { return show(key) ? T(key, vars) : ''; }
@@ -2497,7 +2473,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'art': return { html: c.art ? T('cell.art.n', { n: c.art }) : T('cell.art') };
       case 'renders': return { html: T('cell.renders'), sub: T('cell.renders.sub') };
       case 'files': return { html: T('cell.files') };
-      case 'proto': return c.rounds ? { html: T('cell.proto', { rounds: c.rounds }), sub: T('cell.proto.sub', { material: plain('proto.' + c.proto) }) } : no;
+      case 'proto': return c.rounds ? { html: T(c.rounds === 1 ? 'cell.proto.1' : 'cell.proto', { rounds: c.rounds }), sub: T('cell.proto.sub', { material: plain('proto.' + c.proto) }) } : no;
       case 'paint': return p.paint ? yes : no;
       case 'molds': return p.molds ? yes : no;
       case 'mc': return p.mcIncluded ? { yes: 1, sub: T('cell.mc.sub') } : c.mc ? { yes: 1, sub: T('cell.added') } : no;
@@ -2590,16 +2566,17 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (k === 'mat.prints') return { name: T('mat.prints'), why: T('mat.prints.why', { n: m.n, print: B.usd(B.SH.print) }) };
     if (k === 'qc.stay') return { name: T(k), why: T(m.n === 1 ? 'qc.stay.why.1' : 'qc.stay.why', { n: m.n, each: B.money(m.each) }) };
     if (k.indexOf('item.') === 0) return { name: T(k + '.mat'), why: T(k + '.matwhy') };
-    if (k.indexOf('proto.') === 0) return { name: T(k + '.mat'), why: T('calc.protomat', { n: m.n, each: B.money(m.each) }) };
+    if (k.indexOf('proto.') === 0) return { name: T(k + '.mat'), why: T(m.n === 1 ? 'calc.protomat.1' : 'calc.protomat', { n: m.n, each: B.money(m.each) }) };
     if (k === 'cost.flow') return { name: T(k), why: T('cost.flow.why', { days: m.days[0] === m.days[1] ? plain(m.days[0] === 1 ? 'cost.day' : 'cost.days', { n: B.num(m.days[0]) }) : plain('cost.days', { n: B.num(m.days[0]) + '–' + B.num(m.days[1]) }), day: B.usd(NUMS.costs.flowDay) }) };
     if (k.indexOf('cost.') === 0) return { name: T(k), why: '' };
     return { name: own ? '' : T(k), why: T(k + '.why') };
   }
-  /* The package an item first comes with at no charge: "Included in Design and above". */
-  function inclFrom(id) {
+  /* The package an item first comes with at no charge: "Included in Design and above". The extra shapes grow with
+     the package (at), so their count is named from the package on screen, not from the first one that has any. */
+  function inclFrom(id, at) {
     var ks = B.ORDER.filter(function (k) { return k !== 'consult'; }), i;
     var has = function (k) { return BASE[k].lines.some(function (l) { return l.id === id && l.kind === 'included'; }); };
-    for (i = 0; i < ks.length; i++) if (has(ks[i])) return T(i === ks.length - 1 ? 'incl.only' : 'incl.from', { package: pkgName(ks[i]) });
+    for (i = id === 'SHX' ? Math.max(0, ks.indexOf(at)) : 0; i < ks.length; i++) if (has(ks[i])) return T(i === ks.length - 1 ? 'incl.only' : 'incl.from', { package: pkgName(ks[i]) });
     return T('incl.label');
   }
   /* a thin bar: solid is labor, half-tone is materials, faint is steel tools */
@@ -2615,7 +2592,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       var x = itemText(it, k), incl = it.kind === 'included', own = it.kind === 'mat', many = it.mats.length > 1 && !incl;
       var line = function (m) { var mt = matText(m, own); return mt.name + (mt.name && mt.why ? ' ' : '') + (mt.why ? '<span class="y">' + mt.why + '</span>' : ''); };
       s += '<div class="it"><div class="it-h' + (incl ? ' inc' : '') + '"><span class="it-n">' + x.name + '</span><span class="it-a">' +
-        (incl ? inclFrom(it.id) + '<small>' + T('incl.worth', { worth: B.money(it.worth) }) + '</small>' : B.money(it.total)) + '</span></div>' + splitBar(it) + '<dl class="it-d">';
+        (incl ? inclFrom(it.id, k) + '<small>' + T('incl.worth', { worth: B.money(it.worth) }) + '</small>' : B.money(it.total)) + '</span></div>' + splitBar(it) + '<dl class="it-d">';
       if (x.labor) s += '<div><dt>' + T('rw.labor') + '</dt><dd class="c">' + x.labor + '</dd><dd class="a">' + (incl ? '' : B.money(it.labor)) + '</dd></div>';
       if (many) s += '<div><dt>' + T(it.id === 'QX' ? 'rw.exp' : 'rw.mat') + '</dt><dd class="c"></dd><dd class="a">' + B.money(it.mat) + '</dd></div>';
       else it.mats.forEach(function (m) { s += '<div><dt>' + T(it.id === 'QX' ? 'rw.exp' : 'rw.mat') + '</dt><dd class="c">' + line(m) + '</dd><dd class="a">' + (incl ? '' : B.money(m.amt)) + '</dd></div>'; });     // the work on site has expenses, not materials
@@ -2630,11 +2607,11 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
 
   /* ---- the options of a row, for the selected package ---- */
   function dOpt(change) { return B.delta(B.defaults(cfg.pkg), change); }
-  function opt(id, on, title, sub, right, change, disabled, value) {
+  function opt(id, on, title, sub, right, change, disabled) {
     return '<button type="button" class="opt" role="radio" id="' + id + '" aria-checked="' + !!on + '"' + (disabled ? ' aria-disabled="true"' : '') +
       " data-set='" + JSON.stringify(change) + "'>" +
       '<span class="rb"></span><span class="bd2"><span class="tp"><span class="t">' + title + '</span><span class="d">' + right + '</span></span>' +
-      (sub ? '<span class="s">' + sub + '</span>' : '') + (value ? '<span class="v">' + value + '</span>' : '') + '</span></button>';
+      (sub ? '<span class="s">' + sub + '</span>' : '') + '</span></button>';
   }
   function tagFor(d, isDefault) { return isDefault ? T('ad.inpkg') : (deltaText(d) || T('ad.nochange')); }
   function itemMath(k) {
@@ -2666,10 +2643,9 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       intro = T('ad.shapes.i', { next: B.usd(B.SH.next) });
       body = stepper(P + 'sh', T('ad.shapes.step'), T(now.extra ? 'ad.shapes.step.sx' : 'ad.shapes.step.s', { total: now.shapes, extra: now.extra, fee: B.usd(fee) }),
         now.paid, 'addShapes', cfg.addShapes <= lim.minAddShapes, cfg.addShapes >= lim.maxAddShapes, 'Remove a shape', 'Add a shape') +
-        radios('Shape type', opt(P + 'asym-0', !cfg.asym, T('ad.sym.t'), T('ad.sym.s'), T('ad.inpkg'), { asym: false }, false, val('ad.sym.v')) +
-          opt(P + 'asym-1', cfg.asym, T('ad.asym.t'), T('ad.asym.s'), deltaText(B.delta(sym, { asym: true })), { asym: true }, false, val('ad.asym.v'))) +
-        '<p class="math">' + T('ad.shapes.math', { first: B.usd(B.SH.first), next: B.usd(B.SH.next), print: B.usd(B.SH.print), share: B.num(B.PCT) + '%', hFirst: B.hours(B.SH.hFirst), hNext: B.hours(B.SH.hNext) }) + '</p>' +
-        (show('ad.shapes.v') ? '<p class="math">' + T('ad.shapes.v', factory()) + '</p>' : '');
+        radios('Shape type', opt(P + 'asym-0', !cfg.asym, T('ad.sym.t'), T('ad.sym.s'), T('ad.inpkg'), { asym: false }, false) +
+          opt(P + 'asym-1', cfg.asym, T('ad.asym.t'), T('ad.asym.s'), deltaText(B.delta(sym, { asym: true })), { asym: true }, false)) +
+        '<p class="math">' + T('ad.shapes.math', { first: B.usd(B.SH.first), next: B.usd(B.SH.next), print: B.usd(B.SH.print), share: B.num(B.PCT) + '%', hFirst: B.hours(B.SH.hFirst), hNext: B.hours(B.SH.hNext) }) + '</p>';
     } else if (id === 'weight') {
       /* Under 30 g comes with prototypes and my PCB, so a package that is the structure alone does not offer it:
          the option stays in view, says which package it starts at, and cannot be chosen. */
@@ -2681,12 +2657,12 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
         var parts = k === 'W30' && def.weight !== k && !off ? [deltaText(dOpt({ weight: k })), deltaText(dOpt({ proto: ch.proto, rounds: ch.rounds })), def.pcb ? '' : deltaText(dOpt({ pcb: 1 }))] : [];
         var math = off ? T('ad.W30.from', { from: fromName }) : !(parts[0] && parts[1]) ? optMath('weight', { weight: k }) : parts[2] ? T('ad.W30.split3', { structure: parts[0], protos: parts[1], board: parts[2] }) : T('ad.W30.split', { structure: parts[0], protos: parts[1] });
         return opt(P + 'w-' + k, cfg.weight === k, T('ad.' + k + '.t'), T('ad.' + k + '.s', { n: plan.max }) + ' <span class="mth">' + math + '</span>',
-          off ? T('ad.notwith', { package: name }) : tagFor(dOpt(ch), def.weight === k), ch, off, val('ad.' + k + '.v'));
+          off ? T('ad.notwith', { package: name }) : tagFor(dOpt(ch), def.weight === k), ch, off);
       }).join('')) + '<p class="math">' + T('ad.weight.math') + '</p>';
     } else if (id === 'pcb') {
       intro = T('ad.pcb.i');
-      body = radios('Mouse PCB', opt(P + 'pcb-0', !cfg.pcb, T('ad.pcb0.t'), T('ad.pcb0.s'), lim.board === 'weight' ? T('ad.notwith30') : lim.board ? T('ad.notwith.pkg', { package: pkgName(cfg.pkg) }) : tagFor(dOpt({ pcb: 0 }), !def.pcb), { pcb: 0 }, !!lim.board, val('ad.pcb0.v')) +
-        opt(P + 'pcb-1', !!cfg.pcb, T('ad.pcb1.t'), T('ad.pcb1.s') + ' <span class="mth">' + optMath('pcb', { pcb: 1 }) + '</span>', tagFor(dOpt({ pcb: 1 }), !!def.pcb), { pcb: 1 }, false, val('ad.pcb1.v'))) +
+      body = radios('Mouse PCB', opt(P + 'pcb-0', !cfg.pcb, T('ad.pcb0.t'), T('ad.pcb0.s'), lim.board === 'weight' ? T('ad.notwith30') : lim.board ? T('ad.notwith.pkg', { package: pkgName(cfg.pkg) }) : tagFor(dOpt({ pcb: 0 }), !def.pcb), { pcb: 0 }, !!lim.board) +
+        opt(P + 'pcb-1', !!cfg.pcb, T('ad.pcb1.t'), T('ad.pcb1.s') + ' <span class="mth">' + optMath('pcb', { pcb: 1 }) + '</span>', tagFor(dOpt({ pcb: 1 }), !!def.pcb), { pcb: 1 }, false)) +
         (lim.board ? '<p class="math">' + (lim.board === 'weight' ? T('ad.pcb.tied') : T('ad.pcb.stays', { package: pkgName(cfg.pkg) })) + '</p>' : '');
     } else if (id === 'fw') {
       /* on a PCB I design, "your supplier's firmware" is firmware somebody writes for my board: say so */
@@ -2699,10 +2675,10 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       };
       intro = p.fw ? T(p.fw >= 2 ? 'ad.fw.i.in2' : 'ad.fw.i.in', { package: name }) : T(onMine('ad.fw.i'));
       body = radios('Mouse firmware', [0, 1, 2].map(function (n) {
-        var g = given(n), vk = !n ? onMine('ad.fw0.v') : g && has('ad.fw' + n + '.v.in') ? 'ad.fw' + n + '.v.in' : 'ad.fw' + n + '.v';
+        var g = given(n);
         return opt(P + 'fw-' + n, cfg.fw === n, T('ad.fw' + n + '.t'), T(n ? 'ad.fw' + n + '.s' : onMine('ad.fw0.s')) +
           (n ? ' <span class="mth">' + (g ? T('math.item.incl', { hours: B.hours(g.h), worth: B.money(g.worth) }) : optMath('fw', { fw: n })) + '</span>' : ''),
-          tagFor(dOpt({ fw: n }), def.fw === n), { fw: n }, false, val(vk));
+          tagFor(dOpt({ fw: n }), def.fw === n), { fw: n }, false);
       }).join(''));
     } else if (id === 'proto') {
       var rk = B.risk(cfg), onPa = cfg.rounds > 0 && cfg.proto === 'pa12';
@@ -2710,7 +2686,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       var perRound = function (x) { return B.money(B.add(B.labor(x.h), roundMat(x))); };
       var planOpt = function (oid, key, proto, rounds, isOn) {
         var isDef = def.rounds === rounds && (rounds === 0 || def.proto === proto), off = lim.tied && proto !== 'ppacf';
-        return opt(oid, isOn, T(key + '.t'), T(key + '.s', { n: rounds }), off ? T('ad.notwith30') : tagFor(dOpt({ proto: proto, rounds: rounds }), isDef), { proto: proto, rounds: rounds }, off, val(key + '.v', { tools: B.usd(NUMS.tools.vn) }));
+        return opt(oid, isOn, T(key + '.t'), T(key + '.s', { n: rounds }), off ? T('ad.notwith30') : tagFor(dOpt({ proto: proto, rounds: rounds }), isDef), { proto: proto, rounds: rounds }, off);
       };
       intro = T('ad.proto.i');
       body = radios('Prototype plan', planOpt(P + 'pr-0', 'ad.pr0', 'pa12', 0, cfg.rounds === 0) + planOpt(P + 'pr-2', 'ad.pr2', 'pa12', plan.min, onPa && cfg.rounds <= plan.min) +
@@ -2728,14 +2704,14 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       intro = T('ad.wheel.i');
       body = radios('Scroll wheel', [1, 2, 3].map(function (n) {
         return opt(P + 'wh-' + n, cfg.wheel === n, T('ad.wh' + n + '.t'), T('ad.wh' + n + '.s') + ' <span class="mth">' + optMath('wheel', { wheel: n }) + '</span>',
-          tagFor(dOpt({ wheel: n }), def.wheel === n), { wheel: n }, false, val('ad.wh' + n + '.v'));
+          tagFor(dOpt({ wheel: n }), def.wheel === n), { wheel: n }, false);
       }).join(''));
     } else if (id === 'dongle') {
       intro = T('ad.dongle.i');
       body = radios('Dongle', ['DB', 'DS'].map(function (k) {
         var off = lim.dongles.indexOf(k) < 0;
         return opt(P + 'dg-' + k, cfg.dongle === k, T('ad.' + k + '.t'), T('ad.' + k + '.s') + ' <span class="mth">' + optMath('dongle', { dongle: k, screen: 0 }) + '</span>',
-          off ? T('ad.notwith', { package: name }) : tagFor(dOpt({ dongle: k, screen: 0 }), def.dongle === k), { dongle: k }, off, val('ad.' + k + '.v'));
+          off ? T('ad.notwith', { package: name }) : tagFor(dOpt({ dongle: k, screen: 0 }), def.dongle === k), { dongle: k }, off);
       }).join('')) +
         '<h5 class="ao-g">' + T('ad.screen.h') + '</h5><p class="ao-i">' + T('ad.screen.i') + '</p>' +
         radios('Screen on the dongle', [0, 1].map(function (n) {
@@ -2743,25 +2719,25 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
              and what it shows is firmware: mine where the selection has it, the factory's where it does not. */
           var sub = !n ? T('ad.sc0.s') : T(cfg.pcb ? 'ad.sc1.s.mine' : 'ad.sc1.s') + ' ' + T(cfg.fw ? 'ad.sc1.fw' : 'ad.sc1.fw.sup');
           return opt(P + 'sc-' + n, !!cfg.screen === !!n, T('ad.sc' + n + '.t'), sub + (n ? ' <span class="mth">' + optMath('dongle', { screen: 1 }, ['DP']) + '</span>' : ''),
-            n === def.screen ? T('ad.inpkg') : deltaText(dOpt({ screen: n })), { screen: n }, false, val('ad.sc' + n + '.v'));
+            n === def.screen ? T('ad.inpkg') : deltaText(dOpt({ screen: n })), { screen: n }, false);
         }).join(''));
     } else if (id === 'art') {
       intro = T('ad.art.i');
-      body = radios('Base artwork', opt(P + 'art-0', cfg.art === 0, T('ad.art0.t'), T('ad.art0.s'), T('ad.inpkg'), { art: 0 }, false, val('ad.art0.v')) +
-        opt(P + 'art-2', cfg.art === 2, T('ad.art2.t'), '<span class="mth">' + optMath('art', { art: 2 }) + '</span>', deltaText(dOpt({ art: 2 })), { art: 2 }, false, val('ad.art2.v')) +
-        opt(P + 'art-4', cfg.art === 4, T('ad.art4.t'), '<span class="mth">' + optMath('art', { art: 4 }) + '</span>', deltaText(dOpt({ art: 4 })), { art: 4 }, false, val('ad.art4.v')));
+      body = radios('Base artwork', opt(P + 'art-0', cfg.art === 0, T('ad.art0.t'), T('ad.art0.s'), T('ad.inpkg'), { art: 0 }, false) +
+        opt(P + 'art-2', cfg.art === 2, T('ad.art2.t'), '<span class="mth">' + optMath('art', { art: 2 }) + '</span>', deltaText(dOpt({ art: 2 })), { art: 2 }, false) +
+        opt(P + 'art-4', cfg.art === 4, T('ad.art4.t'), '<span class="mth">' + optMath('art', { art: 4 }) + '</span>', deltaText(dOpt({ art: 4 })), { art: 4 }, false));
     } else if (id === 'mc') {
       if (p.mcIncluded) return '';
       intro = T('ad.mc.i');
-      body = radios('Material science consultation and negotiation', opt(P + 'mc-0', !cfg.mc, T('ad.mc0.t'), T('ad.mc0.s'), T('ad.inpkg'), { mc: false }, false, val('ad.mc0.v')) +
-        opt(P + 'mc-1', cfg.mc, T('ad.mc1.t'), T('ad.mc1.s') + ' <span class="mth">' + itemMath('MC') + '</span>', deltaText(dOpt({ mc: true })), { mc: true }, false, val('ad.mc1.v')));
+      body = radios('Material science consultation and negotiation', opt(P + 'mc-0', !cfg.mc, T('ad.mc0.t'), T('ad.mc0.s'), T('ad.inpkg'), { mc: false }, false) +
+        opt(P + 'mc-1', cfg.mc, T('ad.mc1.t'), T('ad.mc1.s') + ' <span class="mth">' + itemMath('MC') + '</span>', deltaText(dOpt({ mc: true })), { mc: true }, false));
     } else if (id === 'support') {
       intro = T('ad.sup.i');
       body = radios('Production support', B.SUPPORT.map(function (n) {
         var sp = n ? NUMS.items['SP' + n] : null;
         return opt(P + 'sup-' + n, cfg.support === n, n ? T('ad.sup.t', { n: n }) : T('ad.sup0.t'),
           n ? T('ad.sup.s', { n: n, hours: B.hours(sp.h) }) + ' <span class="mth">' + optMath('support', { support: n }) + '</span>' : T('ad.sup0.s'),
-          tagFor(dOpt({ support: n }), def.support === n), { support: n }, false, val('ad.sup' + n + '.v'));
+          tagFor(dOpt({ support: n }), def.support === n), { support: n }, false);
       }).join(''));
     } else if (id === 'qc') {
       /* the months a package comes with are worth their hours, flight and housing; a month beyond them is its hours and
@@ -2777,13 +2753,13 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       body = radios('Quality control on site', qcs.map(function (n) {
         return opt(P + 'qc-' + n, cfg.qc === n, n ? T(n === 1 ? 'ad.qc.t1' : 'ad.qc.t', { n: n }) : T('ad.qc0.t'),
           n ? T('ad.qc.s') + ' <span class="mth">' + qcMath(n) + '</span>' : T('ad.qc0.s'),
-          tagFor(dOpt({ qc: n }), def.qc === n), { qc: n }, false, val('ad.qc' + n + '.v'));
+          tagFor(dOpt({ qc: n }), def.qc === n), { qc: n }, false);
       }).join('')) + '<p class="math">' + T(QN.flyMine ? 'ad.qc.math.mine' : 'ad.qc.math', { hours: B.hours(QN.h), week: B.num(QN.h[0] / 4), fly: B.money(QN.fly), stay: B.money(QN.stay) }) + '</p>';
     } else if (id === 'tools') {
       if (!p.build) return '';
       intro = T('ad.tm.i');
-      body = radios('Toolmaker', opt(P + 'tm-vn', cfg.toolmaker === 'vn', T('ad.vn.t'), T('ad.vn.s', { tools: B.usd(NUMS.tools.vn) }), T('ad.inpkg'), { toolmaker: 'vn' }, false, val('ad.vn.v', { share: Math.round(NUMS.tools.vn / (NUMS.tools.us || 1) * 100) + '%' })) +
-        opt(P + 'tm-us', cfg.toolmaker === 'us', T('ad.us.t'), T('ad.us.s', { tools: B.usd(NUMS.tools.us) }), deltaText(dOpt({ toolmaker: 'us' })), { toolmaker: 'us' }, false, val('ad.us.v'))) +
+      body = radios('Toolmaker', opt(P + 'tm-vn', cfg.toolmaker === 'vn', T('ad.vn.t'), T('ad.vn.s', { tools: B.usd(NUMS.tools.vn) }), T('ad.inpkg'), { toolmaker: 'vn' }, false) +
+        opt(P + 'tm-us', cfg.toolmaker === 'us', T('ad.us.t'), T('ad.us.s', { tools: B.usd(NUMS.tools.us) }), deltaText(dOpt({ toolmaker: 'us' })), { toolmaker: 'us' }, false)) +
         '<p class="math">' + T('ad.tm.math') + '</p>';
     } else return '';
     return '<div class="ao"><h4>' + T('rw.opts') + '</h4>' + (intro ? '<p class="ao-i">' + intro + '</p>' : '') + body + '</div>';
@@ -2818,7 +2794,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     return s;
   }
   function plusTag(k) { return k !== 'consult' && show('pk.plus') ? '<span class="plus">' + T('pk.plus') + '</span>' : ''; }
-  function valueLine(k) { return show('pkg.' + k + '.value') ? '<span class="vl">' + T('pkg.' + k + '.value', factory()) + '</span>' : ''; }
   /* the selected package, once something in it has been changed: its exact price as it now stands */
   function nowLine(k) {
     if (k !== cfg.pkg || k === 'consult' || !changedFromBase()) return '';
@@ -2831,7 +2806,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       var t = BASE[k].totals, on = cur === k;
       lvDef[k] = on ? lv : B.levels(B.defaults(k));
       s += '<div class="mx-head" data-on="' + (on ? 1 : 0) + '"><span class="nm">' + pc(k) + T('pkg.' + k + '.name') + (k === 'design' ? '<span class="base-tag">' + T('pk.base') + '</span>' : '') + '</span>' +
-        '<span class="ln">' + T('pkg.' + k + '.line') + valueLine(k) + '</span><span class="pr">' + priceHTML(t.total) + plusTag(k) + nowLine(k) + '</span>' +
+        '<span class="ln">' + T('pkg.' + k + '.line') + '</span><span class="pr">' + priceHTML(t.total) + plusTag(k) + nowLine(k) + '</span>' +
         '<span class="meta">' + T('mx.meta.deposit', { deposit: B.usd(t.deposit) }) + '<br>' + T('mx.meta.work', { hours: B.hours(t.hours) }) + '</span>' +
         '<button type="button" class="btn" id="mx-' + k + '" data-pkg="' + k + '" aria-pressed="' + on + '" aria-label="Select ' + esc(pkgName(k)) + '">' + T(on ? 'mx.chosen' : 'mx.choose') + '</button></div>';
     });
@@ -2932,7 +2907,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
         '<button type="button" class="pk-head" role="radio" aria-checked="' + on + '" id="pk-' + k + '" data-pkg="' + k + '">' +
         '<span class="hd"><span class="nm">' + pc(k) + T('pkg.' + k + '.name') + (k === 'design' ? '<span class="base-tag">' + T('pk.base') + '</span>' : '') + '</span>' +
         '<span class="pr">' + priceHTML(t.total) + plusTag(k) + '</span></span>' +
-        '<span class="ln">' + T('pkg.' + k + '.line') + '</span>' + valueLine(k) + nowLine(k) +
+        '<span class="ln">' + T('pkg.' + k + '.line') + '</span>' + nowLine(k) +
         (t.extrasWorth[1] ? '<span class="xt">' + T('pk.teaser', { worth: B.money(t.extrasWorth) }) + '</span>' : '') + '</button>';
       if (on) {
         s += '<div class="pk-body"><div class="stats">' +
@@ -3050,7 +3025,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       }).join('') + '<div class="rax" aria-hidden="true"><span>' + usd(0) + '</span><span>' + usd(topR / 2) + '</span><span>' + usd(topR) + '</span></div>';
       var cL = r10(h * C.firmLow), cH = r10(h * C.firmHigh);
       var firm = cn && show('cn.r.a') && C.firmHigh > 0, dRows = [{ me: 1, name: T('vs.me'), lo: t.time[0], hi: t.time[0], v: B.money(t.time) }];
-      if (fN) dRows.push({ name: T('vs.d.fr', { n: B.num(fN) }), lo: r10(fLo), hi: r10(fHi), v: to(r10(fLo), r10(fHi)) });
+      if (fN) dRows.push({ name: fN === 1 ? T('vs.d.fr.1') : T('vs.d.fr', { n: B.num(fN) }), lo: r10(fLo), hi: r10(fHi), v: to(r10(fLo), r10(fHi)) });     // one profession: in the singular, never "1 American freelancers"
       if (firm) dRows.push({ name: T('vs.d.cn'), lo: cL, hi: cH, v: to(cL, cH) });
       var mag = Math.pow(10, Math.floor(Math.log(Math.max.apply(null, dRows.map(function (r) { return r.hi; })) || 1) / Math.LN10));
       var topD = [1, 2, 2.5, 5, 10].map(function (f) { return f * mag; }).filter(function (v) { return v >= Math.max.apply(null, dRows.map(function (r) { return r.hi; })); })[0];
@@ -3112,6 +3087,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function renderWork() {
     var r = B.compute(cfg), t = r.totals, p = B.PK[cfg.pkg], w = B.workWeeks(t), rate = B.usd(B.RATE), consult = cfg.pkg === 'consult';
     var after = t.hoursAfter || [0, 0], projH = [t.hours[0] - after[0], t.hours[1] - after[1]];       // support and work on site come after handoff
+    var afterKey = cfg.support && cfg.qc ? 'tl.after' : cfg.qc ? 'tl.after.qc' : 'tl.after.sup';       // and the sentence names only what is in the selection
     var s = head('wk.title') + '<div class="cards">';
 
     /* payment */
@@ -3125,7 +3101,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       if (p.build) ms.push(plain('ms.tools'));
       ms.push(plain('ms.handoff'));
       s += '<li>' + T('pay.1', { deposit: B.usd(t.deposit), pct: pctText(), cap: B.usd(NUMS.deposit.cap) }) + '</li>' +
-        '<li>' + T('pay.2', { rate: rate, milestones: ms.join(', ') }) + '</li>' +
+        '<li>' + T('pay.2', { rate: rate, milestones: listOf(ms) }) + '</li>' +
         '<li>' + T('pay.3', { first: B.usd(B.SH.first), next: B.usd(B.SH.next) }) + '</li>' +
         (p.build ? '<li>' + T('pay.4') + '</li>' : '') + (show('pay.5') ? '<li>' + T('pay.5') + '</li>' : '');
     }
@@ -3144,7 +3120,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     }
     var top = phases.reduce(function (a, x) { return Math.max(a, x[1][1]); }, 1);
     s += '<div class="cd"><h3>' + T('tl.h') + '</h3><p class="lead">' + T('tl.lead', { weeks: w[0] === w[1] ? w[0] : plain('tl.range', { a: w[0], b: w[1] }) }) + '</p>' +
-      '<p>' + T(p.build ? 'tl.p.build' : 'tl.p', { hours: B.hours(projH), pace: B.num(NUMS.pace) }) + (after[1] && show('tl.after') ? ' ' + T('tl.after', { after: B.hours(after) }) : '') + '</p><div class="phases" id="tl-bars">';
+      '<p>' + T(p.build ? 'tl.p.build' : 'tl.p', { hours: B.hours(projH), pace: B.num(NUMS.pace) }) + (after[1] && show(afterKey) ? ' ' + T(afterKey, { after: B.hours(after) }) : '') + '</p><div class="phases" id="tl-bars">';
     phases.forEach(function (x) {
       if (!x[1][1]) return;
       s += '<div class="ph"><span class="pl">' + T(x[0]) + '</span><span class="pv">' + B.hours(x[1]) + '</span>' +
@@ -3157,7 +3133,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       steps.push(['tl.s.shapes'], ['tl.s.eng'], [cfg.fw ? 'tl.s.fab.pcb' : 'tl.s.fab']);
       if (cfg.pcb) steps.push(['tl.s.pcb']);
       if (cfg.fw) steps.push(['tl.s.fw.' + cfg.fw]);
-      if (cfg.rounds) steps.push(['tl.s.proto', { n: cfg.rounds, material: plain('proto.' + cfg.proto) }]);
+      if (cfg.rounds) steps.push([cfg.rounds === 1 ? 'tl.s.proto.1' : 'tl.s.proto', { n: cfg.rounds, material: plain('proto.' + cfg.proto) }]);
       if (p.molds) steps.push(['tl.s.molds']);
       if (p.build) steps.push(['tl.s.tools'], ['tl.s.samples']);
       steps.push(['tl.s.handoff']);
@@ -3178,10 +3154,10 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function summaryLines() {
     var r = B.compute(cfg), t = r.totals, p = B.PK[cfg.pkg], def = B.defaults(cfg.pkg), ch = [], consult = cfg.pkg === 'consult';
     if (!consult) {
-      if (cfg.addShapes) ch.push(plain('sum.ch.shapes', { n: (cfg.addShapes > 0 ? '+' : '−') + Math.abs(cfg.addShapes), total: t.shapes }));
+      if (cfg.addShapes) ch.push(plain(Math.abs(cfg.addShapes) === 1 ? 'sum.ch.shapes.1' : 'sum.ch.shapes', { n: (cfg.addShapes > 0 ? '+' : '−') + Math.abs(cfg.addShapes), total: t.shapes }));
       if (cfg.asym) ch.push(plain('sum.ch.asym'));
       if (cfg.weight !== def.weight) ch.push(plain('sum.ch.weight', { g: cfg.weight.slice(1) }));
-      if (cfg.rounds !== def.rounds || (cfg.rounds && cfg.proto !== def.proto)) ch.push(cfg.rounds ? plain('sum.ch.proto', { n: cfg.rounds, material: plain('proto.' + cfg.proto) }) : plain('sum.ch.noproto'));
+      if (cfg.rounds !== def.rounds || (cfg.rounds && cfg.proto !== def.proto)) ch.push(cfg.rounds ? plain(cfg.rounds === 1 ? 'sum.ch.proto.1' : 'sum.ch.proto', { n: cfg.rounds, material: plain('proto.' + cfg.proto) }) : plain('sum.ch.noproto'));
       if (cfg.pcb !== def.pcb) ch.push(plain('sum.ch.pcb.' + cfg.pcb));
       if (cfg.fw !== def.fw) ch.push(plain('sum.ch.fw.' + cfg.fw));
       if (cfg.wheel !== def.wheel) ch.push(plain('sum.ch.wheel.' + cfg.wheel));
@@ -3194,7 +3170,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       if (cfg.qc !== def.qc) ch.push(cfg.qc ? plain(cfg.qc === 1 ? 'sum.ch.qc.1' : 'sum.ch.qc', { n: cfg.qc }) : plain('sum.ch.noqc'));
     }
     var L = [['sum.head'], ['sum.pkg', { package: pkgName(cfg.pkg) }]];
-    if (!consult) L.push(['sum.weight', { g: cfg.weight.slice(1) }], ['sum.changes', { changes: ch.length ? ch.join('; ') : plain('sum.none') }]);
+    if (!consult) L.push(['sum.weight', { g: cfg.weight.slice(1) }], ['sum.changes', { changes: ch.length ? ch.join(', ') : plain('sum.none') }]);
     L.push([consult ? 'sum.price.fixed' : 'sum.price', { price: B.money(t.total) }]);
     if (t.tools[1]) L.push(['sum.tools', { tools: B.money(t.tools) }]);
     L.push(['sum.deposit', { deposit: B.usd(t.deposit) }]);
@@ -3819,7 +3795,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     var c = window.claude, askFor = function (name) {
       return Promise.resolve().then(function () { return c.use(name); }).then(function (x) { return x || null; }, function () { return null; });
     };
-    if (!c || typeof c.use !== 'function') return;
+    return;     /* the copy sent to clients: the edit tool is off */
     askFor('artifact').then(function (a) {
       edit.artifact = a && typeof a.publish === 'function' ? a : null;
       if (edit.can) renderEditUI();
