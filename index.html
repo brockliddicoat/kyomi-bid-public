@@ -736,6 +736,8 @@ var BID_TEXT = {
   'row.tools': 'Steel tools, built and trialled',
   'row.samples': 'Finished sample mice',
   'row.calls': 'Weekly calls',
+  'row.support': 'Production support',
+  'row.qc': 'Quality control on site',
   'row.credit': 'You may name me as the designer',
   'cell.shapes.sub': '{paid} + {extra} extra',
   'cell.shapes.asym': 'asymmetrical',
@@ -777,6 +779,11 @@ var BID_TEXT = {
   'cell.credit.consult': 'Only with my written consent',
   'cell.calls': '{callMin} min',
   'cell.calls.sub': 'every week, by video',
+  'cell.support': '{n} months',
+  'cell.support.sub': 'after handoff',
+  'cell.qc.1': '1 month',
+  'cell.qc': '{n} months',
+  'cell.qc.sub.in': 'no added cost',
   'pill.add': 'Add-ons available',
   'pill.save': 'Savings available',
   'opt.n': '{n} options',
@@ -784,6 +791,7 @@ var BID_TEXT = {
   'opt.level': 'Level {k} of {n}',
   'rw.labor': 'Labor',
   'rw.mat': 'Materials',
+  'rw.exp': 'Expenses',
   'cost.cred': 'Simulation and inference credits',
   'cost.lic': 'Modeling licenses',
   'cost.print': 'Printer maintenance',
@@ -982,6 +990,28 @@ var BID_TEXT = {
   'ad.us.s': 'The same seven tools for a fixed {tools}.',
   'ad.us.v': 'Good value when production will run in the United States, so the tools are built where they will be used.',
   'ad.tm.math': 'The price for the tools is fixed. It does not change with the toolmaker’s quote.',
+  'ad.sup.i': 'Support starts at handoff and runs for the months you choose: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples. The hours count across the whole period, so a busy first month is covered.',
+  'ad.sup0.t': 'No support',
+  'ad.sup0.s': 'Work after handoff is quoted as it comes up.',
+  'ad.sup.t': '{n} months',
+  'ad.sup.s': 'Up to {hours} of my time across the {n} months after handoff.',
+  'ad.sup0.v': 'Good value when your factory has built mice like this before and won’t need the designer.',
+  'ad.sup3.v': 'Good value for a first production run with an experienced factory.',
+  'ad.sup6.v': 'Good value when the molds are new and the first production samples will need a second look.',
+  'ad.sup12.v': 'Good value when a second run or a variant of the mouse is planned within the year.',
+  'ad.qc.i': 'I work at the factory as production starts: checking parts and finished mice against the specification on the line, solving problems where they happen, and reporting to you every day. The price includes the round-trip flight and housing near the factory.',
+  'ad.qc0.t': 'None',
+  'ad.qc0.s': 'The factory’s own quality control.',
+  'ad.qc.t1': '1 month at the factory',
+  'ad.qc.t': '{n} months at the factory',
+  'ad.qc.s': 'Quality control in person, on the production line.',
+  'ad.qc0.v': 'Good value when your factory has made a mouse like this before.',
+  'ad.qc1.v': 'Good value for the first production run, when most problems show up.',
+  'ad.qc2.v': 'Good value when production ramps up over several weeks, or a second line starts.',
+  'ad.qc.math': 'A month on site is {hours} at the factory. Its only expenses are a round-trip flight of {fly} for the stay and housing near the factory at {stay} a month.',
+  'math.qc': '{hours} × {rate}, plus {exp} for the flight and housing',
+  'math.qc.more': '{hours} × {rate} beyond the month included, plus {exp} of housing',
+  'math.qc.incl': '{hours} on site, worth {worth} with the flight and housing, at no added cost',
 
   /* ---- price ---- */
   'pr.title': 'Price Breakdown',
@@ -1068,7 +1098,7 @@ var BID_TEXT = {
   'fr.id': 'Industrial designer',
   'fr.id.w': 'Shapes',
   'fr.me': 'Mechanical engineer',
-  'fr.me.w': 'Structure, parts and testing',
+  'fr.me.w': 'Structure, parts, testing and support',
   'fr.ee': 'PCB designer',
   'fr.ee.w': 'Circuit boards and their factory',
   'fr.fw': 'Firmware engineer',
@@ -1088,10 +1118,23 @@ var BID_TEXT = {
   'sp.1': '**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut.',
   'sp.2': '**One person answerable.** The person who shapes the mouse also engineers it, tests it and designs its molds, so nothing is lost between hand-offs.',
   'sp.3': '**Native English, based in the United States.** You work with the designer directly, in clear English, with no translator or account manager in between.',
-  'sp.4': '**A call every week.** {callMin} minutes with the person doing the work. You see the mouse as it takes shape and steer it, and I get your decisions while they still save time. It keeps both sides honest about progress.',
+  'sp.4': '**A call every week.** {callMin} minutes with the person doing the work. You see the mouse as it takes shape and steer it, and I get your decisions while they still save time. Each call ends with a written summary of what was decided and what comes next.',
   'sp.5': '**Speed.** {a} to {b} iterations in the time a factory turns one.',
-  'sp.6': '**A fixed price.** Every figure in this bid is exact. A change is quoted before it starts.',
-  'sp.7': '**Every file is yours.** The source files with every package and, from {pkgProduction} up, the mold designs and G-code, so any toolmaker can quote the same tools.',
+  'sp.8': '**Revisions until you’re satisfied.** I keep refining the look until it’s what you had in mind, and aesthetic changes within reason are never billed as extra rounds, as they are at many studios. Realizing your vision is my job, so if it isn’t happening, that’s on me, not you.',
+  'cv.h': 'How You’re Covered',
+  'cv.intro': 'What keeps the risk of this project on my side.',
+  'cv.1': '**A fixed price.** Every figure here is exact. If something costs me more than I planned, that’s mine to absorb, and a change you ask for is quoted before it starts.',
+  'cv.2': '**Stop at any milestone.** You pay for the work done up to that point, and the files for all of it are yours.',
+  'cv.3': '**Everything is yours.** As each milestone is paid, the design and its source files are yours and, from {pkgProduction} up, the mold designs and G-code, so any toolmaker can quote the same tools.',
+  'cv.4': '**My mistakes are mine to fix.** If anything I designed misses the specification we agreed, I correct the design at no charge, during the project and for a year after handoff.',
+  'cv.5': '**Support after handoff.** {supLow} to {supHigh} months of production support come with every full package, and it can run to {supMax}: answers for you and your factory within a business day, and the design changes production needs.',
+  'cv.6': '**On site when production starts.** I can work at the factory through the first production runs, checking quality on the line and solving problems where they happen. {qcIn} of it comes with {pkgAll}.',
+  'cv.6.none': '**On site when production starts.** I can work at the factory through the first production runs, checking quality on the line and solving problems where they happen.',
+  'cv.qc.1': 'A month',
+  'cv.qc': '{n} months',
+  'cv.7': '**Your design stays private.** I’ll sign your NDA before we start, and nothing about the project is shown or shared without your written consent.',
+  'cv.8': '',
+  'cv.9': '',
   'cn.g': 'Design firms in Shenzhen',
   'cn.them': 'Factory in China',
   'cn.t.h': 'Turnaround',
@@ -1137,6 +1180,25 @@ var BID_TEXT = {
   'item.FB.matwhy': 'Development kits for the mouse and the dongle, a debug probe and cables',
   'item.FS.name': 'Finding a factory for your PCB and firmware',
   'item.FS.what': 'A shortlist of factories that build mouse PCBs and write their firmware, their quotes side by side, samples of their work, and an introduction to the one you choose. If you already work with one, these hours go to briefing them instead.',
+  'item.SP3.name': 'Production support, 3 months',
+  'item.SP6.name': 'Production support, 6 months',
+  'item.SP12.name': 'Production support, 12 months',
+  'item.SP3.what': 'For the 3 months after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples.',
+  'item.SP6.what': 'For the 6 months after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of the first production samples.',
+  'item.SP12.what': 'For the year after handoff: answers for you and your factory within a business day, the design changes production needs, and a review of production samples as they come.',
+  'line.QC.1': 'Quality control on site, 1 month',
+  'line.QC': 'Quality control on site, {n} months',
+  'line.QX.1': 'Quality control on site, 1 month',
+  'line.QX': 'Quality control on site, {n} months',
+  'line.QX.more.1': 'Quality control on site, 1 more month',
+  'line.QX.more': 'Quality control on site, {n} more months',
+  'item.QC.what': 'At the factory as production starts: parts and finished mice checked against the specification on the line, problems solved where they happen, and a report to you every day.',
+  'calc.incl.qc': 'Included. {hours} × {rate}, plus {exp} for the flight and housing, if billed',
+  'qc.fly': 'Round-trip flight',
+  'qc.fly.why': 'economy, one for the stay',
+  'qc.stay': 'Housing near the factory',
+  'qc.stay.why.1': '1 month',
+  'qc.stay.why': '{n} months at {each}',
   'item.FL.name': 'Mouse and dongle firmware, low latency',
   'item.FL.what': 'Firmware for the mouse and its dongle, written around each other, with latency under 100 µs and the sensor’s polling synchronized to the game.',
   'item.FL.mat': 'Development kits and latency test hardware',
@@ -1232,7 +1294,7 @@ var BID_TEXT = {
   'ms.handoff': 'final handoff',
   'pay.3': '**Shape fees are fixed:** {first} for the first shape and {next} for each one after.',
   'pay.4': '**Steel tools** are a fixed price, paid on the toolmaker’s payment schedule.',
-  'pay.5': 'The price is for the scope in this bid. A change to the brief, or a further round of revision, is quoted before it starts.',
+  'pay.5': 'The price is for the scope in this bid. Aesthetic revisions are part of it: I refine surfaces, lines, proportions, details and colorways until you are satisfied, within the agreed shapes and their targets. A new shape, or a change to the brief or its targets, is quoted before it starts.',
   'pay.c1': '**{deposit} to start**, paid before work begins.',
   'pay.c2': '**{balance} on delivery** of the shape file and the printed shell.',
   'pay.c3': 'The price is fixed. Nothing further is billed.',
@@ -1259,6 +1321,10 @@ var BID_TEXT = {
   'tl.s.molds': 'Moldability review, then mold design and G-code for every part.',
   'tl.s.tools': 'Tool build, trial shots and corrections.',
   'tl.s.samples': 'Nine finished sample mice.',
+  'tl.s.sup': 'Production support for {n} months after handoff.',
+  'tl.s.qc.1': 'Quality control on site at the factory as production starts, for 1 month.',
+  'tl.s.qc': 'Quality control on site at the factory as production starts, for {n} months.',
+  'tl.after': 'Production support and quality control on site come after handoff: {after} of work that adds no weeks to the project.',
   'tl.s.handoff': 'Handoff of the source files.',
   'tl.c.1': 'The shape, in CAD.',
   'tl.c.2': 'The printed shell, finished and shipped to you.',
@@ -1293,10 +1359,12 @@ var BID_TEXT = {
   'tm.h': 'Terms',
   'tm.1': 'This bid is valid for 30 days, through December 21, 2026.',
   'tm.2': 'The files for each milestone are yours once its invoice is paid.',
-  'tm.3': 'You may stop at any milestone. You pay for the lines completed and the work in progress up to that point.',
+  'tm.3': 'You may stop at any milestone. You pay for the lines completed and the work in progress up to that point, and the files for all of it are yours.',
   'tm.4': 'Invoices are due within 14 days.',
-  'tm.5': '',
-  'tm.6': '',
+  'tm.5': 'If anything I designed misses the specification we agreed, I correct the design at no charge, during the project and for a year after handoff.',
+  'tm.6': 'I’ll sign your NDA before work begins. Nothing about the project is shown or shared without your written consent.',
+  'tm.7': '',
+  'tm.8': '',
 
 
   /* ---- to go ahead ---- */
@@ -1332,6 +1400,11 @@ var BID_TEXT = {
   'sum.ch.art': 'Base artwork, {n} revisions',
   'sum.ch.mc': 'Material science consultation and negotiation',
   'sum.ch.us': 'US toolmaker',
+  'sum.ch.sup': 'Production support: {n} months',
+  'sum.ch.nosup': 'No production support',
+  'sum.ch.qc.1': 'Quality control on site: 1 month',
+  'sum.ch.qc': 'Quality control on site: {n} months',
+  'sum.ch.noqc': 'No quality control on site',
   'thanks': 'Thank you for considering this bid. I am glad to walk through any part of it with you.',
   'thanks.sign': 'Brock Liddicoat',
   'footer': 'Design bid from Brock Liddicoat for the Kyomi Mouse Project. Confidential.',
@@ -1445,12 +1518,15 @@ var BID_NUM = {
      fw: the mouse firmware the package comes with at no added cost: 0 none (the supplier's), 1 basic, 2 low latency.
          A level above it is an add-on, charged for the work beyond the level that is included.
      w30: 1 where under 30 g can be chosen. It comes only with six rounds of PPA-CF prototypes and the PCB I design,
-          so the base package, which is the structure alone, does not offer it. */
+          so the base package, which is the structure alone, does not offer it.
+     support: months of production support after handoff that the package comes with, and is priced with: 0, 3, 6 or 12.
+          The client can take it out or change the length.
+     qc: months of quality control on site at the factory, as production starts, that come at no added cost. More is an add-on. */
   pkg: {
-    design:     { paid: 6,  extra: 0,  rounds: 0, pcb: 0, fw: 0, w30: 0 },
-    tested:     { paid: 6,  extra: 3,  rounds: 4, pcb: 2, fw: 1, w30: 1 },
-    production: { paid: 6,  extra: 6,  rounds: 4, pcb: 2, fw: 1, w30: 1 },
-    all:        { paid: 12, extra: 12, rounds: 6, pcb: 2, fw: 1, w30: 1 }
+    design:     { paid: 6,  extra: 0,  rounds: 0, pcb: 0, fw: 0, w30: 0, support: 3, qc: 0 },
+    tested:     { paid: 6,  extra: 3,  rounds: 4, pcb: 2, fw: 1, w30: 1, support: 3, qc: 0 },
+    production: { paid: 6,  extra: 6,  rounds: 4, pcb: 2, fw: 1, w30: 1, support: 6, qc: 0 },
+    all:        { paid: 12, extra: 12, rounds: 6, pcb: 2, fw: 1, w30: 1, support: 6, qc: 1 }
   },
   /* Materials. Every line carries what is bought for it, plus its share of the running costs of the work:
      simulation and inference credits, modeling licenses, printer and computer maintenance, lab equipment.
@@ -1500,8 +1576,15 @@ var BID_NUM = {
     WG:   { h: [10, 16],  k: 'desk' },
     TM:   { h: [30, 45],  k: 'desk' },
     TR:   { h: [20, 30],  k: 'make' },
-    SA:   { h: [14, 20],  m: [300, 700], k: 'make' }
+    SA:   { h: [14, 20],  m: [300, 700], k: 'make' },
+    /* production support after handoff: my hours across the whole period, used as production needs them */
+    SP3:  { h: [22, 28],  k: 'desk' },
+    SP6:  { h: [36, 46],  k: 'desk' },
+    SP12: { h: [60, 76],  k: 'desk' }
   },
+  /* quality control on site at the factory where the mouse is produced, for each month there: 22 working days of 8 hours,
+     one round-trip flight for the stay, and housing near the factory. Nothing else is charged for it: no running costs. */
+  qc: { h: [176, 176], fly: [1800, 2200], stay: [1650, 2200], maxMonths: 2 },
   /* working prototypes, per round */
   proto: {
     pa12:  { h: [10, 14], m: [240, 480] },
@@ -1560,6 +1643,12 @@ function quoteAt(N, at) {
 function makeBid(N) {
   var RATE = N.rate, SH = N.shape;
   var ORDER = ['consult', 'design', 'tested', 'production', 'all'];
+  /* the lengths production support comes in, in months. Any other figure is taken to the nearest of them. */
+  var SUPPORT = [0, 3, 6, 12];
+  function snapSupport(x) {
+    var v = Number(x) || 0;
+    return SUPPORT.reduce(function (best, s) { return Math.abs(s - v) < Math.abs(best - v) ? s : best; }, 0);
+  }
   /* what each package is made of (the parts that are not numbers) */
   var PK = {
     consult: {},
@@ -1578,6 +1667,8 @@ function makeBid(N) {
     PK[k].pcbStays = n.pcb >= 2;
     PK[k].w30 = n.w30 === undefined ? true : !!n.w30;
     PK[k].fw = Math.max(0, Math.min(2, Math.round(n.fw || 0)));
+    PK[k].support = snapSupport(n.support);
+    PK[k].qc = Math.max(0, Math.min(N.qc.maxMonths, Math.round(n.qc || 0)));
   });
 
   var add = function (a, b) { return [a[0] + b[0], a[1] + b[1]]; };
@@ -1595,7 +1686,7 @@ function makeBid(N) {
     if (pkg === 'consult') return { pkg: pkg };
     var p = PK[pkg], w = matched(p) && p.w30 ? 'W30' : 'W34';
     return { pkg: pkg, addShapes: 0, asym: false, weight: w, proto: p.proto, rounds: p.rounds, pcb: (p.pcb || w === 'W30') ? 1 : 0, fw: p.fw,
-             wheel: p.wheel, dongle: p.dongle, screen: 0, art: 0, mc: p.mcIncluded, toolmaker: 'vn' };
+             wheel: p.wheel, dongle: p.dongle, screen: 0, art: 0, mc: p.mcIncluded, toolmaker: 'vn', support: p.support, qc: p.qc };
   }
   function limits(cfg) {
     var p = PK[cfg.pkg];
@@ -1619,6 +1710,8 @@ function makeBid(N) {
     out.pcb = out.pcb ? 1 : 0;
     out.fw = Math.max(0, Math.min(2, Math.round(out.fw || 0)));
     out.screen = out.screen ? 1 : 0;                              // a screen goes with any dongle level
+    out.support = snapSupport(out.support);
+    out.qc = Math.max(0, Math.min(N.qc.maxMonths, Math.round(out.qc || 0)));
     lim = limits(out);
     out.addShapes = Math.max(lim.minAddShapes, Math.min(lim.maxAddShapes, out.addShapes));
     out.rounds = Math.max(lim.minRounds, Math.min(lim.maxRounds, out.rounds));
@@ -1641,6 +1734,8 @@ function makeBid(N) {
     return Math.min(d.cap, Math.round(start * d.pct / 100 / d.step) * d.step);
   }
   function weeks(h) { return [Math.ceil(h[0] / N.pace), Math.ceil(h[1] / N.pace)]; }
+  /* the weeks of the project itself: support and quality control on site come after handoff */
+  function workWeeks(t) { var a = t.hoursAfter || [0, 0]; return weeks([t.hours[0] - a[0], t.hours[1] - a[1]]); }
 
   /* ---- materials ----
      A line's materials are what is bought for it plus its share of the running costs of the work. */
@@ -1702,7 +1797,7 @@ function makeBid(N) {
       var ct = [CN.shape + CN.extras, CN.shape + CN.extras], dep0 = deposit(ct[0]), ins = add(c1.inside, c2.inside);
       return { cfg: cfg, lines: lines, totals: {
         time: [ct[0] - ins[1], ct[1] - ins[0]], mat: ins, tools: [0, 0], total: ct, beforeTools: ct,
-        hours: add(CN.hShape, CN.hExtras), deposit: dep0, balance: ct[0] - dep0, extrasWorth: [0, 0],
+        hours: add(CN.hShape, CN.hExtras), hoursAfter: [0, 0], deposit: dep0, balance: ct[0] - dep0, extrasWorth: [0, 0],
         shapes: 1, paid: 1, extra: 0, kinds: kindsOf(lines) } };
     }
 
@@ -1777,6 +1872,20 @@ function makeBid(N) {
     if (cfg.pkg !== 'consult') incl('FS');                 // from the base package up: a factory found for the PCB and its firmware
     if (p.mcIncluded) incl('MC');
 
+    /* after handoff: production support, charged by its hours; and quality control at the factory. The months a package
+       comes with are work at no charge, worth their hours, the flight and the housing. Months beyond them are charged:
+       their hours and housing, and the flight if no month is included. */
+    if (cfg.support) hourly('after', 'SP' + cfg.support);
+    var QN = N.qc, inQc = Math.min(cfg.qc || 0, p.qc), moreQc = (cfg.qc || 0) - inQc;
+    if (inQc) {
+      var qh = times(QN.h, inQc), qx = add(QN.fly, times(QN.stay, inQc));
+      push('extras', { id: 'QC', item: 'QC', kind: 'included', months: inQc, h: qh, amt: [0, 0], wm: qx, worth: add(labor(qh), qx) });
+    }
+    if (moreQc) {
+      var mh = times(QN.h, moreQc);
+      push('after', { id: 'QX', item: 'QX', kind: 'hours', months: moreQc, more: inQc > 0, h: mh, amt: labor(mh), it: { noRun: true } });
+    }
+
     /* materials: what is bought, and each line's running costs. of names the line a material belongs to. */
     var mat = function (key, amt, more) { var o = { id: 'M', kind: 'mat', mat: key, amt: amt }; if (more) for (var k in more) o[k] = more[k]; return push('mat', o); };
     var runs = {};
@@ -1785,8 +1894,12 @@ function makeBid(N) {
       var it = l.it || N.items[l.item];
       if (it.m && it.m[1] > 0) mat('item.' + l.item, it.m, { of: l.id });
       if (it.fd) mat('cost.flow', times(it.fd, C.flowDay), { of: l.id, cat: 'cred', days: it.fd });
-      runs[l.id] = mat('run', runOf(l.amt), { of: l.id, work: it.k || 'desk' });
+      if (!it.noRun) runs[l.id] = mat('run', runOf(l.amt), { of: l.id, work: it.k || 'desk' });
     });
+    if (moreQc) {
+      if (!inQc) mat('qc.fly', QN.fly, { of: 'QX', cat: 'buy' });
+      mat('qc.stay', times(QN.stay, moreQc), { of: 'QX', cat: 'buy', n: moreQc, each: QN.stay });
+    }
     if (cfg.rounds > 0) {
       var q = N.proto[cfg.proto];
       mat('proto.' + cfg.proto, times(q.m, cfg.rounds), { of: 'PR', n: cfg.rounds, each: q.m });
@@ -1799,7 +1912,7 @@ function makeBid(N) {
        A row left at what the package includes is not an option the client chose, so it keeps its own materials. */
     var d0 = defaults(cfg.pkg), asIncluded = {
       weight: cfg.weight === d0.weight, pcb: cfg.pcb === d0.pcb, fw: cfg.fw === d0.fw, wheel: cfg.wheel === d0.wheel,
-      dongle: cfg.dongle === d0.dongle, art: cfg.art === d0.art, proto: cfg.proto === d0.proto && cfg.rounds === d0.rounds };
+      dongle: cfg.dongle === d0.dongle, art: cfg.art === d0.art, proto: cfg.proto === d0.proto && cfg.rounds === d0.rounds, support: cfg.support === d0.support };
     var floorTo = function (ids) {
       if (!ids.length || !runs[ids[0]]) return;
       var sum = lines.filter(function (l) { return l.kind === 'mat' && ids.indexOf(l.of) >= 0; }).reduce(function (a, l) { return add(a, l.amt); }, [0, 0]);
@@ -1821,37 +1934,40 @@ function makeBid(N) {
     /* totals */
     var sum = function (kind) { return lines.filter(function (l) { return l.kind === kind; }).reduce(function (a, l) { return add(a, l.amt); }, [0, 0]); };
     var sumH = lines.filter(function (l) { return l.h; }).reduce(function (a, l) { return add(a, l.h); }, [0, 0]);
+    var afterH = lines.filter(function (l) { return l.h && AFTER[l.id]; }).reduce(function (a, l) { return add(a, l.h); }, [0, 0]);
     var fixed = sum('fixed'), hrly = sum('hours'), mats = sum('mat'), tools = sum('tool');
     var inside = lines.reduce(function (a, l) { return l.inside ? add(a, l.inside) : a; }, [0, 0]);
     var beforeTools = add(add(fixed, hrly), mats), total = add(beforeTools, tools);
     var worth = lines.filter(function (l) { return l.kind === 'included'; }).reduce(function (a, l) { return add(a, l.worth); }, [0, 0]);
     return { cfg: cfg, lines: lines, totals: {
       time: [fixed[0] - inside[1] + hrly[0], fixed[1] - inside[0] + hrly[1]], mat: add(mats, inside),
-      tools: tools, total: total, beforeTools: beforeTools, hours: sumH, deposit: deposit(total[0]), balance: null,
+      tools: tools, total: total, beforeTools: beforeTools, hours: sumH, hoursAfter: afterH, deposit: deposit(total[0]), balance: null,
       extrasWorth: worth, shapes: paid + extra, paid: paid, extra: extra, prints: SH.print * paid, kinds: kindsOf(lines) } };
   }
 
   /* The same price, arranged by the rows a package is described in. Every line lands in exactly one row,
      and every material is attached to the item it belongs to, so each item shows its own split:
      labor, materials, steel tools. The rows add up to the totals above. */
-  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'calls', 'credit'];
+  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'support', 'qc', 'calls', 'credit'];
   var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W30: 'weight', W34: 'weight', W38: 'weight',
     CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DF: 'dongle',
     DP: 'dongle',
     ART2: 'art', ART4: 'art', RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
-    MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'pcb' };    // finding the factory sits with the PCB it builds
+    MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'pcb', SP3: 'support', SP6: 'support', SP12: 'support', QC: 'qc', QX: 'qc' };
+  var AFTER = { SP3: 1, SP6: 1, SP12: 1, QC: 1, QX: 1 };     // work after handoff: it does not lengthen the project    // finding the factory sits with the PCB it builds
   /* For the comparison with American freelancers: the profession each line's work would need. Every line with hours has one. */
   var PROFS = ['id', 'me', 'ee', 'fw', 'mold', 'viz'];
   var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id', ART2: 'id', ART4: 'id',
     W30: 'me', W34: 'me', W38: 'me', CL: 'me', IL: 'me', BS: 'me', WD: 'me', DB: 'me', DS: 'me', AH: 'me', PR: 'me', MC: 'me', TM: 'me', TR: 'me', SA: 'me',
-    PB: 'ee', DF: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee' };
+    PB: 'ee', DF: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee',
+    SP3: 'me', SP6: 'me', SP12: 'me', QC: 'me', QX: 'me' };
   function profs(cfg) {
     var out = {};
     PROFS.forEach(function (k) { out[k] = [0, 0]; });
     compute(cfg).lines.forEach(function (l) { if (l.h) { var k = PROF_OF[l.id] || 'me'; out[k] = add(out[k], l.h); } });
     return out;
   }
-  var OPTION_ROWS = ['weight', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'proto'];     // the rows a client chooses within
+  var OPTION_ROWS = ['weight', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'proto', 'support'];     // the rows a client chooses within
   var ONLY_INCLUDED = { FS: 1 };     // never sold on its own, so worth its hours alone, whichever row it sits in
   var OWN_FLOOR = { DP: true };                 // options chosen on their own inside a row
   var MAT_ROW = { 'mat.ref': 'shapes', 'mat.paint': 'paint', 'mat.resin': 'tools', 'mat.freight': 'tools', 'mat.coat': 'samples' };
@@ -1930,7 +2046,9 @@ function makeBid(N) {
       dongle: { n: 4, bars: 3, cur: D[cfg.dongle], def: D[d.dongle] },   // three levels. A screen goes with any of them, so it is not a step
       art:    { n: 3, bars: 2, cur: A[cfg.art], def: 0 },
       proto:  { n: 4, bars: 3, cur: plan(cfg), def: plan(d) },
-      mc:     { n: 2, bars: 1, cur: (p.mcIncluded || cfg.mc) ? 1 : 0, def: p.mcIncluded ? 1 : 0 }
+      mc:     { n: 2, bars: 1, cur: (p.mcIncluded || cfg.mc) ? 1 : 0, def: p.mcIncluded ? 1 : 0 },
+      support: { n: SUPPORT.length, bars: SUPPORT.length - 1, cur: SUPPORT.indexOf(cfg.support), def: SUPPORT.indexOf(d.support) },
+      qc:     { n: N.qc.maxMonths + 1, bars: N.qc.maxMonths, cur: cfg.qc, def: d.qc }
     };
     if (p.build) out.tools = { n: 2, bars: 2, cur: cfg.toolmaker === 'us' ? 2 : 1, def: 1 };
     return out;
@@ -1946,7 +2064,7 @@ function makeBid(N) {
   }
 
   return { N: N, RATE: RATE, SH: SH, ORDER: ORDER, PK: PK, add: add, times: times, labor: labor, usd: usd, money: money,
-           num: num, hours: hours, defaults: defaults, limits: limits, risk: risk, deposit: deposit, weeks: weeks,
+           num: num, hours: hours, defaults: defaults, limits: limits, risk: risk, deposit: deposit, weeks: weeks, workWeeks: workWeeks, SUPPORT: SUPPORT,
            compute: compute, delta: delta, ROWS: ROWS, rows: rows, levels: levels, matched: matched, settle: settle,
            CATS: CATS, PCT: PCT, runOf: runOf, PROFS: PROFS, PROF_OF: PROF_OF, profs: profs };
 }
@@ -1992,7 +2110,13 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     speed: '<path d="M13 3L5 13.5h6.5L10.5 21 19 10.5h-6.5z"/>',
     price: '<path d="M3.5 12.5V4h8.5L21 13l-8 8z"/><circle cx="8" cy="8.5" r="1.4"/>',
     folder: '<path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/>',
-    star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/>'
+    star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/>',
+    support: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/><path d="M6 6l3.5 3.5M18 6l-3.5 3.5M6 18l3.5-3.5M18 18l-3.5-3.5"/>',
+    qc: '<rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9 4.5V3h6v1.5M8.8 13.2l2.2 2.2 4.4-4.6"/>',
+    revise: '<path d="M19.5 10.5A7.5 7.5 0 0 0 6 6.8M4.5 13.5A7.5 7.5 0 0 0 18 17.2"/><path d="M5 3v4h4M19 21v-4h-4"/>',
+    stop: '<path d="M5.5 21V3.5M5.5 4h11l-2.5 4 2.5 4h-11"/>',
+    fix: '<path d="M15 3.5a4.5 4.5 0 0 0-4.3 5.9L3.9 16.2a2 2 0 0 0 2.9 2.9l6.8-6.8A4.5 4.5 0 0 0 19.5 8L17 10.5l-2.6-.9-.9-2.6z"/>',
+    lock: '<rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>'
   };
   function icon(name) { return ICON[name] ? '<svg class="ri" viewBox="0 0 24 24" aria-hidden="true">' + ICON[name] + '</svg>' : ''; }
 
@@ -2328,7 +2452,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   var ROWS = [
     { id: 'shapes', keys: ['addShapes', 'asym'] }, { id: 'weight', keys: ['weight'] }, { id: 'parts' }, { id: 'pcb', keys: ['pcb'] }, { id: 'fw', keys: ['fw'] }, { id: 'wheel', keys: ['wheel'] },
     { id: 'dongle', keys: ['dongle', 'screen'] }, { id: 'art', keys: ['art'] }, { id: 'renders' }, { id: 'files' }, { id: 'proto', keys: ['proto', 'rounds'] },
-    { id: 'paint' }, { id: 'molds' }, { id: 'mc', keys: ['mc'] }, { id: 'tools', keys: ['toolmaker'] }, { id: 'samples' }, { id: 'calls' }, { id: 'credit' }
+    { id: 'paint' }, { id: 'molds' }, { id: 'mc', keys: ['mc'] }, { id: 'tools', keys: ['toolmaker'] }, { id: 'samples' },
+    { id: 'support', keys: ['support'] }, { id: 'qc', keys: ['qc'] }, { id: 'calls' }, { id: 'credit' }
   ];
   function rowsShown() { return ROWS.filter(function (r) { return r.id !== 'calls' || NUMS.calls.minutes > 0; }); }
   function conf(k) { return k === cfg.pkg ? cfg : B.defaults(k); }
@@ -2338,6 +2463,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     var p = B.PK[k];
     if (id === 'pcb') return !!B.defaults(k).pcb;
     if (id === 'fw') return B.defaults(k).fw > 0;
+    if (id === 'support') return B.defaults(k).support > 0;
+    if (id === 'qc') return B.defaults(k).qc > 0;
     return id === 'proto' ? p.rounds > 0 : id === 'paint' ? p.paint : id === 'molds' ? p.molds : id === 'mc' ? p.mcIncluded : (id === 'tools' || id === 'samples') ? p.build : true;
   }
   /* what the row says for a package: the selected package shows the current selection, the others what they come with */
@@ -2372,6 +2499,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'tools': return p.build ? { html: T('cell.tools.' + c.toolmaker), sub: T('cell.tools.sub') } : no;
       case 'samples': return p.build ? { html: T('cell.samples') } : no;
       case 'calls': return { html: T('cell.calls'), sub: T('cell.calls.sub') };
+      case 'support': return c.support ? { html: T('cell.support', { n: c.support }), sub: c.support > B.defaults(k).support ? T('cell.added') : T('cell.support.sub') } : no;
+      case 'qc': return c.qc ? { html: T(c.qc === 1 ? 'cell.qc.1' : 'cell.qc', { n: c.qc }), sub: c.qc <= p.qc ? T('cell.qc.sub.in') : T('cell.added') } : no;
       case 'credit': return yes;
     }
     return no;
@@ -2392,6 +2521,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (id === 'dongle') return 'add';                           // a screen can be added at every level
     if (id === 'mc') return p.mcIncluded ? '' : 'add';
     if (id === 'tools') return p.build ? 'add' : '';
+    if (id === 'support') return p.support < B.SUPPORT[B.SUPPORT.length - 1] ? 'add' : 'save';
+    if (id === 'qc') return p.qc < NUMS.qc.maxMonths ? 'add' : '';
     return '';
   }
   /* The bars: one for each step up, filled as far as this package goes. A step the client added is blue. */
@@ -2417,6 +2548,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   }
   function lineName(l) {
     if (l.id === 'SHX') return T(l.n === 1 ? 'line.SHX.1' : 'line.SHX', { n: l.n });
+    if (l.id === 'QC' || l.id === 'QX') return T('line.' + l.id + (l.more ? '.more' : '') + (l.months === 1 ? '.1' : ''), { n: l.months });
     return T('item.' + l.item + '.name');
   }
   function extrasHTML(k) {
@@ -2440,6 +2572,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'PR': return { name: T(l.n === 1 ? 'line.PR.1' : 'line.PR', { n: l.n, material: plain('proto.' + l.proto) }), labor: T('calc.PR', { n: l.n, hours: B.hours(l.hEach), rate: rate }), what: T('what.PR') };
       case 'T': return { name: T('line.T'), tool: T('calc.tool.' + l.where), what: T('what.T') };
       case 'M': return { name: T(l.mat) };
+      case 'QC': return { name: lineName(l), labor: T('calc.incl.qc', { hours: B.hours(l.h), rate: rate, exp: B.money(l.wm) }), what: T('item.QC.what') };
+      case 'QX': return { name: lineName(l), labor: T('calc.hours', { hours: B.hours(l.h), rate: rate }), what: T('item.QC.what') };
     }
     v = { hours: B.hours(l.h), rate: rate, fee: l.fee != null ? B.usd(l.fee) : '' };
     if (l.wm) v.mat = B.money(l.wm);                              // an extra that is otherwise an option: its worth is labor and materials
@@ -2449,6 +2583,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function matText(m, own) {
     var k = m.key;
     if (k === 'mat.prints') return { name: T('mat.prints'), why: T('mat.prints.why', { n: m.n, print: B.usd(B.SH.print) }) };
+    if (k === 'qc.stay') return { name: T(k), why: T(m.n === 1 ? 'qc.stay.why.1' : 'qc.stay.why', { n: m.n, each: B.money(m.each) }) };
     if (k.indexOf('item.') === 0) return { name: T(k + '.mat'), why: T(k + '.matwhy') };
     if (k.indexOf('proto.') === 0) return { name: T(k + '.mat'), why: T('calc.protomat', { n: m.n, each: B.money(m.each) }) };
     if (k === 'cost.flow') return { name: T(k), why: T('cost.flow.why', { days: m.days[0] === m.days[1] ? plain(m.days[0] === 1 ? 'cost.day' : 'cost.days', { n: B.num(m.days[0]) }) : plain('cost.days', { n: B.num(m.days[0]) + '–' + B.num(m.days[1]) }), day: B.usd(NUMS.costs.flowDay) }) };
@@ -2477,8 +2612,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       s += '<div class="it"><div class="it-h' + (incl ? ' inc' : '') + '"><span class="it-n">' + x.name + '</span><span class="it-a">' +
         (incl ? inclFrom(it.id) + '<small>' + T('incl.worth', { worth: B.money(it.worth) }) + '</small>' : B.money(it.total)) + '</span></div>' + splitBar(it) + '<dl class="it-d">';
       if (x.labor) s += '<div><dt>' + T('rw.labor') + '</dt><dd class="c">' + x.labor + '</dd><dd class="a">' + (incl ? '' : B.money(it.labor)) + '</dd></div>';
-      if (many) s += '<div><dt>' + T('rw.mat') + '</dt><dd class="c"></dd><dd class="a">' + B.money(it.mat) + '</dd></div>';
-      else it.mats.forEach(function (m) { s += '<div><dt>' + T('rw.mat') + '</dt><dd class="c">' + line(m) + '</dd><dd class="a">' + (incl ? '' : B.money(m.amt)) + '</dd></div>'; });
+      if (many) s += '<div><dt>' + T(it.id === 'QX' ? 'rw.exp' : 'rw.mat') + '</dt><dd class="c"></dd><dd class="a">' + B.money(it.mat) + '</dd></div>';
+      else it.mats.forEach(function (m) { s += '<div><dt>' + T(it.id === 'QX' ? 'rw.exp' : 'rw.mat') + '</dt><dd class="c">' + line(m) + '</dd><dd class="a">' + (incl ? '' : B.money(m.amt)) + '</dd></div>'; });     // the work on site has expenses, not materials
       if (it.kind === 'tool') s += '<div><dt>' + T('rw.tools') + '</dt><dd class="c">' + x.tool + '</dd><dd class="a">' + B.money(it.tools) + '</dd></div>';
       s += '</dl>';
       if (many) s += '<ul class="ml">' + it.mats.map(function (m) { return '<li><span class="c">' + line(m) + '</span><span class="a">' + B.money(m.amt) + '</span></li>'; }).join('') + '</ul>';
@@ -2615,6 +2750,30 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       intro = T('ad.mc.i');
       body = radios('Material science consultation and negotiation', opt(P + 'mc-0', !cfg.mc, T('ad.mc0.t'), T('ad.mc0.s'), T('ad.inpkg'), { mc: false }, false, val('ad.mc0.v')) +
         opt(P + 'mc-1', cfg.mc, T('ad.mc1.t'), T('ad.mc1.s') + ' <span class="mth">' + itemMath('MC') + '</span>', deltaText(dOpt({ mc: true })), { mc: true }, false, val('ad.mc1.v')));
+    } else if (id === 'support') {
+      intro = T('ad.sup.i');
+      body = radios('Production support', B.SUPPORT.map(function (n) {
+        var sp = n ? NUMS.items['SP' + n] : null;
+        return opt(P + 'sup-' + n, cfg.support === n, n ? T('ad.sup.t', { n: n }) : T('ad.sup0.t'),
+          n ? T('ad.sup.s', { n: n, hours: B.hours(sp.h) }) + ' <span class="mth">' + optMath('support', { support: n }) + '</span>' : T('ad.sup0.s'),
+          tagFor(dOpt({ support: n }), def.support === n), { support: n }, false, val('ad.sup' + n + '.v'));
+      }).join(''));
+    } else if (id === 'qc') {
+      /* the months a package comes with are worth their hours, flight and housing; a month beyond them is its hours and
+         housing, with the flight only when no month is included */
+      var QN = NUMS.qc, qcs = [], qn;
+      var qcMath = function (n) {
+        if (n <= p.qc) return T('math.qc.incl', { hours: B.hours(B.times(QN.h, n)), worth: B.money(B.add(B.labor(B.times(QN.h, n)), B.add(QN.fly, B.times(QN.stay, n)))) });
+        var more = n - p.qc;
+        return T(p.qc ? 'math.qc.more' : 'math.qc', { hours: B.hours(B.times(QN.h, more)), rate: rate, exp: B.money(B.add(p.qc ? [0, 0] : QN.fly, B.times(QN.stay, more))) });
+      };
+      for (qn = 0; qn <= QN.maxMonths; qn++) qcs.push(qn);
+      intro = T('ad.qc.i');
+      body = radios('Quality control on site', qcs.map(function (n) {
+        return opt(P + 'qc-' + n, cfg.qc === n, n ? T(n === 1 ? 'ad.qc.t1' : 'ad.qc.t', { n: n }) : T('ad.qc0.t'),
+          n ? T('ad.qc.s') + ' <span class="mth">' + qcMath(n) + '</span>' : T('ad.qc0.s'),
+          tagFor(dOpt({ qc: n }), def.qc === n), { qc: n }, false, val('ad.qc' + n + '.v'));
+      }).join('')) + '<p class="math">' + T('ad.qc.math', { hours: B.hours(QN.h), fly: B.money(QN.fly), stay: B.money(QN.stay) }) + '</p>';
     } else if (id === 'tools') {
       if (!p.build) return '';
       intro = T('ad.tm.i');
@@ -2694,7 +2853,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     B.ORDER.forEach(function (k) {
       var c = conf(k), t = (k === cfg.pkg ? B.compute(cfg) : BASE[k]).totals, p = B.PK[k], full = k !== 'consult';
       var d = D[k] = { labor: t.time[0], mat: t.mat[0], tools: t.tools[0], total: t.total[0], paid: full ? t.paid : 1, extra: full ? t.extra : 0,
-        rounds: full ? c.rounds : 0, proto: c.proto, weeks: B.weeks(t.hours)[0], worth: full ? t.extrasWorth[0] : 0,
+        rounds: full ? c.rounds : 0, proto: c.proto, weeks: B.workWeeks(t)[0], worth: full ? t.extrasWorth[0] : 0,
         stage: { 1: true, 2: full, 6: full && c.rounds > 0, 3: full && !!c.pcb, 4: !!p.molds, 5: !!p.build } };     // 6: working prototypes, 3: the PCB
       top.price = Math.max(top.price, d.total); top.value = Math.max(top.value, d.total + d.worth); top.shapes = Math.max(top.shapes, d.paid + d.extra); top.weeks = Math.max(top.weeks, d.weeks);
     });
@@ -2840,8 +2999,10 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     var wks = function (a, b) { return a === b ? wk(a) : plain('cn.wk.r', { a: B.num(a), b: B.num(b) }); };
     var pct = function (x, of) { return Math.max(1, Math.round(x / of * 1000) / 10); };
     var usd = function (x) { return B.usd(x); }, to = function (a, b) { return a === b ? usd(a) : plain('vs.to', { a: usd(a), b: usd(b) }); };
-    var spVars = { a: B.num(Math.floor(C.weeksLow / C.weeksMine)), b: B.num(Math.floor(C.weeksHigh / C.weeksMine)) }, spIcons = ['', 'quality', 'person', 'english', 'calls', 'speed', 'price', 'folder'], items = '', i;
-    for (i = 1; i <= 7; i++) if (show('sp.' + i)) items += '<li><span class="why-i">' + icon(spIcons[i]) + '</span><div>' + T('sp.' + i, spVars) + '</div></li>';
+    var spVars = { a: B.num(Math.floor(C.weeksLow / C.weeksMine)), b: B.num(Math.floor(C.weeksHigh / C.weeksMine)) }, items = '';
+    [['sp.1', 'quality'], ['sp.8', 'revise'], ['sp.2', 'person'], ['sp.3', 'english'], ['sp.4', 'calls'], ['sp.5', 'speed']].forEach(function (x) {
+      if (show(x[0])) items += '<li><span class="why-i">' + icon(x[1]) + '</span><div>' + T(x[0], spVars) + '</div></li>';
+    });
     var why = '<ul class="why-l">' + items + '</ul>', hasWhy = items !== '' && show('sp.h');
     if (!cn && !fr && !hasWhy) { el.hidden = true; el.innerHTML = ''; return; }
     el.hidden = false;
@@ -2923,6 +3084,20 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     el.innerHTML = s + '</div>';
   }
 
+  /* ---------- how the client is covered: the safeguards, in one list ---------- */
+  function renderCovered() {
+    var el = $('#covered'), full = B.ORDER.filter(function (k) { return k !== 'consult'; });
+    var sup = full.map(function (k) { return B.PK[k].support; }).filter(function (n) { return n > 0; });
+    var qcAll = B.PK.all.qc, v = { supLow: sup.length ? Math.min.apply(null, sup) : 0, supHigh: sup.length ? Math.max.apply(null, sup) : 0,
+      supMax: B.SUPPORT[B.SUPPORT.length - 1], qcIn: qcAll === 1 ? plain('cv.qc.1') : plain('cv.qc', { n: qcAll }) }, items = '';
+    [['cv.1', 'price'], ['cv.2', 'stop'], ['cv.3', 'folder'], ['cv.4', 'fix'], [sup.length ? 'cv.5' : '', 'support'], [qcAll ? 'cv.6' : 'cv.6.none', 'qc'], ['cv.7', 'lock'], ['cv.8', 'quality'], ['cv.9', 'quality']].forEach(function (x) {
+      if (x[0] && show(x[0])) items += '<li><span class="why-i">' + icon(x[1]) + '</span><div>' + T(x[0], v) + '</div></li>';
+    });
+    if (!items || !show('cv.h')) { el.hidden = true; el.innerHTML = ''; return; }
+    el.hidden = false;
+    el.innerHTML = head('cv.h', 'cv.intro') + '<div class="cn-g"><div class="cd"><ul class="why-l">' + items + '</ul></div></div>';
+  }
+
   /* ---------- how the work runs ---------- */
   function list(prefix, n, vars, ordered, swap) {
     var s = '', key;
@@ -2930,7 +3105,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     return (ordered ? '<ol>' : '<ul>') + s + (ordered ? '</ol>' : '</ul>');
   }
   function renderWork() {
-    var r = B.compute(cfg), t = r.totals, p = B.PK[cfg.pkg], w = B.weeks(t.hours), rate = B.usd(B.RATE), consult = cfg.pkg === 'consult';
+    var r = B.compute(cfg), t = r.totals, p = B.PK[cfg.pkg], w = B.workWeeks(t), rate = B.usd(B.RATE), consult = cfg.pkg === 'consult';
+    var after = t.hoursAfter || [0, 0], projH = [t.hours[0] - after[0], t.hours[1] - after[1]];       // support and work on site come after handoff
     var s = head('wk.title') + '<div class="cards">';
 
     /* payment */
@@ -2956,14 +3132,14 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (consult) phases.push(['tl.b.consult', t.hours]);
     else {
       phases.push(['tl.b.shapes', hoursOf(function (l) { return l.group === 'shapes' || l.id === 'SHX'; })]);
-      phases.push(['tl.b.eng', hoursOf(function (l) { return l.group === 'eng' || (l.group === 'extras' && l.id !== 'SHX'); })]);
+      phases.push(['tl.b.eng', hoursOf(function (l) { return l.group === 'eng' || (l.group === 'extras' && l.id !== 'SHX' && l.id !== 'QC'); })]);
       phases.push(['tl.b.proto', hoursOf(function (l) { return l.group === 'proto'; })]);
       phases.push(['tl.b.mold', hoursOf(function (l) { return l.group === 'mold'; })]);
       phases.push(['tl.b.build', hoursOf(function (l) { return l.group === 'build'; })]);
     }
     var top = phases.reduce(function (a, x) { return Math.max(a, x[1][1]); }, 1);
     s += '<div class="cd"><h3>' + T('tl.h') + '</h3><p class="lead">' + T('tl.lead', { weeks: w[0] === w[1] ? w[0] : plain('tl.range', { a: w[0], b: w[1] }) }) + '</p>' +
-      '<p>' + T(p.build ? 'tl.p.build' : 'tl.p', { hours: B.hours(t.hours), pace: B.num(NUMS.pace) }) + '</p><div class="phases" id="tl-bars">';
+      '<p>' + T(p.build ? 'tl.p.build' : 'tl.p', { hours: B.hours(projH), pace: B.num(NUMS.pace) }) + (after[1] && show('tl.after') ? ' ' + T('tl.after', { after: B.hours(after) }) : '') + '</p><div class="phases" id="tl-bars">';
     phases.forEach(function (x) {
       if (!x[1][1]) return;
       s += '<div class="ph"><span class="pl">' + T(x[0]) + '</span><span class="pv">' + B.hours(x[1]) + '</span>' +
@@ -2980,6 +3156,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       if (p.molds) steps.push(['tl.s.molds']);
       if (p.build) steps.push(['tl.s.tools'], ['tl.s.samples']);
       steps.push(['tl.s.handoff']);
+      if (cfg.support) steps.push(['tl.s.sup', { n: cfg.support }]);
+      if (cfg.qc) steps.push([cfg.qc === 1 ? 'tl.s.qc.1' : 'tl.s.qc', { n: cfg.qc }]);
     }
     steps.forEach(function (x) { if (show(x[0])) s += '<li>' + T(x[0], x[1]) + '</li>'; });
     s += '</ol></div>';
@@ -2987,7 +3165,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     s += '<div class="cd"><h3>' + T('mo.h') + '</h3>' + list('mo.', 8) + '</div>' +
       '<div class="cd"><h3>' + T('nd.h') + '</h3>' + list('nd.', 6) + '</div>' +
       '<div class="cd"><h3>' + T('ni.h') + '</h3>' + list('ni.', 7, null, false, { 1: consult ? 'ni.1.consult' : cfg.pcb && cfg.fw ? '' : cfg.pcb ? 'ni.1.fw' : cfg.fw ? 'ni.1.pcb' : 'ni.1' }) + '</div>' +
-      '<div class="cd"><h3>' + T('tm.h') + '</h3>' + list('tm.', 6) + '</div></div>';
+      '<div class="cd"><h3>' + T('tm.h') + '</h3>' + list('tm.', 8) + '</div></div>';
     $('#work').innerHTML = s;
   }
 
@@ -3007,6 +3185,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       if (cfg.art) ch.push(plain('sum.ch.art', { n: cfg.art }));
       if (cfg.mc && !p.mcIncluded) ch.push(plain('sum.ch.mc'));
       if (p.build && cfg.toolmaker !== 'vn') ch.push(plain('sum.ch.us'));
+      if (cfg.support !== def.support) ch.push(cfg.support ? plain('sum.ch.sup', { n: cfg.support }) : plain('sum.ch.nosup'));
+      if (cfg.qc !== def.qc) ch.push(cfg.qc ? plain(cfg.qc === 1 ? 'sum.ch.qc.1' : 'sum.ch.qc', { n: cfg.qc }) : plain('sum.ch.noqc'));
     }
     var L = [['sum.head'], ['sum.pkg', { package: pkgName(cfg.pkg) }]];
     if (!consult) L.push(['sum.weight', { g: cfg.weight.slice(1) }], ['sum.changes', { changes: ch.length ? ch.join('; ') : plain('sum.none') }]);
@@ -3043,7 +3223,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   }
   function renderAll() {
     redraw(function () {
-      applyAccent(); renderTop(); renderCover(); renderPackages(); renderPrice(); renderChina(); renderWork(); renderAccept(); renderFoot(); renderBar();
+      applyAccent(); renderTop(); renderCover(); renderPackages(); renderPrice(); renderCovered(); renderChina(); renderWork(); renderAccept(); renderFoot(); renderBar();
     });
   }
 
@@ -3128,6 +3308,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     ['Side by Side Charts', /^cmp\b/],
     ['Options', /^(ad|math|risk|proto|why)\b/],
     ['Price Breakdown and Line Items', /^(pr|tot|line|calc|what|incl|item|mat|cost|kinds)\b/],
+    ['How You’re Covered', /^cv\b/],
     ['How the Price Compares', /^(vs|fr|sp)\b/],
     ['Comparison With a Factory in China', /^cn\b/],
     ['Payment, Timeline and Terms', /^(wk|pay|ms|tl|mo|nd|ni|tm)\b/],
@@ -3303,6 +3484,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (/^nd\./.test(k)) return 'Empty: another line under what I need from you';
     if (/^ni\./.test(k)) return 'Empty: another line under not included';
     if (/^tm\./.test(k)) return 'Empty: another line of terms';
+    if (/^cv\./.test(k)) return 'Empty: another way the client is covered';
     if (/^cn\.b\./.test(k)) return 'Empty: another line under what the difference buys';
     if (/^cmp\.st\./.test(k)) return 'Empty: this stage is left off the chart';
     if (k === 'pr.legend.flag') return 'Empty: a note under the price lines';
@@ -3378,7 +3560,9 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       pk += '<h5>' + esc(pkgName(k)) + '</h5>' + numField('pkg.' + k + '.paid', 'Paid shapes', { min: 1 }) + numField('pkg.' + k + '.extra', 'Extra shapes, at no added cost', { min: 0 }) +
         numField('pkg.' + k + '.rounds', 'Prototype rounds', { min: 0 }) + numField('pkg.' + k + '.pcb', 'Mouse PCB I design: 0 an add-on, 1 comes with it, 2 comes with it and cannot be handed back', { min: 0, max: 2 }) +
         numField('pkg.' + k + '.fw', 'Mouse firmware at no added cost: 0 none, 1 basic, 2 low latency', { min: 0, max: 2 }) +
-        numField('pkg.' + k + '.w30', 'Under 30 g can be chosen: 1 yes, 0 no', { min: 0, max: 1 });
+        numField('pkg.' + k + '.w30', 'Under 30 g can be chosen: 1 yes, 0 no', { min: 0, max: 1 }) +
+        numField('pkg.' + k + '.support', 'Months of production support it is priced with: 0, 3, 6 or 12', { min: 0, max: 12 }) +
+        numField('pkg.' + k + '.qc', 'Months of quality control on site at no added cost', { min: 0, max: NUMS.qc.maxMonths });
     });
     s += numGroup('pkg', 'Packages', pk);
     s += numGroup('consult', esc(pkgName('consult')), numField('consult.shape', 'One shape on its own, $. Shown as the first-shape fee plus the rest, for having no minimum', { min: 0 }) +
@@ -3410,6 +3594,9 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       B.CATS.forEach(function (c) { cs += numField('costs.' + g[0] + '.' + c, esc(plain('cost.' + c)) + ', parts', { min: 0 }); });
     });
     s += numGroup('costs', 'Materials and Running Costs', cs);
+    s += numGroup('qc', 'Quality Control on Site', '<p class="ed-note">Each month at the factory: the hours there, one round-trip flight for the stay, and housing each month. Nothing else is charged for it.</p>' +
+      numRange('qc.h', 'Hours on site, per month') + numRange('qc.fly', 'Round-trip flight, $') + numRange('qc.stay', 'Housing near the factory, per month, $') +
+      numField('qc.maxMonths', 'Most months a client can select', { min: 1 }));
     s += numGroup('tools', 'Steel Tools', '<p class="ed-note">One fixed price for all seven tools. If the toolmaker charges more, the difference is yours.</p>' +
       numField('tools.vn', 'Built in Vietnam, $', { min: 0 }) + numField('tools.us', 'Built in the United States, $', { min: 0 }));
     s += numGroup('target', 'The Two Graphics on the Cover', numField('target.len', 'This mouse, length in mm') + numField('target.lenA', esc(plain('target.len.a')) + ', mm') + numField('target.lenB', esc(plain('target.len.b')) + ', mm') +
@@ -3580,7 +3767,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     document.getElementById('app').innerHTML =
       '<header class="top wrap" id="s-top"></header><main>' +
       '<section class="wrap" id="cover"></section><section class="wrap sec" id="packages"></section>' +
-      '<section class="wrap sec" id="price"></section><section class="wrap sec" id="china"></section>' +
+      '<section class="wrap sec" id="price"></section><section class="wrap sec" id="covered"></section><section class="wrap sec" id="china"></section>' +
       '<section class="wrap sec" id="work"></section><section class="wrap sec" id="accept"></section>' +
       '<footer class="wrap end" id="s-foot"></footer></main>' +
       '<div class="bar"><button type="button" id="bar" data-goto="price"></button></div>';
