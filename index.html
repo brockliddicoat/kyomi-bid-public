@@ -30,10 +30,9 @@
   --risk-mid: #B97F00;
   --risk-lo: #25813F;
   /* One color for each package, on marks only: bars, dots and swatches. Text never wears them.
-     The three weight packages take three of the same colors, and each says what its label is printed in. */
+     The three weight targets take three of the same colors, lighter as the target is lighter, with nothing printed on them. */
   --p-consult: #14B8A6; --p-design: #0369A1; --p-tested: #60A5FA; --p-production: #4338CA; --p-all: #A855F7;
-  --w-30: #38BDF8; --w-34: #0284C7; --w-38: #075985;   /* weight targets: never purple, lighter as the target is lighter */
-  --w-30-t: #101010; --w-34-t: #FFFFFF; --w-38-t: #FFFFFF;
+  --w-29: #60A5FA; --w-33: #A855F7; --w-37: #4338CA;   /* weight targets: Complete Design's, Turnkey Tooling's and Production Ready's colors, lighter as the target is lighter */
   --display: "Archivo", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --body: "Archivo", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
   --head: 620;   /* weight of headings */
@@ -48,8 +47,7 @@
     --blue: #4966F2; --on-blue: #FFFFFF; --wash: #1C2760; --amber: #F2B632;
     --risk-hi: #FF8257; --risk-mid: #F2B632; --risk-lo: #62C785;
     --p-consult: #0DA995; --p-design: #0074A4; --p-tested: #6C94DF; --p-production: #6143C3; --p-all: #BB68E2;
-    --w-30: #7DD3FC; --w-34: #0EA5E9; --w-38: #0369A1;
-    --w-30-t: #0E0E0E; --w-34-t: #0E0E0E; --w-38-t: #FFFFFF;
+    --w-29: #6C94DF; --w-33: #BB68E2; --w-37: #6143C3;
     color-scheme: dark;
   }
 }
@@ -58,8 +56,7 @@
   --blue: #4966F2; --on-blue: #FFFFFF; --wash: #1C2760; --amber: #F2B632;
   --risk-hi: #FF8257; --risk-mid: #F2B632; --risk-lo: #62C785;
   --p-consult: #0DA995; --p-design: #0074A4; --p-tested: #6C94DF; --p-production: #6143C3; --p-all: #BB68E2;
-  --w-30: #7DD3FC; --w-34: #0EA5E9; --w-38: #0369A1;
-  --w-30-t: #0E0E0E; --w-34-t: #0E0E0E; --w-38-t: #FFFFFF;
+  --w-29: #6C94DF; --w-33: #BB68E2; --w-37: #6143C3;
   color-scheme: dark;
 }
 
@@ -120,7 +117,6 @@ summary::-webkit-details-marker { display: none; }
 .axis .rn { fill: var(--soft); font-size: 9.5px; }
 .axis .rv { fill: var(--ink); font-size: 10px; font-weight: 650; }
 .axis .mn { fill: var(--blue); font-size: 11px; font-weight: 650; }
-.axis .zt { font-size: 10px; font-weight: 700; }
 .axis .zs { fill: var(--ink); }
 .wl { display: grid; gap: 4px; padding: 4px 6px 0; font-size: .78rem; line-height: 1.35; }
 .wl li { display: flex; align-items: baseline; gap: 7px; color: var(--soft); }
@@ -611,7 +607,7 @@ body.edit-text svg [data-t][data-ch] { fill: var(--risk-mid); }
 </head>
 <body>
 <div id="app"></div>
-<script type="application/json" id="bid-data">{"text": {"ts.0.6.src": "me", "cmp.st.2": "Shell Design", "cmp.st.3": "PCB Design", "cmp.st.4": "Mold Design", "cmp.st.5": "Physical Molds", "cmp.st.1": "Shape Design", "cost.lab": "Other machinery", "cost.comp": "Compute maintenance", "cost.lic": "Software licenses", "ts.2.3.v": "0.1mm at most under 20 N", "ts.3.3.v": "0.1mm at most", "ts.3.2.v": "0.1mm at most", "ts.3.4.v": "0.1mm at most", "ts.2.0.v": "2,510 N (256kg) at least", "ts.0.6.m": "Subject to change upon style investigation.", "ts.2.1.v": "160 N (16kg) with no permanent change", "ts.2.2.v": "120 N (12kg) on each with no permanent change", "ts.2.4.m": "No audible noise (less than 45db when measured up close in a quiet room) at any of the loads above.", "ts.3.1.v": "Within 5 gf", "ts.5.3.m": "Subject to change depending on supply and demand the month before release.", "ts.6.0.m": "Injection molded from pellets with short carbon fibers dispersed through the plastic.", "ts.6.1.m": "Only the real carbon suspended in the composite can be shown, but you’ve marked you prefer to hide even that which is okay too.", "letter.2": "My aim for this project would be to build an objectively better mouse. Every target in the specification has a numerical way to measure it. This ensures a binary way to measure that both of our quality standards are met.", "letter.3": "Every price in this document is intentionally exact to eliminate confusion, hopefully allowing you to plan better. This also means I eat any extra unexpected costs that occur on my end, and do not ask for more payout other than what we specifically agree on here (obviously unless you ask to change scope to another package). Each price is built from my time at {rate} an hour, fixed fees and materials, this way every price shows how it was calculated. Anywhere that I propose a target that differs from your brief is only marked as proposed.", "letter.1": "Thank you for the opportunity to bid on this project. I used your brief as a target specification and added some of my own requirements beside yours. I’ve also laid out five different available packages, priced for the five levels of engagement you’d need to have to realize this mouse idea. The least expensive package, Shape Consultation, is just me giving you a head start and providing the hardest part, the shape, for you. With the most premium package, you have no obligations other than weekly calls. At the end of the work you would have physical molds in your possession, optimized by the same designer who made the mouse structure for coherency. With the Turnkey Tooling package, these molds would be manufactured outside of China to prevent cloning and then sent to a factory of our choice.", "cmp.value.s": "The price, along with the total value of the package from the extras thrown in at no added cost", "sp.1": "**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut and from someone who actually cares about their reputation.", "ts.1.1.m": "Under 30 g is offered only as a set which requires at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.", "ts.2.1.m": "Applied across the grip zones. Above the key pinch of about 98 in 100 men aged 20 to 29: 156 N, the mean plus two standard deviations.", "ts.2.2.m": "Pressed at the fingertip position. Above the tip pinch of about 98 in 100 men aged 20 to 29: 115 N.", "ts.4.0.m": "So the wheel carries into future models to save on future production costs and so the user can service it with a replacement easier.", "ts.4.0.v": "Standard socket and footprint, hot-swap", "mat.ref.why": "Finalmouse SLX, any available colorway.", "ad.pcb1.t": "Bespoke mouse and dongle PCBs, designed by me", "ad.pcb0.s": "The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them. Cost of whatever the factory charges for the PCB is not included.", "thanks": "Thank you for considering this bid. I am happy to walk through any part of it with you."}, "num": {"deposit.cap": 7990, "consult.shape": 7560, "shape.first": 4990}}</script>
+<script type="application/json" id="bid-data">{"text": {"ts.0.6.src": "me", "cmp.st.2": "Shell Design", "cmp.st.3": "PCB Design", "cmp.st.4": "Mold Design", "cmp.st.5": "Physical Molds", "cmp.st.1": "Shape Design", "cost.lab": "Other machinery", "cost.comp": "Compute maintenance", "cost.lic": "Software licenses", "ts.2.3.v": "0.1mm at most under 20 N", "ts.3.3.v": "0.1mm at most", "ts.3.2.v": "0.1mm at most", "ts.3.4.v": "0.1mm at most", "ts.2.0.v": "2,510 N (256kg) at least", "ts.0.6.m": "Subject to change upon style investigation.", "ts.2.1.v": "160 N (16kg) with no permanent change", "ts.2.2.v": "120 N (12kg) on each with no permanent change", "ts.2.4.m": "No audible noise (less than 45db when measured up close in a quiet room) at any of the loads above.", "ts.3.1.v": "Within 5 gf", "ts.5.3.m": "Subject to change depending on supply and demand the month before release.", "ts.6.0.m": "Injection molded from pellets with short carbon fibers dispersed through the plastic.", "ts.6.1.m": "Only the real carbon suspended in the composite can be shown, but you’ve marked you prefer to hide even that which is okay too.", "letter.2": "My aim for this project would be to build an objectively better mouse. Every target in the specification has a numerical way to measure it. This ensures a binary way to measure that both of our quality standards are met.", "letter.3": "Every price in this document is intentionally exact to eliminate confusion, hopefully allowing you to plan better. This also means I eat any extra unexpected costs that occur on my end, and do not ask for more payout other than what we specifically agree on here (obviously unless you ask to change scope to another package). Each price is built from my time at {rate} an hour, fixed fees and materials, this way every price shows how it was calculated. Anywhere that I propose a target that differs from your brief is only marked as proposed.", "letter.1": "Thank you for the opportunity to bid on this project. I used your brief as a target specification and added some of my own requirements beside yours. I’ve also laid out five different available packages, priced for the five levels of engagement you’d need to have to realize this mouse idea. The least expensive package, Shape Consultation, is just me giving you a head start and providing the hardest part, the shape, for you. With the most premium package, you have no obligations other than weekly calls. At the end of the work you would have physical molds in your possession, optimized by the same designer who made the mouse structure for coherency. With the Turnkey Tooling package, these molds would be manufactured outside of China to prevent cloning and then sent to a factory of our choice.", "cmp.value.s": "The price, along with the total value of the package from the extras thrown in at no added cost", "sp.1": "**A better mouse.** Every target in the specification is measured, and from {pkgTested} up the mouse is proven in working prototypes, in your hands, before any steel is cut and from someone who actually cares about their reputation.", "ts.1.1.m": "Under 29 g is offered only as a set which requires at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.", "ts.2.1.m": "Applied across the grip zones. Above the key pinch of about 98 in 100 men aged 20 to 29: 156 N, the mean plus two standard deviations.", "ts.2.2.m": "Pressed at the fingertip position. Above the tip pinch of about 98 in 100 men aged 20 to 29: 115 N.", "ts.4.0.m": "So the wheel carries into future models to save on future production costs and so the user can service it with a replacement easier.", "ts.4.0.v": "Standard socket and footprint, hot-swap", "mat.ref.why": "Finalmouse SLX, any available colorway.", "ad.pcb1.t": "Bespoke mouse and dongle PCBs, designed by me", "ad.pcb0.s": "The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them. Cost of whatever the factory charges for the PCB is not included.", "thanks": "Thank you for considering this bid. I am happy to walk through any part of it with you.", "fr.sum": "", "cn.p.sum": "", "pay.3": "**Shape fees are fixed,** the first shape is {first} and each one after it is {next}.", "tl.s.kick": "We confirm the brief and your selection, the deposit is paid and a contract is signed.", "tm.6": "I sign your NDA before work begins. Nothing about the project is shown or shared without your written consent.", "tm.5": "If anything I designed doesn’t meet the specification we agreed on, I correct the design at no charge, during the project and for up to a year after handoff.", "fr.sum.1": ""}, "num": {"deposit.cap": 7990, "consult.shape": 7560, "shape.first": 4990}}</script>
 <script id="bid-content">
 /* Kyomi bid: every word on the page. The owner can change any of these from the page's edit mode;
    changes are kept in the bid-data block, not here. Words in {braces} fill in automatically.
@@ -657,7 +653,7 @@ var BID_TEXT = {
   'wt.aria': 'The three weight packages, and the packages priced at each',
   'wt.sub': 'Sub-{g} g',
   'wt.none': 'An option in every package',
-  'wt.note': 'Each color is a weight target, listed with the packages priced at it. Under 34 g and under 38 g can be chosen in any package, and under 30 g from {from} up.',
+  'wt.note': 'Each color is a weight target, listed with the packages priced at it. Under 33 g and under 37 g can be chosen in any package, and under 29 g from {from} up.',
   'target.len.v': '{n} mm',
   'target.wt.v': '{n} g',
 
@@ -709,7 +705,7 @@ var BID_TEXT = {
   'pkg.production.name': 'Production Ready',
   'pkg.production.line': 'Everything in {pkgTested}, plus the mold designs and G-code for every part, ready for any toolmaker.',
   'pkg.all.name': 'Turnkey Tooling',
-  'pkg.all.line': 'Everything in {pkgProduction}, plus the steel tools built and trialed, and finished sample mice at under 30 g.',
+  'pkg.all.line': 'Everything in {pkgProduction}, plus the steel tools built and trialed, and finished sample mice at under 29 g.',
   'pk.base': 'Base',
   'pk.plus': '+ add-ons',
   'pk.now.add': 'With your add-ons: {total}',
@@ -743,15 +739,15 @@ var BID_TEXT = {
   'row.credit': 'You may name me as the designer',
   'cell.shapes.sub': '{paid} + {extra} extra',
   'cell.shapes.asym': 'asymmetrical',
-  'cell.weight.W30': 'Sub-30 g',
-  'cell.weight.W34': 'Sub-34 g',
-  'cell.weight.W38': 'Sub-38 g',
+  'cell.weight.W29': 'Sub-29 g',
+  'cell.weight.W33': 'Sub-33 g',
+  'cell.weight.W37': 'Sub-37 g',
   'cell.weight.sub': '256 kg shell load',
   'cell.pcb.0': 'The factory’s',
   'cell.pcb.1': 'Designed by me',
   'cell.pcb.sub0': 'found for you',
   'cell.pcb.sub1': 'a matched radio set',
-  'cell.pcb.sub30': 'load-bearing',
+  'cell.pcb.sub29': 'load-bearing',
   'cell.fw.0': 'The factory’s',
   'cell.fw.1': 'Basic, under 300 µs',
   'cell.fw.2': 'Low latency, under 100 µs',
@@ -832,7 +828,7 @@ var BID_TEXT = {
   'ad.inpkg': 'In package',
   'ad.nochange': 'No change',
   'ad.notwith': 'Not with {package}',
-  'ad.notwith30': 'Not with under 30 g',
+  'ad.notwith29': 'Not with under 29 g',
   'ad.reset': 'Reset to the standard {package} package',
   'math.item': '{hours} × {rate}',
   'math.item.mat': '{hours} × {rate}, plus {mat} of materials',
@@ -849,24 +845,24 @@ var BID_TEXT = {
   'ad.asym.s': 'Shape fees double, because an asymmetrical shape is about three times the work.',
   'ad.shapes.math': 'The first shape is a fixed {first} ({hFirst}). Each shape after it is a fixed {next} ({hNext}). {share} of each fee is materials, {print} of it for the two finished prints. Six paid shapes is the minimum.',
 
-  'ad.weight.i': 'Under 30 g only comes as a set. It needs material-matched prototypes, so the strength of the shell is verified before tooling, and the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. Under 34 g and under 38 g work with any prototype plan.',
-  'ad.weight.i.no': 'Under 30 g comes only with prototypes in a material close to the molded one and the PCBs I design, so it starts at {from}. {package} is offered under 34 g or under 38 g, with any prototype plan.',
-  'ad.W30.t': 'Under 30 g, with matched prototypes and my PCBs',
-  'ad.W30.s': 'The target in your brief, with a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a mouse PCB designed as a load-bearing part of the structure.',
-  'ad.W30.from': 'Offered from {from} up, where the prototypes and my PCBs are part of the package.',
-  'ad.W30.split': '{structure} for the structure and {protos} for the prototypes.',
-  'ad.W30.split3': '{structure} for the structure, {protos} for the prototypes and {board} for the PCBs.',
-  'ad.W34.t': 'Under 34 g',
-  'ad.W34.s': 'A lighter lattice pass.',
-  'ad.W38.t': 'Under 38 g',
-  'ad.W38.s': 'Walls and ribs only, with no full lattice.',
+  'ad.weight.i': 'Under 29 g only comes as a set. It needs material-matched prototypes, so the strength of the shell is verified before tooling, and the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. Under 33 g and under 37 g work with any prototype plan.',
+  'ad.weight.i.no': 'Under 29 g comes only with prototypes in a material close to the molded one and the PCBs I design, so it starts at {from}. {package} is offered under 33 g or under 37 g, with any prototype plan.',
+  'ad.W29.t': 'Under 29 g, with matched prototypes and my PCBs',
+  'ad.W29.s': 'A gram under the target in your brief, with a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a mouse PCB designed as a load-bearing part of the structure.',
+  'ad.W29.from': 'Offered from {from} up, where the prototypes and my PCBs are part of the package.',
+  'ad.W29.split': '{structure} for the structure and {protos} for the prototypes.',
+  'ad.W29.split3': '{structure} for the structure, {protos} for the prototypes and {board} for the PCBs.',
+  'ad.W33.t': 'Under 33 g',
+  'ad.W33.s': 'A lighter lattice pass.',
+  'ad.W37.t': 'Under 37 g',
+  'ad.W37.s': 'Walls and ribs only, with no full lattice.',
   'ad.weight.math': 'Weights are without skates. Whichever target you choose, the shell still has to hold 256 kg in simulation.',
   'ad.pcb.i': 'The mouse and its dongle talk over one radio link, so their boards come as a set. The factory’s own boards are the default, as in your brief. I can design both instead, around the shell and the weight target rather than the other way around. Either way, I find the factory that builds them. From {pkgTested} up, the boards are mine.',
   'ad.pcb0.t': 'The factory’s PCBs',
   'ad.pcb0.s': 'The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them.',
   'ad.pcb1.t': 'PCBs I design, mouse and dongle',
   'ad.pcb1.s': 'The mouse’s main board and the dongle’s receiver, designed together as a matched radio set for 8 kHz. Schematic, layout and two assembled prototype runs of each, to the minimums in this bid. The files are yours.',
-  'ad.pcb.tied': 'Under 30 g keeps the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. To use the factory’s boards, change the weight target first.',
+  'ad.pcb.tied': 'Under 29 g keeps the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. To use the factory’s boards, change the weight target first.',
   'ad.notwith.pkg': 'Not with {package}',
   'ad.pcb.stays': '{package} is offered only on the PCBs I design, so the shell and the boards are designed and tested as one. To build on the factory’s boards, choose {pkgDesign}.',
   'ad.fw.i': 'The factory’s firmware is the default. I also write the firmware for the mouse and its dongle, at two levels of latency.',
@@ -893,7 +889,7 @@ var BID_TEXT = {
   'ad.rounds': 'Rounds',
   'ad.rounds.s': 'In {material}, {each} a round.',
   'ad.rounds.none': 'Rounds can be added one at a time.',
-  'ad.proto.tied': 'Under 30 g keeps at least {n} rounds in PPA-CF. To choose another plan, change the weight target first.',
+  'ad.proto.tied': 'Under 29 g keeps at least {n} rounds in PPA-CF. To choose another plan, change the weight target first.',
   'risk.cap': 'Risk carried into the molds',
   'risk.none.l': 'Untested',
   'risk.none.t': 'No working prototype is included. Unless you prototype independently, the first complete mouse is the one that comes out of the mold.',
@@ -1112,18 +1108,18 @@ var BID_TEXT = {
   'cn.p.note': 'Firm rates are the hourly ranges each lists on Clutch.',
   'cn.k': '**Steel tools.** My estimate for a factory in China to design and build these seven tools is {low} to {high}, and the mold designs usually stay with the factory. Here the build is a fixed {tools}, on top of mold designs and G-code that are yours.',
 
-  'item.W30.name': 'Sub-30 g structure',
-  'item.W30.what': 'A lattice inside the shell, plus wall thickness and ribs, re-run in simulation until the mouse is under 30 g without skates and the shell holds 256 kg at every weak point.',
-  'item.W30.mat': 'Weight and stiffness test prints',
-  'item.W30.matwhy': 'Printed shell sections, weighed and load-tested',
-  'item.W34.name': 'Sub-34 g structure',
-  'item.W34.what': 'A lighter lattice pass with wall thickness and ribs tuned in simulation. Under 34 g without skates, same 256 kg shell load.',
-  'item.W34.mat': 'Weight and stiffness test prints',
-  'item.W34.matwhy': 'Printed shell sections, weighed and load-tested',
-  'item.W38.name': 'Sub-38 g structure',
-  'item.W38.what': 'Wall thickness and ribs tuned in simulation, no full lattice. Under 38 g without skates, same 256 kg shell load.',
-  'item.W38.mat': 'Weight and stiffness test prints',
-  'item.W38.matwhy': 'Printed shell sections, weighed and load-tested',
+  'item.W29.name': 'Sub-29 g structure',
+  'item.W29.what': 'A lattice inside the shell, plus wall thickness and ribs, re-run in simulation until the mouse is under 29 g without skates and the shell holds 256 kg at every weak point.',
+  'item.W29.mat': 'Weight and stiffness test prints',
+  'item.W29.matwhy': 'Printed shell sections, weighed and load-tested',
+  'item.W33.name': 'Sub-33 g structure',
+  'item.W33.what': 'A lighter lattice pass with wall thickness and ribs tuned in simulation. Under 33 g without skates, same 256 kg shell load.',
+  'item.W33.mat': 'Weight and stiffness test prints',
+  'item.W33.matwhy': 'Printed shell sections, weighed and load-tested',
+  'item.W37.name': 'Sub-37 g structure',
+  'item.W37.what': 'Wall thickness and ribs tuned in simulation, no full lattice. Under 37 g without skates, same 256 kg shell load.',
+  'item.W37.mat': 'Weight and stiffness test prints',
+  'item.W37.matwhy': 'Printed shell sections, weighed and load-tested',
   'item.CL.name': 'Main clicks and side buttons',
   'item.CL.what': 'Light, fast main clicks with minimal pre- and post-travel and no side wobble, on mounts that support SPDT switches. Two side buttons, left side only.',
   'item.CL.mat': 'Click and button test prints',
@@ -1131,7 +1127,7 @@ var BID_TEXT = {
   'item.IL.name': 'Internal layout and electronics fit',
   'item.IL.what': 'Sensor slightly forward of center, a hot-swap encoder, and a 200 mAh or larger LiPo positioned to balance the mouse vertically and horizontally between the thumb and ring finger. Fitted to the factory’s board, or to the PCB I design.',
   'item.PB.name': 'Mouse PCB design',
-  'item.PB.what': 'Schematic and layout for the mouse’s main board, with a PAW3955 or better, an nRF54LM20A or better, and 8 kHz wired and wireless, the minimums in this bid. Two assembled prototype runs, and the manufacturing files. It is designed with the dongle’s receiver as one radio set, and under 30 g it is designed as a load-bearing part of the structure.',
+  'item.PB.what': 'Schematic and layout for the mouse’s main board, with a PAW3955 or better, an nRF54LM20A or better, and 8 kHz wired and wireless, the minimums in this bid. Two assembled prototype runs, and the manufacturing files. It is designed with the dongle’s receiver as one radio set, and under 29 g it is designed as a load-bearing part of the structure.',
   'item.PB.mat': 'Prototype boards and parts',
   'item.PB.matwhy': 'Two assembled prototype runs',
   'item.DR.name': 'Dongle PCB design',
@@ -1390,7 +1386,7 @@ var BID_SPEC = [
   ] },
   { h: 'Weight and Balance', s: 'Under {wt} g without skates, balanced vertically and horizontally', rows: [
     ['Weight in your brief', 'Under 30.0 g', 'Assembled with the battery, skates removed, on a scale that reads to 0.01 g.', 'you'],
-    ['Weight in this selection', 'Under {wt}.0 g', 'Under 30 g only comes as a set, with at least {n} prototype rounds in PPA-CF so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.', 'me', 'full'],
+    ['Weight in this selection', 'Under {wt}.0 g', 'Under 29 g only comes as a set, with at least {n} prototype rounds in PPA-CF so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.', 'me', 'full'],
     ['Balance', 'Centered vertically and horizontally', 'The center of mass sits between the thumb and ring-finger contact points, in height and along the length. The battery is positioned to put it there.', 'both'],
     ['Balance test', 'Level within 2°', 'Pinched at the thumb and ring-finger contact points and lifted, the mouse stays level front to back and side to side.', 'prop'],
     ['Battery', '200 mAh or more', 'Lithium polymer, counted inside the weight target and positioned to balance the mouse vertically and horizontally.', 'me']
@@ -1480,16 +1476,16 @@ var BID_NUM = {
           2: comes with the package and stays, because the package is offered only on the PCBs I design.
      fw: the mouse firmware the package comes with at no added cost: 0 none (the supplier's), 1 basic, 2 low latency.
          A level above it is an add-on, charged for the work beyond the level that is included.
-     w30: 1 where under 30 g can be chosen. It comes only with six rounds of PPA-CF prototypes and the PCB I design,
+     w29: 1 where under 29 g can be chosen. It comes only with six rounds of PPA-CF prototypes and the PCB I design,
           so the base package, which is the structure alone, does not offer it.
      support: months of production support after handoff that the package comes with, and is priced with: 0, 3, 6 or 12.
           The client can take it out or change the length.
      qc: months of quality control on site at the factory, as production starts, that come at no added cost. More is an add-on. */
   pkg: {
-    design:     { paid: 6,  extra: 0,  rounds: 0, pcb: 0, fw: 0, w30: 0, support: 3, qc: 0 },
-    tested:     { paid: 6,  extra: 3,  rounds: 4, pcb: 2, fw: 1, w30: 1, support: 3, qc: 0 },
-    production: { paid: 6,  extra: 6,  rounds: 4, pcb: 2, fw: 1, w30: 1, support: 6, qc: 0 },
-    all:        { paid: 12, extra: 12, rounds: 6, pcb: 2, fw: 1, w30: 1, support: 6, qc: 1 }
+    design:     { paid: 6,  extra: 0,  rounds: 0, pcb: 0, fw: 0, w29: 0, support: 3, qc: 0 },
+    tested:     { paid: 6,  extra: 3,  rounds: 4, pcb: 2, fw: 1, w29: 1, support: 3, qc: 0 },
+    production: { paid: 6,  extra: 6,  rounds: 4, pcb: 2, fw: 1, w29: 1, support: 6, qc: 0 },
+    all:        { paid: 12, extra: 12, rounds: 6, pcb: 2, fw: 1, w29: 1, support: 6, qc: 1 }
   },
   /* Materials. Every line carries what is bought for it, plus its share of the running costs of the work:
      simulation and inference credits, modeling licenses, printer and computer maintenance, lab equipment.
@@ -1508,9 +1504,9 @@ var BID_NUM = {
      days of mold-flow solving (fd). Billed by the hour, unless the item has a fee: then it is a fixed fee
      and the hours are what the fee covers. */
   items: {
-    W30:  { h: [60, 80],  m: [150, 300], k: 'make' },
-    W34:  { h: [40, 54],  m: [80, 150],  k: 'make' },
-    W38:  { h: [24, 34],  m: [40, 80],   k: 'make' },
+    W29:  { h: [60, 80],  m: [150, 300], k: 'make' },
+    W33:  { h: [40, 54],  m: [80, 150],  k: 'make' },
+    W37:  { h: [24, 34],  m: [40, 80],   k: 'make' },
     CL:   { h: [24, 34],  m: [60, 120],  k: 'make' },
     IL:   { h: [14, 22],  k: 'desk' },
     BS:   { h: [18, 26],  m: [30, 60],   k: 'make' },
@@ -1552,7 +1548,7 @@ var BID_NUM = {
     pa12:  { h: [10, 14], m: [90, 180] },      // sent out to a print service: two sets a round. A round costs less than one in PPA-CF
     ppacf: { h: [10, 15], m: [180, 360] },     // printed in-house: six rounds stay under 7,000
     plan: { min: 2, std: 4, max: 6 },         // rounds in the Minimal, Standard and Material-matched plans.
-                                              // Under 30 g is only offered with the Material-matched plan: PPA-CF, at least max rounds.
+                                              // Under 29 g is only offered with the Material-matched plan: PPA-CF, at least max rounds.
     donor: [90, 240],                         // donor electronics, bought once
     maxRounds: 10
   },
@@ -1628,7 +1624,7 @@ function makeBid(N) {
     PK[k].rounds = Math.max(0, Math.min(N.proto.maxRounds, Math.round(n.rounds)));
     PK[k].pcb = n.pcb ? 1 : 0;
     PK[k].pcbStays = n.pcb >= 2;
-    PK[k].w30 = n.w30 === undefined ? true : !!n.w30;
+    PK[k].w29 = n.w29 === undefined ? true : !!n.w29;
     PK[k].fw = Math.max(0, Math.min(2, Math.round(n.fw || 0)));
     PK[k].support = snapSupport(n.support);
     PK[k].qc = Math.max(0, Math.min(N.qc.maxMonths, Math.round(n.qc || 0)));
@@ -1642,25 +1638,25 @@ function makeBid(N) {
   var num = function (n) { return (Math.round(n * 10) / 10).toLocaleString('en-US'); };
   var hours = function (h) { return num(h[0]) + (h[0] === h[1] ? '' : '–' + num(h[1])) + ' h'; };
 
-  /* Under 30 g is a set of three. It has to be proven in a material close to the molded composite, so it is tied to the
+  /* Under 29 g is a set of three. It has to be proven in a material close to the molded composite, so it is tied to the
      material-matched prototypes. And at that weight the PCB carries load as part of the structure, so it is tied to the PCB I design. */
   function matched(c) { return c.proto === 'ppacf' && c.rounds >= N.proto.plan.max; }
   function defaults(pkg) {
     if (pkg === 'consult') return { pkg: pkg };
-    var p = PK[pkg], w = matched(p) && p.w30 ? 'W30' : 'W34';
-    return { pkg: pkg, addShapes: 0, asym: false, weight: w, proto: p.proto, rounds: p.rounds, pcb: (p.pcb || w === 'W30') ? 1 : 0, fw: p.fw,
+    var p = PK[pkg], w = matched(p) && p.w29 ? 'W29' : 'W33';
+    return { pkg: pkg, addShapes: 0, asym: false, weight: w, proto: p.proto, rounds: p.rounds, pcb: (p.pcb || w === 'W29') ? 1 : 0, fw: p.fw,
              wheel: p.wheel, dongle: p.dongle, screen: 0, mc: p.mcIncluded, toolmaker: 'vn', support: p.support, qc: p.qc };
   }
   function limits(cfg) {
     var p = PK[cfg.pkg];
-    var tied = cfg.weight === 'W30';           // while under 30 g is selected, the prototypes stay material-matched and the PCB stays mine
+    var tied = cfg.weight === 'W29';           // while under 29 g is selected, the prototypes stay material-matched and the PCB stays mine
     return { minAddShapes: SH.minPaid - p.paid, maxAddShapes: 24, minWheel: p.build ? 3 : 1,
              dongles: p.build ? ['DS'] : ['DB', 'DS'], maxRounds: N.proto.maxRounds,      // the dongle's housing: the receiver inside it comes with the PCBs
              tied: tied, minRounds: tied ? N.proto.plan.max : 0,
-             weights: p.w30 ? ['W38', 'W34', 'W30'] : ['W38', 'W34'],     // under 30 g, where the package offers it
+             weights: p.w29 ? ['W37', 'W33', 'W29'] : ['W37', 'W33'],     // under 29 g, where the package offers it
              board: tied ? 'weight' : p.pcbStays ? 'pkg' : '' };   // why the PCB cannot be handed back, if it cannot
   }
-  /* Keep a selection inside what its package allows. Choosing under 30 g brings the material-matched prototypes and the PCB with it. */
+  /* Keep a selection inside what its package allows. Choosing under 29 g brings the material-matched prototypes and the PCB with it. */
   function settle(c) {
     if (!c || !PK[c.pkg]) return defaults('design');
     if (c.pkg === 'consult') return { pkg: 'consult' };
@@ -1668,8 +1664,8 @@ function makeBid(N) {
     for (k in c) out[k] = c[k];
     for (k in d0) if (out[k] === undefined) out[k] = d0[k];      // a selection saved before an option existed takes the package's own
     for (k in out) if (!(k in d0)) delete out[k];                // and one saved with an option that is no longer offered loses it
-    if (out.weight === 'W30' && !PK[out.pkg].w30) out.weight = d0.weight;      // not offered in this package
-    if (out.weight === 'W30') { out.proto = 'ppacf'; out.rounds = Math.max(out.rounds, N.proto.plan.max); out.pcb = 1; }
+    if (out.weight === 'W29' && !PK[out.pkg].w29) out.weight = d0.weight;      // not offered in this package
+    if (out.weight === 'W29') { out.proto = 'ppacf'; out.rounds = Math.max(out.rounds, N.proto.plan.max); out.pcb = 1; }
     if (PK[out.pkg].pcbStays) out.pcb = 1;
     out.pcb = out.pcb ? 1 : 0;
     out.fw = Math.max(0, Math.min(2, Math.round(out.fw || 0)));
@@ -1912,7 +1908,7 @@ function makeBid(N) {
      and every material is attached to the item it belongs to, so each item shows its own split:
      labor, materials, steel tools. The rows add up to the totals above. */
   var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'support', 'qc', 'calls', 'credit'];
-  var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W30: 'weight', W34: 'weight', W38: 'weight',
+  var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W29: 'weight', W33: 'weight', W37: 'weight',
     CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DR: 'pcb',
     DP: 'dongle',
     RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
@@ -1921,7 +1917,7 @@ function makeBid(N) {
   /* For the comparison with American freelancers: the profession each line's work would need. Every line with hours has one. */
   var PROFS = ['id', 'me', 'ee', 'fw', 'mold', 'viz'];
   var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id',
-    W30: 'me', W34: 'me', W38: 'me', CL: 'me', IL: 'me', BS: 'me', WD: 'me', DB: 'me', DS: 'me', AH: 'me', PR: 'me', MC: 'me', TM: 'me', TR: 'me', SA: 'me',
+    W29: 'me', W33: 'me', W37: 'me', CL: 'me', IL: 'me', BS: 'me', WD: 'me', DB: 'me', DS: 'me', AH: 'me', PR: 'me', MC: 'me', TM: 'me', TR: 'me', SA: 'me',
     PB: 'ee', DR: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee',
     SP3: 'me', SP6: 'me', SP12: 'me', QC: 'me', QX: 'me' };
   function profs(cfg) {
@@ -1997,12 +1993,12 @@ function makeBid(N) {
   function levels(cfg) {
     if (cfg.pkg === 'consult') return {};
     var p = PK[cfg.pkg], d = defaults(cfg.pkg);
-    var W = { W38: 1, W34: 2, W30: 3 }, D = { DB: 1, DS: 2 };
+    var W = { W37: 1, W33: 2, W29: 3 }, D = { DB: 1, DS: 2 };
     var shape = function (total) { var lv = 0; shapeSteps.forEach(function (n) { if (total >= n) lv++; }); return Math.max(1, lv); };
     var plan = function (c) { return c.rounds === 0 ? 0 : c.proto === 'ppacf' ? 3 : c.rounds <= N.proto.plan.min ? 1 : 2; };
     var out = {
       shapes: { n: 0, bars: shapeSteps.length, cur: shape(p.paid + cfg.addShapes + p.extra), def: shape(p.paid + p.extra) },
-      weight: { n: PK[cfg.pkg].w30 ? 3 : 2, bars: PK[cfg.pkg].w30 ? 3 : 2, cur: W[cfg.weight], def: W[d.weight] },     // one step fewer where under 30 g is not offered
+      weight: { n: PK[cfg.pkg].w29 ? 3 : 2, bars: PK[cfg.pkg].w29 ? 3 : 2, cur: W[cfg.weight], def: W[d.weight] },     // one step fewer where under 29 g is not offered
       pcb:    { n: 2, bars: 1, cur: cfg.pcb ? 1 : 0, def: d.pcb ? 1 : 0 },
       fw:     { n: 3, bars: 2, cur: cfg.fw, def: d.fw },
       wheel:  { n: 3, bars: 3, cur: cfg.wheel, def: d.wheel },
@@ -2085,10 +2081,12 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
      checks for charts in light and dark mode (Cool is the original pick and keeps its colors as they were). The owner
      picks one in edit mode and it is saved with the page. Adding ?accent=blues (or another id) to the page's address
      previews a scheme without saving it. ---------- */
-  var BLUE_W = { light: ['#7CB8F7', '#2563EB', '#16307F'], dark: ['#A9CAFA', '#4C8DF2', '#1E4DB3'] };   // weight colors: under 30, 34 and 38 g
+  var WEIGHTS = ['W29', 'W33', 'W37'];      // the three weight targets, lightest first
+  var BLUE_W = { light: ['#7CB8F7', '#2563EB', '#16307F'], dark: ['#A9CAFA', '#4C8DF2', '#1E4DB3'] };   // weight colors: under 29, 33 and 37 g
   var ACCENTS = [
     { id: 'cool', name: 'Cool', light: ['#14B8A6', '#0369A1', '#60A5FA', '#4338CA', '#A855F7'], dark: ['#0DA995', '#0074A4', '#6C94DF', '#6143C3', '#BB68E2'],
-      weights: { light: ['#38BDF8', '#0284C7', '#075985'], dark: ['#7DD3FC', '#0EA5E9', '#0369A1'] } },
+      /* the owner's pick for the weight targets: the colors of Complete Design, Turnkey Tooling and Production Ready, lighter as the target is lighter */
+      weights: { light: ['#60A5FA', '#A855F7', '#4338CA'], dark: ['#6C94DF', '#BB68E2', '#6143C3'] } },
     { id: 'primary', name: 'Primary', light: ['#16A34A', '#2563EB', '#CA8A04', '#9333EA', '#DC2626'], dark: ['#16A34A', '#3B82F6', '#C28403', '#A855F7', '#EF4444'], weights: BLUE_W },
     { id: 'blues', name: 'Blues', light: ['#7CB8F7', '#4C93EE', '#2563EB', '#1E46B8', '#16307F'], dark: ['#1E4DB3', '#2D6BE0', '#4C8DF2', '#78ABF6', '#A9CAFA'], weights: BLUE_W },
     { id: 'purples', name: 'Purples', light: ['#B794F4', '#9061E8', '#7C3AED', '#5B21B6', '#3B0F80'], dark: ['#5B2BB5', '#7543E0', '#9467F0', '#B293F5', '#D0BDF9'], weights: BLUE_W },
@@ -2096,11 +2094,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       weights: { light: ['#5DBB75', '#15803D', '#0B4A23'], dark: ['#A6E5BA', '#3DBA66', '#1F7A40'] } }
   ];
   var PKS = ['consult', 'design', 'tested', 'production', 'all'];
-  function lum(hex) {
-    var n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
-    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-  }
-  function inkOn(hex, ink) { var L = lum(hex); return 1.05 / (L + 0.05) >= (L + 0.05) / (lum(ink) + 0.05) ? '#FFFFFF' : ink; }   // the label color that reads best on a band
   function accentNow() {
     var q = !edit.on && /[?&]accent=([a-z]+)/i.exec(location.search || ''), i;
     if (q) for (i = 0; i < ACCENTS.length; i++) if (ACCENTS[i].id === q[1].toLowerCase()) return i;
@@ -2108,13 +2101,13 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     return ACCENTS[i] ? i : 0;
   }
   function applyAccent() {
-    /* weight colors are their own ramp, never purple, and lighter as the weight target is lighter */
-    var a = ACCENTS[accentNow()], vars = function (cols, w, ink) {
+    /* each scheme has three colors for the weight targets, lighter as the target is lighter. Nothing is printed on them. */
+    var a = ACCENTS[accentNow()], vars = function (cols, w) {
       return PKS.map(function (k, i) { return '--p-' + k + ':' + cols[i]; }).join(';') +
-        ['30', '34', '38'].map(function (g, i) { return ';--w-' + g + ':' + w[i] + ';--w-' + g + '-t:' + inkOn(w[i], ink); }).join('');
+        WEIGHTS.map(function (k, i) { return ';--w-' + k.slice(1) + ':' + w[i]; }).join('');
     };
-    var css = ':root{' + vars(a.light, a.weights.light, '#101010') + '}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){' + vars(a.dark, a.weights.dark, '#0E0E0E') + '}}' +
-      ':root[data-theme="dark"]{' + vars(a.dark, a.weights.dark, '#0E0E0E') + '}', el = document.getElementById('accent-css');
+    var css = ':root{' + vars(a.light, a.weights.light) + '}@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){' + vars(a.dark, a.weights.dark) + '}}' +
+      ':root[data-theme="dark"]{' + vars(a.dark, a.weights.dark) + '}', el = document.getElementById('accent-css');
     if (!el) { el = document.createElement('style'); el.id = 'accent-css'; document.head.appendChild(el); }
     if (el.textContent !== css) el.textContent = css;
     document.documentElement.setAttribute('data-accent', a.id);
@@ -2341,9 +2334,9 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       (from === 'you' || from === 'both' ? '<i class="dot you"></i>' : '') + (from === 'me' || from === 'both' ? '<i class="dot me"></i>' : '') +
       (from === 'prop' ? '<i class="dot prop"></i>' : '') + '<span class="vh">' + esc(names.join(', ')) + '</span></span>';
   }
-  /* The three weight packages on one ruler, each in its own color, with the references from the brief above them
-     and the packages priced at each beside its name. The selected package is listed where the current selection puts it. */
-  var WEIGHTS = ['W30', 'W34', 'W38'];
+  /* The three weight packages on one ruler, each a band of its own color with nothing printed on it, with the references
+     from the brief above them. Under the ruler each color is named, with the packages priced at it. The ruler's numbered
+     ticks fall on the edges of the bands. The selected package is listed where the current selection puts it. */
   function weightFigure() {
     var t = NUMS.target, g = WEIGHTS.map(function (w) { return +w.slice(1); }), full = B.ORDER.filter(function (k) { return k !== 'consult'; });
     var min = Math.floor(Math.min(g[0], t.wt, t.wtA, t.wtB)) - 4, max = Math.ceil(Math.max(g[2], t.wt, t.wtA, t.wtB)) + 2;
@@ -2356,24 +2349,23 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       s += '<line class="lead" x1="' + X(r.v) + '" y1="25" x2="' + X(r.v) + '" y2="' + (top - 2) + '"/>' + svgT('rn', x, 10, 'middle', r.key) + svgT('rv', x, 21.5, 'middle', 'target.wt.v', { n: B.num(r.v) });
     });
     WEIGHTS.forEach(function (w, i) {
-      var a = i ? X(g[i - 1]) + 1 : x0, b = X(g[i]) - 1, cx = Math.round((a + b) / 2 * 10) / 10, on = w === mine, n = w.slice(1);
+      var a = i ? X(g[i - 1]) + 1 : x0, b = X(g[i]) - 1, on = w === mine, n = w.slice(1);
       var here = full.filter(function (k) { return conf(k).weight === w; }).map(pkgName), who = here.length ? here.join(', ') : plain('wt.none');
       s += '<rect x="' + a + '" y="' + top + '" width="' + (b - a) + '" height="' + bh + '" rx="2" style="fill:var(--w-' + n + ')"><title>' + esc(plain('wt.sub', { g: g[i] }) + ': ' + who) + '</title></rect>' +
-        svgT('zt', cx, top + bh / 2 + 3.6, 'middle', 'wt.sub', { g: g[i] }, 'fill:var(--w-' + n + '-t)') +
         (on ? '<rect class="zs" x="' + a + '" y="' + (top + bh + 2) + '" width="' + (b - a) + '" height="3" rx="1.5"/>' : '');
       said.push(plain('wt.sub', { g: g[i] }) + ': ' + who);
       legend += '<li' + (on ? ' class="on"' : '') + '><i class="pc" style="background:var(--w-' + n + ')"></i><b>' + T('wt.sub', { g: g[i] }) + '</b><span>' + (here.length ? esc(who) : T('wt.none')) + '</span></li>';
     });
     s += '<line class="base" x1="' + x0 + '" y1="' + yb + '" x2="' + x1 + '" y2="' + yb + '"/>';
     for (var v = min; v <= max + 1e-9; v += 1) {
-      var big = v % 2 === 0;
+      var big = (v - g[0]) % 2 === 0;       // every other gram is numbered, counted from the lightest target, so each band ends on a number
       s += '<line class="tick" x1="' + X(v) + '" y1="' + yb + '" x2="' + X(v) + '" y2="' + (yb + (big ? 8 : 4)) + '"/>';
       if (big) s += '<text class="tl" x="' + X(v) + '" y="' + (yb + 20) + '" text-anchor="middle">' + v + '</text>';
     }
     refs.forEach(function (r) { s += '<circle class="ref" cx="' + X(r.v) + '" cy="' + yb + '" r="3.2"/>'; });
     return '<figure><figcaption class="fc2"><span>' + T('target.wt.h') + '</span>' + (mine ? '<span>' + T('target.wt.me', { wt: mine.slice(1) }) + '</span>' : '') + '</figcaption>' +
       '<svg class="axis wz" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(plain('wt.aria') + '. ' + said.join('. ')) + '">' + s + '</svg>' +
-      '<ul class="wl">' + legend + '</ul>' + (show('wt.note') ? '<p class="fig-n">' + T('wt.note', { from: pkgName(B.ORDER.filter(function (x) { return x !== 'consult' && B.PK[x].w30; })[0] || 'design') }) + '</p>' : '') + '</figure>';
+      '<ul class="wl">' + legend + '</ul>' + (show('wt.note') ? '<p class="fig-n">' + T('wt.note', { from: pkgName(B.ORDER.filter(function (x) { return x !== 'consult' && B.PK[x].w29; })[0] || 'design') }) + '</p>' : '') + '</figure>';
   }
   function renderCover() {
     var t = NUMS.target, rate = B.usd(B.RATE);
@@ -2448,7 +2440,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
         return { html: String(paid + p.extra), sub: sub.join(', ') };
       case 'weight': return { html: T('cell.weight.' + c.weight), sub: T('cell.weight.sub') };
       case 'parts': return yes;
-      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W30' ? T('cell.pcb.sub30') : B.defaults(k).pcb ? T('cell.pcb.sub1') : T('cell.added') } : { html: T('cell.pcb.0'), sub: T('cell.pcb.sub0') };
+      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W29' ? T('cell.pcb.sub29') : B.defaults(k).pcb ? T('cell.pcb.sub1') : T('cell.added') } : { html: T('cell.pcb.0'), sub: T('cell.pcb.sub0') };
       case 'fw': return { html: T('cell.fw.' + c.fw), sub: !c.fw ? '' : c.fw <= p.fw ? T('cell.fw.sub') : T('cell.fw.added') };     // up to the level the package comes with, it is at no added cost
       case 'wheel': return { html: T('cell.wheel.' + c.wheel) };
       case 'dongle': return { html: T('cell.dongle.' + c.dongle), sub: c.screen ? T('cell.screen.' + c.screen) : '' };
@@ -2476,8 +2468,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (k === 'consult') return '';
     var p = B.PK[k];
     if (id === 'shapes' || id === 'proto') return 'add';
-    if (id === 'weight') return B.defaults(k).weight === 'W30' || !p.w30 ? 'save' : 'add';      // where under 30 g is not offered, the only other choice is lighter work
-    if (id === 'pcb') return !B.defaults(k).pcb ? 'add' : B.defaults(k).weight === 'W30' || B.PK[k].pcbStays ? '' : 'save';     // under 30 g keeps the PCB, and so do the packages offered only on it
+    if (id === 'weight') return B.defaults(k).weight === 'W29' || !p.w29 ? 'save' : 'add';      // where under 29 g is not offered, the only other choice is lighter work
+    if (id === 'pcb') return !B.defaults(k).pcb ? 'add' : B.defaults(k).weight === 'W29' || B.PK[k].pcbStays ? '' : 'save';     // under 29 g keeps the PCB, and so do the packages offered only on it
     if (id === 'fw') return p.fw < 2 ? 'add' : '';
     if (id === 'wheel') return p.wheel < 3 ? 'add' : '';
     if (id === 'dongle') return 'add';                           // a screen can be added at every level
@@ -2628,21 +2620,21 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
           opt(P + 'asym-1', cfg.asym, T('ad.asym.t'), T('ad.asym.s'), deltaText(B.delta(sym, { asym: true })), { asym: true }, false)) +
         '<p class="math">' + T('ad.shapes.math', { first: B.usd(B.SH.first), next: B.usd(B.SH.next), print: B.usd(B.SH.print), share: B.num(B.PCT) + '%', hFirst: B.hours(B.SH.hFirst), hNext: B.hours(B.SH.hNext) }) + '</p>';
     } else if (id === 'weight') {
-      /* Under 30 g comes with prototypes and my PCB, so a package that is the structure alone does not offer it:
+      /* Under 29 g comes with prototypes and my PCB, so a package that is the structure alone does not offer it:
          the option stays in view, says which package it starts at, and cannot be chosen. */
-      var from = B.ORDER.filter(function (x) { return x !== 'consult' && B.PK[x].w30; })[0], fromName = from ? pkgName(from) : '';
-      intro = lim.weights.indexOf('W30') < 0 && has('ad.weight.i.no') ? T('ad.weight.i.no', { package: name, from: fromName }) : T('ad.weight.i');
-      body = radios('Weight target', ['W30', 'W34', 'W38'].map(function (k) {
+      var from = B.ORDER.filter(function (x) { return x !== 'consult' && B.PK[x].w29; })[0], fromName = from ? pkgName(from) : '';
+      intro = lim.weights.indexOf('W29') < 0 && has('ad.weight.i.no') ? T('ad.weight.i.no', { package: name, from: fromName }) : T('ad.weight.i');
+      body = radios('Weight target', ['W29', 'W33', 'W37'].map(function (k) {
         var off = lim.weights.indexOf(k) < 0;
-        var ch = k === 'W30' ? { weight: k, proto: 'ppacf', rounds: Math.max(plan.max, cfg.proto === 'ppacf' ? cfg.rounds : 0), pcb: 1 } : { weight: k };
-        var parts = k === 'W30' && def.weight !== k && !off ? [deltaText(dOpt({ weight: k })), deltaText(dOpt({ proto: ch.proto, rounds: ch.rounds })), def.pcb ? '' : deltaText(dOpt({ pcb: 1 }))] : [];
-        var math = off ? T('ad.W30.from', { from: fromName }) : !(parts[0] && parts[1]) ? optMath('weight', { weight: k }) : parts[2] ? T('ad.W30.split3', { structure: parts[0], protos: parts[1], board: parts[2] }) : T('ad.W30.split', { structure: parts[0], protos: parts[1] });
+        var ch = k === 'W29' ? { weight: k, proto: 'ppacf', rounds: Math.max(plan.max, cfg.proto === 'ppacf' ? cfg.rounds : 0), pcb: 1 } : { weight: k };
+        var parts = k === 'W29' && def.weight !== k && !off ? [deltaText(dOpt({ weight: k })), deltaText(dOpt({ proto: ch.proto, rounds: ch.rounds })), def.pcb ? '' : deltaText(dOpt({ pcb: 1 }))] : [];
+        var math = off ? T('ad.W29.from', { from: fromName }) : !(parts[0] && parts[1]) ? optMath('weight', { weight: k }) : parts[2] ? T('ad.W29.split3', { structure: parts[0], protos: parts[1], board: parts[2] }) : T('ad.W29.split', { structure: parts[0], protos: parts[1] });
         return opt(P + 'w-' + k, cfg.weight === k, T('ad.' + k + '.t'), T('ad.' + k + '.s', { n: plan.max }) + ' <span class="mth">' + math + '</span>',
           off ? T('ad.notwith', { package: name }) : tagFor(dOpt(ch), def.weight === k), ch, off);
       }).join('')) + '<p class="math">' + T('ad.weight.math') + '</p>';
     } else if (id === 'pcb') {
       intro = T('ad.pcb.i');
-      body = radios('Mouse PCB', opt(P + 'pcb-0', !cfg.pcb, T('ad.pcb0.t'), T('ad.pcb0.s'), lim.board === 'weight' ? T('ad.notwith30') : lim.board ? T('ad.notwith.pkg', { package: pkgName(cfg.pkg) }) : tagFor(dOpt({ pcb: 0 }), !def.pcb), { pcb: 0 }, !!lim.board) +
+      body = radios('Mouse PCB', opt(P + 'pcb-0', !cfg.pcb, T('ad.pcb0.t'), T('ad.pcb0.s'), lim.board === 'weight' ? T('ad.notwith29') : lim.board ? T('ad.notwith.pkg', { package: pkgName(cfg.pkg) }) : tagFor(dOpt({ pcb: 0 }), !def.pcb), { pcb: 0 }, !!lim.board) +
         opt(P + 'pcb-1', !!cfg.pcb, T('ad.pcb1.t'), T('ad.pcb1.s') + ' <span class="mth">' + optMath('pcb', { pcb: 1 }) + '</span>', tagFor(dOpt({ pcb: 1 }), !!def.pcb), { pcb: 1 }, false)) +
         (lim.board ? '<p class="math">' + (lim.board === 'weight' ? T('ad.pcb.tied') : T('ad.pcb.stays', { package: pkgName(cfg.pkg) })) + '</p>' : '');
     } else if (id === 'fw') {
@@ -2667,7 +2659,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       var perRound = function (x) { return B.money(B.add(B.labor(x.h), roundMat(x))); };
       var planOpt = function (oid, key, proto, rounds, isOn) {
         var isDef = def.rounds === rounds && (rounds === 0 || def.proto === proto), off = lim.tied && proto !== 'ppacf';
-        return opt(oid, isOn, T(key + '.t'), T(key + '.s', { n: rounds }), off ? T('ad.notwith30') : tagFor(dOpt({ proto: proto, rounds: rounds }), isDef), { proto: proto, rounds: rounds }, off);
+        return opt(oid, isOn, T(key + '.t'), T(key + '.s', { n: rounds }), off ? T('ad.notwith29') : tagFor(dOpt({ proto: proto, rounds: rounds }), isDef), { proto: proto, rounds: rounds }, off);
       };
       intro = T('ad.proto.i');
       body = radios('Prototype plan', planOpt(P + 'pr-0', 'ad.pr0', 'pa12', 0, cfg.rounds === 0) + planOpt(P + 'pr-2', 'ad.pr2', 'pa12', plan.min, onPa && cfg.rounds <= plan.min) +
@@ -3191,7 +3183,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     var far = Math.abs(el.getBoundingClientRect().top) > (window.innerHeight || 800) * 2;     // a long glide is disorienting: go straight there
     el.scrollIntoView({ behavior: calm || far ? 'auto' : 'smooth', block: 'start' });
   }
-  /* Under 30 g brings the material-matched prototypes and the PCB with it. held is the prototype plan and the PCB choice from before, so that leaving under 30 g undoes all three. */
+  /* Under 29 g brings the material-matched prototypes and the PCB with it. held is the prototype plan and the PCB choice from before, so that leaving under 29 g undoes all three. */
   var held = null;
   function clamp() { cfg = B.settle(cfg); }
   document.addEventListener('click', function (e) {
@@ -3218,8 +3210,8 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (el.hasAttribute('data-set') && cfg.pkg !== 'consult') {
       var ch = JSON.parse(el.getAttribute('data-set'));
       if (ch.weight && ch.weight !== cfg.weight) {
-        if (ch.weight === 'W30') held = { proto: cfg.proto, rounds: cfg.rounds, pcb: cfg.pcb };
-        else if (cfg.weight === 'W30' && held) { ch.proto = held.proto; ch.rounds = held.rounds; ch.pcb = held.pcb; held = null; }
+        if (ch.weight === 'W29') held = { proto: cfg.proto, rounds: cfg.rounds, pcb: cfg.pcb };
+        else if (cfg.weight === 'W29' && held) { ch.proto = held.proto; ch.rounds = held.rounds; ch.pcb = held.pcb; held = null; }
       }
       for (var key in ch) cfg[key] = ch[key];
       changed = true;
@@ -3515,7 +3507,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       pk += '<h5>' + esc(pkgName(k)) + '</h5>' + numField('pkg.' + k + '.paid', 'Paid shapes', { min: 1 }) + numField('pkg.' + k + '.extra', 'Extra shapes, at no added cost', { min: 0 }) +
         numField('pkg.' + k + '.rounds', 'Prototype rounds', { min: 0 }) + numField('pkg.' + k + '.pcb', 'Mouse PCB I design: 0 an add-on, 1 comes with it, 2 comes with it and cannot be handed back', { min: 0, max: 2 }) +
         numField('pkg.' + k + '.fw', 'Mouse firmware at no added cost: 0 none, 1 basic, 2 low latency', { min: 0, max: 2 }) +
-        numField('pkg.' + k + '.w30', 'Under 30 g can be chosen: 1 yes, 0 no', { min: 0, max: 1 }) +
+        numField('pkg.' + k + '.w29', 'Under 29 g can be chosen: 1 yes, 0 no', { min: 0, max: 1 }) +
         numField('pkg.' + k + '.support', 'Months of production support it is priced with: 0, 3, 6 or 12', { min: 0, max: 12 }) +
         numField('pkg.' + k + '.qc', 'Months of quality control on site at no added cost', { min: 0, max: NUMS.qc.maxMonths });
     });
