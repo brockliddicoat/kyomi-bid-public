@@ -724,7 +724,6 @@ var BID_TEXT = {
   'row.parts': 'Clicks, side buttons, base and internals',
   'row.pcb': 'Mouse PCB',
   'row.fw': 'Firmware',
-  'row.fab': 'PCB factory',
   'row.wheel': 'Scroll wheel',
   'row.dongle': 'Dongle',
   'row.art': 'Base artwork',
@@ -746,17 +745,13 @@ var BID_TEXT = {
   'cell.weight.sub': '256 kg shell load',
   'cell.pcb.0': 'The factory’s',
   'cell.pcb.1': 'Designed by me',
+  'cell.pcb.sub0': 'found for you',
   'cell.pcb.sub30': 'load-bearing',
   'cell.fw.0': 'The factory’s',
   'cell.fw.1': 'Basic, under 300 µs',
   'cell.fw.2': 'Low latency, under 100 µs',
   'cell.fw.sub': 'mouse and dongle, no added cost',
   'cell.fw.added': 'mouse and dongle, added',
-  'cell.fab': 'Found for you',
-  'cell.fab.sub': 'builds the board, writes its firmware',
-  'cell.fab.sub.pcb': 'builds the board I design, writes its firmware',
-  'cell.fab.sub.fw': 'builds the board',
-  'cell.fab.sub.pcb.fw': 'builds the board I design',
   'cell.wheel.1': 'Design',
   'cell.wheel.2': 'Design and mold design',
   'cell.wheel.3': 'Design, mold design, G-code',
@@ -864,9 +859,9 @@ var BID_TEXT = {
   'ad.W38.s': 'Walls and ribs only, with no full lattice.',
   'ad.W38.v': 'Good value when stiffness and price matter more than the last few grams.',
   'ad.weight.math': 'Weights are without skates. Every target keeps the same pass mark: the shell holds 256 kg in simulation.',
-  'ad.pcb.i': 'The factory’s board is the default, as in your brief. I can design the PCB instead, around the shell and the weight target rather than the other way round. From {pkgTested} up, the PCB is mine.',
+  'ad.pcb.i': 'Either way, I find the factory that builds the board. Its own board is the default, as in your brief. I can design the PCB instead, around the shell and the weight target rather than the other way round. From {pkgTested} up, the PCB is mine.',
   'ad.pcb0.t': 'The factory’s PCB',
-  'ad.pcb0.s': 'I fit the shell and the internals to the board the factory provides.',
+  'ad.pcb0.s': 'The factory I find for you provides its own board, and I fit the shell and the internals to it.',
   'ad.pcb0.v': 'Good value when the factory’s board already suits the shape, and the weight target is 34 g or more. Offered with {pkgDesign}.',
   'ad.pcb1.t': 'PCB I design',
   'ad.pcb1.s': 'Schematic, layout and two assembled prototype runs, to the minimums in this bid. The files are yours.',
@@ -1732,7 +1727,7 @@ function makeBid(N) {
        otherwise sold as an option that is its labor and its materials (wm), never under the minimum. */
     var incl = function (key) {
       var it = N.items[key], lab = labor(it.h), o = { id: key, item: key, kind: 'included', h: it.h, amt: [0, 0], fee: it.fee, worth: it.fee != null ? [it.fee, it.fee] : lab };
-      if (it.fee == null && OPTION_ROWS.indexOf(ROW_OF[key]) >= 0) {
+      if (it.fee == null && OPTION_ROWS.indexOf(ROW_OF[key]) >= 0 && !ONLY_INCLUDED[key]) {
         var m = add(it.m || [0, 0], runOf(lab)), lo = Math.max(m[0], C.min);
         o.wm = [lo, Math.max(m[1], C.min, lo)];
         o.worth = add(lab, o.wm);
@@ -1839,12 +1834,12 @@ function makeBid(N) {
   /* The same price, arranged by the rows a package is described in. Every line lands in exactly one row,
      and every material is attached to the item it belongs to, so each item shows its own split:
      labor, materials, steel tools. The rows add up to the totals above. */
-  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'fab', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'calls', 'credit'];
+  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'calls', 'credit'];
   var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W30: 'weight', W34: 'weight', W38: 'weight',
     CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DF: 'dongle',
     DP: 'dongle',
     ART2: 'art', ART4: 'art', RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
-    MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'fab' };
+    MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'pcb' };    // finding the factory sits with the PCB it builds
   /* For the comparison with American freelancers: the profession each line's work would need. Every line with hours has one. */
   var PROFS = ['id', 'me', 'ee', 'fw', 'mold', 'viz'];
   var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id', ART2: 'id', ART4: 'id',
@@ -1857,6 +1852,7 @@ function makeBid(N) {
     return out;
   }
   var OPTION_ROWS = ['weight', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'proto'];     // the rows a client chooses within
+  var ONLY_INCLUDED = { FS: 1 };     // never sold on its own, so worth its hours alone, whichever row it sits in
   var OWN_FLOOR = { DP: true };                 // options chosen on their own inside a row
   var MAT_ROW = { 'mat.ref': 'shapes', 'mat.paint': 'paint', 'mat.resin': 'tools', 'mat.freight': 'tools', 'mat.coat': 'samples' };
   function rows(cfg) {
@@ -1988,7 +1984,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     mc: '<path d="M9 3.5h6M10 3.5v6L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-8.5v-6"/><path d="M7.4 15h9.2"/>',
     tools: '<path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7l-7.5 7.5a2.1 2.1 0 0 0 3 3L14 10"/>',
     samples: '<rect x="3.5" y="9" width="17" height="11.5" rx="1.5"/><path d="M3.5 13h17M12 9v11.5M8 9l1.5-5.5h5L16 9"/>',
-    fab: '<path d="M3 20.5V11l5.5 3.5V11l5.5 3.5V11l5.5 3.5V4h1.5v16.5z"/><path d="M7 17.5h2M12 17.5h2"/>',
     calls: '<rect x="3" y="6.5" width="12.5" height="11" rx="2"/><path d="M15.5 10.5L21 7.5v9l-5.5-3"/>',
     credit: '<circle cx="12" cy="9" r="5.5"/><path d="M9 13.8L8 21l4-2 4 2-1-7.2"/>',
     quality: '<path d="M12 3l7.5 3v6c0 4.6-3.1 7.8-7.5 9-4.4-1.2-7.5-4.4-7.5-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.4-4.6"/>',
@@ -2331,7 +2326,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   var mqWide = window.matchMedia ? window.matchMedia('(min-width: 1040px)') : null;
   function isWide() { return !!(mqWide && mqWide.matches); }
   var ROWS = [
-    { id: 'shapes', keys: ['addShapes', 'asym'] }, { id: 'weight', keys: ['weight'] }, { id: 'parts' }, { id: 'pcb', keys: ['pcb'] }, { id: 'fw', keys: ['fw'] }, { id: 'fab' }, { id: 'wheel', keys: ['wheel'] },
+    { id: 'shapes', keys: ['addShapes', 'asym'] }, { id: 'weight', keys: ['weight'] }, { id: 'parts' }, { id: 'pcb', keys: ['pcb'] }, { id: 'fw', keys: ['fw'] }, { id: 'wheel', keys: ['wheel'] },
     { id: 'dongle', keys: ['dongle', 'screen'] }, { id: 'art', keys: ['art'] }, { id: 'renders' }, { id: 'files' }, { id: 'proto', keys: ['proto', 'rounds'] },
     { id: 'paint' }, { id: 'molds' }, { id: 'mc', keys: ['mc'] }, { id: 'tools', keys: ['toolmaker'] }, { id: 'samples' }, { id: 'calls' }, { id: 'credit' }
   ];
@@ -2363,7 +2358,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
         return { html: String(paid + p.extra), sub: sub.join(', ') };
       case 'weight': return { html: T('cell.weight.' + c.weight), sub: T('cell.weight.sub') };
       case 'parts': return yes;
-      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W30' ? T('cell.pcb.sub30') : B.defaults(k).pcb ? '' : T('cell.added') } : { html: T('cell.pcb.0') };
+      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W30' ? T('cell.pcb.sub30') : B.defaults(k).pcb ? '' : T('cell.added') } : { html: T('cell.pcb.0'), sub: T('cell.pcb.sub0') };
       case 'fw': return { html: T('cell.fw.' + c.fw), sub: !c.fw ? '' : c.fw <= p.fw ? T('cell.fw.sub') : T('cell.fw.added') };     // up to the level the package comes with, it is at no added cost
       case 'wheel': return { html: T('cell.wheel.' + c.wheel) };
       case 'dongle': return { html: T('cell.dongle.' + c.dongle), sub: c.screen ? T('cell.screen.' + c.screen) : '' };
@@ -2377,7 +2372,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'tools': return p.build ? { html: T('cell.tools.' + c.toolmaker), sub: T('cell.tools.sub') } : no;
       case 'samples': return p.build ? { html: T('cell.samples') } : no;
       case 'calls': return { html: T('cell.calls'), sub: T('cell.calls.sub') };
-      case 'fab': return { html: T('cell.fab'), sub: T('cell.fab.sub' + (c.pcb ? '.pcb' : '') + (c.fw ? '.fw' : '')) };   // the factory writes the firmware only while mine is not selected
       case 'credit': return yes;
     }
     return no;
