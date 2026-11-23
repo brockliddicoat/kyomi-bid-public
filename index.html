@@ -729,7 +729,6 @@ var BID_TEXT = {
   'row.fw': 'Firmware',
   'row.wheel': 'Scroll wheel',
   'row.dongle': 'Dongle',
-  'row.art': 'Base artwork',
   'row.renders': 'Colorway renders',
   'row.files': 'Source files',
   'row.proto': 'Working prototypes',
@@ -764,8 +763,6 @@ var BID_TEXT = {
   'cell.dongle.DB': 'Basic',
   'cell.dongle.DS': 'Standard',
   'cell.screen.1': 'with a screen',
-  'cell.art': 'Plain base',
-  'cell.art.n': '{n} revisions',
   'cell.renders': 'Unlimited',
   'cell.renders.sub': 'no added cost',
   'cell.files': '.F3D + .STEP',
@@ -814,7 +811,6 @@ var BID_TEXT = {
   'rw.from': 'It comes with {from} and every package above it.',
   'rw.from.only': 'It comes with {from}.',
   'rw.nocharge': 'No separate charge.',
-  'rw.what.art': 'A plain base is standard, clean and minimalist, as your brief specifies.',
   'rw.what.files': 'The complete source is yours, in native .F3D and neutral .STEP, so the design can be changed later with or without me. {pkgProduction} and {pkgAll} add the mold designs and the G-code.',
   'rw.what.files.consult': 'The exterior surface of the shape, as a .STEP file.',
   'rw.what.credit': 'You may name me as the designer of the mouse.',
@@ -941,11 +937,6 @@ var BID_TEXT = {
   'ad.sc1.fw': 'What it shows is part of my firmware.',
   'ad.sc1.fw.sup': 'With the factory’s firmware, the factory writes what it shows.',
 
-  'ad.art.i': 'Artwork for the base comes with 2 or 4 revisions.',
-  'ad.art0.t': 'Plain base',
-  'ad.art0.s': 'Clean and minimalist, as specified in your brief.',
-  'ad.art2.t': 'Artwork, 2 revisions',
-  'ad.art4.t': 'Artwork, 4 revisions',
 
   'ad.mc.i': 'I propose the carbon fiber composite grade and the coating, and negotiate with the material supplier on your behalf.',
   'ad.mc0.t': 'No consultation',
@@ -964,7 +955,7 @@ var BID_TEXT = {
   'ad.sup0.s': 'Work after handoff is quoted as it comes up.',
   'ad.sup.t': '{n} months',
   'ad.sup.s': 'Up to {hours} of my time across the {n} months after handoff.',
-  'ad.qc.i': 'I work on the factory floor {week} hours a week as production starts. I check parts and finished mice against the specification, solve problems where they happen, and report to you every day.',
+  'ad.qc.i': 'I work on the factory floor {week} hours a week as production starts. I check parts and finished mice against the specification and solve problems where they happen.',
   'ad.qc0.t': 'None',
   'ad.qc0.s': 'The factory’s own quality control.',
   'ad.qc.t1': '1 month at the factory',
@@ -1165,7 +1156,7 @@ var BID_TEXT = {
   'line.QX': 'Quality control on site, {n} months',
   'line.QX.more.1': 'Quality control on site, 1 more month',
   'line.QX.more': 'Quality control on site, {n} more months',
-  'item.QC.what': 'On the factory floor as production starts, checking parts and finished mice against the specification, solving problems where they happen, and reporting to you every day.',
+  'item.QC.what': 'On the factory floor as production starts, checking parts and finished mice against the specification and solving problems where they happen.',
   'calc.incl.qc': 'Included. {hours} × {rate}, plus {exp} for the flight and housing, if billed',
   'calc.incl.qc.stay': 'Included. {hours} × {rate}, plus {exp} of housing, if billed',
   'qc.fly': 'Round-trip flight',
@@ -1207,10 +1198,6 @@ var BID_TEXT = {
   'item.RN.what': 'Unlimited still renders of the pink, white and black colorways, within reason.',
   'item.MC.name': 'Material science consultation and negotiation',
   'item.MC.what': 'My proposal for the carbon fiber composite grade and for the coating, and negotiation with the material supplier on your behalf.',
-  'item.ART2.name': 'Base artwork, 2 revisions',
-  'item.ART2.what': 'Artwork for the base, with two rounds of changes.',
-  'item.ART4.name': 'Base artwork, 4 revisions',
-  'item.ART4.what': 'Artwork for the base, with four rounds of changes.',
   'item.DFM.name': 'Moldability review',
   'item.DFM.what': 'A check that every part can be molded in carbon fiber composite before any mold is designed.',
   'item.DFM.mat': 'Mold-flow and CAM screening runs',
@@ -1373,7 +1360,6 @@ var BID_TEXT = {
   'sum.ch.wheel.3': 'Scroll wheel design with mold design and G-code',
   'sum.ch.dongle': 'Dongle {level}',
   'sum.ch.screen.1': 'Dongle screen',
-  'sum.ch.art': 'Base artwork with {n} revisions',
   'sum.ch.mc': 'Material science consultation and negotiation',
   'sum.ch.us': 'US toolmaker',
   'sum.ch.sup': 'Production support for {n} months',
@@ -1542,8 +1528,6 @@ var BID_NUM = {
     RN:   { h: [8, 14] },
     FS:   { h: [16, 24] },                       // finding a factory to build the PCB and write its firmware: shortlist, quotes, samples, introduction
     MC:   { h: [24, 30], fee: 1950 },
-    ART2: { h: [6, 10],   k: 'desk' },
-    ART4: { h: [11, 16],  k: 'desk' },
     DFM:  { h: [16, 24],  m: [300, 600], k: 'desk' },
     MT:   { h: [74, 106], k: 'desk', fd: [3, 5] },
     MK:   { h: [38, 54],  k: 'desk', fd: [2, 3] },
@@ -1565,7 +1549,7 @@ var BID_NUM = {
   qc: { h: [100, 100], fly: [1800, 2200], stay: [1660, 2200], flyMine: 1, maxMonths: 2 },
   /* working prototypes, per round */
   proto: {
-    pa12:  { h: [10, 14], m: [240, 480] },
+    pa12:  { h: [10, 14], m: [90, 180] },      // sent out to a print service: two sets a round. A round costs less than one in PPA-CF
     ppacf: { h: [10, 15], m: [180, 360] },     // printed in-house: six rounds stay under 7,000
     plan: { min: 2, std: 4, max: 6 },         // rounds in the Minimal, Standard and Material-matched plans.
                                               // Under 30 g is only offered with the Material-matched plan: PPA-CF, at least max rounds.
@@ -1665,7 +1649,7 @@ function makeBid(N) {
     if (pkg === 'consult') return { pkg: pkg };
     var p = PK[pkg], w = matched(p) && p.w30 ? 'W30' : 'W34';
     return { pkg: pkg, addShapes: 0, asym: false, weight: w, proto: p.proto, rounds: p.rounds, pcb: (p.pcb || w === 'W30') ? 1 : 0, fw: p.fw,
-             wheel: p.wheel, dongle: p.dongle, screen: 0, art: 0, mc: p.mcIncluded, toolmaker: 'vn', support: p.support, qc: p.qc };
+             wheel: p.wheel, dongle: p.dongle, screen: 0, mc: p.mcIncluded, toolmaker: 'vn', support: p.support, qc: p.qc };
   }
   function limits(cfg) {
     var p = PK[cfg.pkg];
@@ -1683,6 +1667,7 @@ function makeBid(N) {
     var out = {}, k, lim, d0 = defaults(c.pkg);
     for (k in c) out[k] = c[k];
     for (k in d0) if (out[k] === undefined) out[k] = d0[k];      // a selection saved before an option existed takes the package's own
+    for (k in out) if (!(k in d0)) delete out[k];                // and one saved with an option that is no longer offered loses it
     if (out.weight === 'W30' && !PK[out.pkg].w30) out.weight = d0.weight;      // not offered in this package
     if (out.weight === 'W30') { out.proto = 'ppacf'; out.rounds = Math.max(out.rounds, N.proto.plan.max); out.pcb = 1; }
     if (PK[out.pkg].pcbStays) out.pcb = 1;
@@ -1830,7 +1815,6 @@ function makeBid(N) {
     hourly('eng', cfg.dongle);
     if (cfg.screen) hourly('eng', 'DP');
     hourly('eng', 'AH');
-    if (cfg.art) hourly('eng', 'ART' + cfg.art);
     if (cfg.mc && !p.mcIncluded) hourly('eng', 'MC');
 
     /* working prototypes */
@@ -1891,7 +1875,7 @@ function makeBid(N) {
        A row left at what the package includes is not an option the client chose, so it keeps its own materials. */
     var d0 = defaults(cfg.pkg), asIncluded = {
       weight: cfg.weight === d0.weight, pcb: cfg.pcb === d0.pcb, fw: cfg.fw === d0.fw, wheel: cfg.wheel === d0.wheel,
-      dongle: cfg.dongle === d0.dongle, art: cfg.art === d0.art, proto: cfg.proto === d0.proto && cfg.rounds === d0.rounds, support: cfg.support === d0.support };
+      dongle: cfg.dongle === d0.dongle, proto: cfg.proto === d0.proto && cfg.rounds === d0.rounds, support: cfg.support === d0.support };
     var floorTo = function (ids) {
       if (!ids.length || !runs[ids[0]]) return;
       var sum = lines.filter(function (l) { return l.kind === 'mat' && ids.indexOf(l.of) >= 0; }).reduce(function (a, l) { return add(a, l.amt); }, [0, 0]);
@@ -1927,16 +1911,16 @@ function makeBid(N) {
   /* The same price, arranged by the rows a package is described in. Every line lands in exactly one row,
      and every material is attached to the item it belongs to, so each item shows its own split:
      labor, materials, steel tools. The rows add up to the totals above. */
-  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'support', 'qc', 'calls', 'credit'];
+  var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'support', 'qc', 'calls', 'credit'];
   var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W30: 'weight', W34: 'weight', W38: 'weight',
     CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DR: 'pcb',
     DP: 'dongle',
-    ART2: 'art', ART4: 'art', RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
+    RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
     MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'pcb', SP3: 'support', SP6: 'support', SP12: 'support', QC: 'qc', QX: 'qc' };
   var AFTER = { SP3: 1, SP6: 1, SP12: 1, QC: 1, QX: 1 };     // work after handoff: it does not lengthen the project    // finding the factory sits with the PCB it builds
   /* For the comparison with American freelancers: the profession each line's work would need. Every line with hours has one. */
   var PROFS = ['id', 'me', 'ee', 'fw', 'mold', 'viz'];
-  var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id', ART2: 'id', ART4: 'id',
+  var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id',
     W30: 'me', W34: 'me', W38: 'me', CL: 'me', IL: 'me', BS: 'me', WD: 'me', DB: 'me', DS: 'me', AH: 'me', PR: 'me', MC: 'me', TM: 'me', TR: 'me', SA: 'me',
     PB: 'ee', DR: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee',
     SP3: 'me', SP6: 'me', SP12: 'me', QC: 'me', QX: 'me' };
@@ -1946,7 +1930,7 @@ function makeBid(N) {
     compute(cfg).lines.forEach(function (l) { if (l.h) { var k = PROF_OF[l.id] || 'me'; out[k] = add(out[k], l.h); } });
     return out;
   }
-  var OPTION_ROWS = ['weight', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'proto', 'support'];     // the rows a client chooses within
+  var OPTION_ROWS = ['weight', 'pcb', 'fw', 'wheel', 'dongle', 'proto', 'support'];     // the rows a client chooses within
   var ONLY_INCLUDED = { FS: 1 };     // never sold on its own, so worth its hours alone, whichever row it sits in
   var OWN_FLOOR = { DP: true };                 // options chosen on their own inside a row
   var MAT_ROW = { 'mat.ref': 'shapes', 'mat.paint': 'paint', 'mat.resin': 'tools', 'mat.freight': 'tools', 'mat.coat': 'samples' };
@@ -2013,7 +1997,7 @@ function makeBid(N) {
   function levels(cfg) {
     if (cfg.pkg === 'consult') return {};
     var p = PK[cfg.pkg], d = defaults(cfg.pkg);
-    var W = { W38: 1, W34: 2, W30: 3 }, D = { DB: 1, DS: 2 }, A = { 0: 0, 2: 1, 4: 2 };
+    var W = { W38: 1, W34: 2, W30: 3 }, D = { DB: 1, DS: 2 };
     var shape = function (total) { var lv = 0; shapeSteps.forEach(function (n) { if (total >= n) lv++; }); return Math.max(1, lv); };
     var plan = function (c) { return c.rounds === 0 ? 0 : c.proto === 'ppacf' ? 3 : c.rounds <= N.proto.plan.min ? 1 : 2; };
     var out = {
@@ -2023,7 +2007,6 @@ function makeBid(N) {
       fw:     { n: 3, bars: 2, cur: cfg.fw, def: d.fw },
       wheel:  { n: 3, bars: 3, cur: cfg.wheel, def: d.wheel },
       dongle: { n: 3, bars: 2, cur: D[cfg.dongle], def: D[d.dongle] },   // two levels of housing. A screen goes with either, so it is not a step
-      art:    { n: 3, bars: 2, cur: A[cfg.art], def: 0 },
       proto:  { n: 4, bars: 3, cur: plan(cfg), def: plan(d) },
       mc:     { n: 2, bars: 1, cur: (p.mcIncluded || cfg.mc) ? 1 : 0, def: p.mcIncluded ? 1 : 0 },
       support: { n: SUPPORT.length, bars: SUPPORT.length - 1, cur: SUPPORT.indexOf(cfg.support), def: SUPPORT.indexOf(d.support) },
@@ -2072,7 +2055,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     fw: '<path d="M8 7.5L3.5 12 8 16.5M16 7.5l4.5 4.5-4.5 4.5M13.5 5.5l-3 13"/>',
     wheel: '<rect x="8.5" y="3" width="7" height="18" rx="3.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h7"/>',
     dongle: '<rect x="7" y="10" width="10" height="11" rx="2"/><path d="M9 10V3.5h6V10M11 6.5h.01M13 6.5h.01"/>',
-    art: '<path d="M4 20l1-4.5L15.5 5a2.1 2.1 0 0 1 3 3L8 18.5z"/><path d="M13.5 7l3 3"/>',
     renders: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 15.5l-5-5L7 19"/>',
     files: '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 16.5h4"/>',
     proto: '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
@@ -2432,7 +2414,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function isWide() { return !!(mqWide && mqWide.matches); }
   var ROWS = [
     { id: 'shapes', keys: ['addShapes', 'asym'] }, { id: 'weight', keys: ['weight'] }, { id: 'parts' }, { id: 'pcb', keys: ['pcb'] }, { id: 'fw', keys: ['fw'] }, { id: 'wheel', keys: ['wheel'] },
-    { id: 'dongle', keys: ['dongle', 'screen'] }, { id: 'art', keys: ['art'] }, { id: 'renders' }, { id: 'files' }, { id: 'proto', keys: ['proto', 'rounds'] },
+    { id: 'dongle', keys: ['dongle', 'screen'] }, { id: 'renders' }, { id: 'files' }, { id: 'proto', keys: ['proto', 'rounds'] },
     { id: 'paint' }, { id: 'molds' }, { id: 'mc', keys: ['mc'] }, { id: 'tools', keys: ['toolmaker'] }, { id: 'samples' },
     { id: 'support', keys: ['support'] }, { id: 'qc', keys: ['qc'] }, { id: 'calls' }, { id: 'credit' }
   ];
@@ -2470,7 +2452,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'fw': return { html: T('cell.fw.' + c.fw), sub: !c.fw ? '' : c.fw <= p.fw ? T('cell.fw.sub') : T('cell.fw.added') };     // up to the level the package comes with, it is at no added cost
       case 'wheel': return { html: T('cell.wheel.' + c.wheel) };
       case 'dongle': return { html: T('cell.dongle.' + c.dongle), sub: c.screen ? T('cell.screen.' + c.screen) : '' };
-      case 'art': return { html: c.art ? T('cell.art.n', { n: c.art }) : T('cell.art') };
       case 'renders': return { html: T('cell.renders'), sub: T('cell.renders.sub') };
       case 'files': return { html: T('cell.files') };
       case 'proto': return c.rounds ? { html: T(c.rounds === 1 ? 'cell.proto.1' : 'cell.proto', { rounds: c.rounds }), sub: T('cell.proto.sub', { material: plain('proto.' + c.proto) }) } : no;
@@ -2494,7 +2475,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
   function pillKind(id, k) {
     if (k === 'consult') return '';
     var p = B.PK[k];
-    if (id === 'shapes' || id === 'proto' || id === 'art') return 'add';
+    if (id === 'shapes' || id === 'proto') return 'add';
     if (id === 'weight') return B.defaults(k).weight === 'W30' || !p.w30 ? 'save' : 'add';      // where under 30 g is not offered, the only other choice is lighter work
     if (id === 'pcb') return !B.defaults(k).pcb ? 'add' : B.defaults(k).weight === 'W30' || B.PK[k].pcbStays ? '' : 'save';     // under 30 g keeps the PCB, and so do the packages offered only on it
     if (id === 'fw') return p.fw < 2 ? 'add' : '';
@@ -2721,11 +2702,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
           return opt(P + 'sc-' + n, !!cfg.screen === !!n, T('ad.sc' + n + '.t'), sub + (n ? ' <span class="mth">' + optMath('dongle', { screen: 1 }, ['DP']) + '</span>' : ''),
             n === def.screen ? T('ad.inpkg') : deltaText(dOpt({ screen: n })), { screen: n }, false);
         }).join(''));
-    } else if (id === 'art') {
-      intro = T('ad.art.i');
-      body = radios('Base artwork', opt(P + 'art-0', cfg.art === 0, T('ad.art0.t'), T('ad.art0.s'), T('ad.inpkg'), { art: 0 }, false) +
-        opt(P + 'art-2', cfg.art === 2, T('ad.art2.t'), '<span class="mth">' + optMath('art', { art: 2 }) + '</span>', deltaText(dOpt({ art: 2 })), { art: 2 }, false) +
-        opt(P + 'art-4', cfg.art === 4, T('ad.art4.t'), '<span class="mth">' + optMath('art', { art: 4 }) + '</span>', deltaText(dOpt({ art: 4 })), { art: 4 }, false));
     } else if (id === 'mc') {
       if (p.mcIncluded) return '';
       intro = T('ad.mc.i');
@@ -2774,7 +2750,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     if (id === 'files' && !out) s += '<p class="rw-w">' + T(k === 'consult' ? 'rw.what.files.consult' : 'rw.what.files') + '</p>';
     if (id === 'calls') s += '<p class="rw-w">' + T('rw.what.calls') + '</p>';
     if (id === 'credit') s += '<p class="rw-w">' + T(k === 'consult' ? 'rw.what.credit.consult' : 'rw.what.credit') + '</p>';
-    if (id === 'art' && !out && !data.items.length) s += '<p class="rw-w">' + T('rw.what.art') + '</p>';
     if (data.items.length) s += itemsHTML(data, k);
     else if (!out && id !== 'calls') s += '<p class="rw-x">' + T('rw.nocharge') + '</p>';      // the calls say their own cost
     return '<div class="rw-i">' + s + '</div>' + (k === cfg.pkg ? optionsHTML(id) : '');
@@ -3163,7 +3138,6 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       if (cfg.wheel !== def.wheel) ch.push(plain('sum.ch.wheel.' + cfg.wheel));
       if (cfg.dongle !== def.dongle) ch.push(plain('sum.ch.dongle', { level: plain('cell.dongle.' + cfg.dongle) }));
       if (cfg.screen) ch.push(plain('sum.ch.screen.' + cfg.screen));
-      if (cfg.art) ch.push(plain('sum.ch.art', { n: cfg.art }));
       if (cfg.mc && !p.mcIncluded) ch.push(plain('sum.ch.mc'));
       if (p.build && cfg.toolmaker !== 'vn') ch.push(plain('sum.ch.us'));
       if (cfg.support !== def.support) ch.push(cfg.support ? plain('sum.ch.sup', { n: cfg.support }) : plain('sum.ch.nosup'));
