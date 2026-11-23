@@ -996,7 +996,7 @@ var BID_TEXT = {
   'ad.sup3.v': 'Good value for a first production run with an experienced factory.',
   'ad.sup6.v': 'Good value when the molds are new and the first production samples will need a second look.',
   'ad.sup12.v': 'Good value when a second run or a variant of the mouse is planned within the year.',
-  'ad.qc.i': 'I work at the factory as production starts: checking parts and finished mice against the specification on the line, solving problems where they happen, and reporting to you every day. The price includes the round-trip flight and housing near the factory.',
+  'ad.qc.i': 'I work on the factory floor as production starts, {week} hours a week: checking parts and finished mice against the specification, solving problems where they happen, and reporting to you every day.',
   'ad.qc0.t': 'None',
   'ad.qc0.s': 'The factory’s own quality control.',
   'ad.qc.t1': '1 month at the factory',
@@ -1005,10 +1005,13 @@ var BID_TEXT = {
   'ad.qc0.v': 'Good value when your factory has made a mouse like this before.',
   'ad.qc1.v': 'Good value for the first production run, when most problems show up.',
   'ad.qc2.v': 'Good value when production ramps up over several weeks, or a second line starts.',
-  'ad.qc.math': 'A month on site is {hours} at the factory. Its only expenses are a round-trip flight of {fly} for the stay and housing near the factory at {stay} a month.',
+  'ad.qc.math': 'A month on site is four weeks on the factory floor at {week} hours a week: {hours}. Its only expenses are a round-trip flight of {fly} for the stay and housing near the factory at {stay} a month.',
+  'ad.qc.math.mine': 'A month on site is four weeks on the factory floor at {week} hours a week: {hours}, and housing near the factory at {stay} a month. The round-trip flight, about {fly}, is on me. How the mouse turns out reflects on my work, so I share the cost of being there.',
   'math.qc': '{hours} × {rate}, plus {exp} for the flight and housing',
+  'math.qc.stay': '{hours} × {rate}, plus {exp} of housing',
   'math.qc.more': '{hours} × {rate} beyond the month included, plus {exp} of housing',
   'math.qc.incl': '{hours} on site, worth {worth} with the flight and housing, at no added cost',
+  'math.qc.incl.stay': '{hours} on site, worth {worth} with housing, at no added cost',
 
   /* ---- price ---- */
   'pr.title': 'Price Breakdown',
@@ -1125,8 +1128,10 @@ var BID_TEXT = {
   'cv.3': '**Everything is yours.** As each milestone is paid, the design and its source files are yours and, from {pkgProduction} up, the mold designs and G-code, so any toolmaker can quote the same tools.',
   'cv.4': '**My mistakes are mine to fix.** If anything I designed misses the specification we agreed, I correct the design at no charge, during the project and for a year after handoff.',
   'cv.5': '**Support after handoff.** {supLow} to {supHigh} months of production support come with every full package, and it can run to {supMax}: answers for you and your factory within a business day, and the design changes production needs.',
-  'cv.6': '**On site when production starts.** I can work at the factory through the first production runs, checking quality on the line and solving problems where they happen. {qcIn} of it comes with {pkgAll}.',
-  'cv.6.none': '**On site when production starts.** I can work at the factory through the first production runs, checking quality on the line and solving problems where they happen.',
+  'cv.6': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen, and the flight there is on me. {qcIn} of it comes with {pkgAll}.',
+  'cv.6.none': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen, and the flight there is on me.',
+  'cv.6.fly': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen. {qcIn} of it comes with {pkgAll}.',
+  'cv.6.none.fly': '**On site when production starts.** I can work on the factory floor through the first production runs, checking quality and solving problems where they happen.',
   'cv.qc.1': 'A month',
   'cv.qc': '{n} months',
   'cv.7': '**Your design stays private.** I’ll sign your NDA before we start, and nothing about the project is shown or shared without your written consent.',
@@ -1193,8 +1198,9 @@ var BID_TEXT = {
   'line.QX': 'Quality control on site, {n} months',
   'line.QX.more.1': 'Quality control on site, 1 more month',
   'line.QX.more': 'Quality control on site, {n} more months',
-  'item.QC.what': 'At the factory as production starts: parts and finished mice checked against the specification on the line, problems solved where they happen, and a report to you every day.',
+  'item.QC.what': 'On the factory floor as production starts: parts and finished mice checked against the specification, problems solved where they happen, and a report to you every day.',
   'calc.incl.qc': 'Included. {hours} × {rate}, plus {exp} for the flight and housing, if billed',
+  'calc.incl.qc.stay': 'Included. {hours} × {rate}, plus {exp} of housing, if billed',
   'qc.fly': 'Round-trip flight',
   'qc.fly.why': 'economy, one for the stay',
   'qc.stay': 'Housing near the factory',
@@ -1580,9 +1586,10 @@ var BID_NUM = {
     SP6:  { h: [36, 46],  k: 'desk' },
     SP12: { h: [60, 76],  k: 'desk' }
   },
-  /* quality control on site at the factory where the mouse is produced, for each month there: 22 working days of 8 hours,
-     one round-trip flight for the stay, and housing near the factory. Nothing else is charged for it: no running costs. */
-  qc: { h: [176, 176], fly: [1800, 2200], stay: [1650, 2200], maxMonths: 2 },
+  /* quality control on site at the factory where the mouse is produced, for each month there: four weeks on the factory floor
+     at 25 hours a week, and housing near the factory. The round-trip flight is the designer's own while flyMine is 1, part of
+     caring how the mouse turns out; at 0 it is charged once a stay. Nothing else is charged for it: no running costs. */
+  qc: { h: [100, 100], fly: [1800, 2200], stay: [1660, 2200], flyMine: 1, maxMonths: 2 },
   /* working prototypes, per round */
   proto: {
     pa12:  { h: [10, 14], m: [240, 480] },
@@ -1874,9 +1881,9 @@ function makeBid(N) {
        comes with are work at no charge, worth their hours, the flight and the housing. Months beyond them are charged:
        their hours and housing, and the flight if no month is included. */
     if (cfg.support) hourly('after', 'SP' + cfg.support);
-    var QN = N.qc, inQc = Math.min(cfg.qc || 0, p.qc), moreQc = (cfg.qc || 0) - inQc;
+    var QN = N.qc, inQc = Math.min(cfg.qc || 0, p.qc), moreQc = (cfg.qc || 0) - inQc, fly = QN.flyMine ? [0, 0] : QN.fly;
     if (inQc) {
-      var qh = times(QN.h, inQc), qx = add(QN.fly, times(QN.stay, inQc));
+      var qh = times(QN.h, inQc), qx = add(fly, times(QN.stay, inQc));
       push('extras', { id: 'QC', item: 'QC', kind: 'included', months: inQc, h: qh, amt: [0, 0], wm: qx, worth: add(labor(qh), qx) });
     }
     if (moreQc) {
@@ -1895,7 +1902,7 @@ function makeBid(N) {
       if (!it.noRun) runs[l.id] = mat('run', runOf(l.amt), { of: l.id, work: it.k || 'desk' });
     });
     if (moreQc) {
-      if (!inQc) mat('qc.fly', QN.fly, { of: 'QX', cat: 'buy' });
+      if (!inQc && fly[1] > 0) mat('qc.fly', fly, { of: 'QX', cat: 'buy' });
       mat('qc.stay', times(QN.stay, moreQc), { of: 'QX', cat: 'buy', n: moreQc, each: QN.stay });
     }
     if (cfg.rounds > 0) {
@@ -2570,7 +2577,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       case 'PR': return { name: T(l.n === 1 ? 'line.PR.1' : 'line.PR', { n: l.n, material: plain('proto.' + l.proto) }), labor: T('calc.PR', { n: l.n, hours: B.hours(l.hEach), rate: rate }), what: T('what.PR') };
       case 'T': return { name: T('line.T'), tool: T('calc.tool.' + l.where), what: T('what.T') };
       case 'M': return { name: T(l.mat) };
-      case 'QC': return { name: lineName(l), labor: T('calc.incl.qc', { hours: B.hours(l.h), rate: rate, exp: B.money(l.wm) }), what: T('item.QC.what') };
+      case 'QC': return { name: lineName(l), labor: T(NUMS.qc.flyMine ? 'calc.incl.qc.stay' : 'calc.incl.qc', { hours: B.hours(l.h), rate: rate, exp: B.money(l.wm) }), what: T('item.QC.what') };
       case 'QX': return { name: lineName(l), labor: T('calc.hours', { hours: B.hours(l.h), rate: rate }), what: T('item.QC.what') };
     }
     v = { hours: B.hours(l.h), rate: rate, fee: l.fee != null ? B.usd(l.fee) : '' };
@@ -2759,19 +2766,19 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     } else if (id === 'qc') {
       /* the months a package comes with are worth their hours, flight and housing; a month beyond them is its hours and
          housing, with the flight only when no month is included */
-      var QN = NUMS.qc, qcs = [], qn;
+      var QN = NUMS.qc, qcs = [], qn, qFly = QN.flyMine ? [0, 0] : QN.fly;     // the flight is mine while flyMine is set
       var qcMath = function (n) {
-        if (n <= p.qc) return T('math.qc.incl', { hours: B.hours(B.times(QN.h, n)), worth: B.money(B.add(B.labor(B.times(QN.h, n)), B.add(QN.fly, B.times(QN.stay, n)))) });
+        if (n <= p.qc) return T(QN.flyMine ? 'math.qc.incl.stay' : 'math.qc.incl', { hours: B.hours(B.times(QN.h, n)), worth: B.money(B.add(B.labor(B.times(QN.h, n)), B.add(qFly, B.times(QN.stay, n)))) });
         var more = n - p.qc;
-        return T(p.qc ? 'math.qc.more' : 'math.qc', { hours: B.hours(B.times(QN.h, more)), rate: rate, exp: B.money(B.add(p.qc ? [0, 0] : QN.fly, B.times(QN.stay, more))) });
+        return T(p.qc ? 'math.qc.more' : QN.flyMine ? 'math.qc.stay' : 'math.qc', { hours: B.hours(B.times(QN.h, more)), rate: rate, exp: B.money(B.add(p.qc ? [0, 0] : qFly, B.times(QN.stay, more))) });
       };
       for (qn = 0; qn <= QN.maxMonths; qn++) qcs.push(qn);
-      intro = T('ad.qc.i');
+      intro = T('ad.qc.i', { week: B.num(QN.h[0] / 4) });
       body = radios('Quality control on site', qcs.map(function (n) {
         return opt(P + 'qc-' + n, cfg.qc === n, n ? T(n === 1 ? 'ad.qc.t1' : 'ad.qc.t', { n: n }) : T('ad.qc0.t'),
           n ? T('ad.qc.s') + ' <span class="mth">' + qcMath(n) + '</span>' : T('ad.qc0.s'),
           tagFor(dOpt({ qc: n }), def.qc === n), { qc: n }, false, val('ad.qc' + n + '.v'));
-      }).join('')) + '<p class="math">' + T('ad.qc.math', { hours: B.hours(QN.h), fly: B.money(QN.fly), stay: B.money(QN.stay) }) + '</p>';
+      }).join('')) + '<p class="math">' + T(QN.flyMine ? 'ad.qc.math.mine' : 'ad.qc.math', { hours: B.hours(QN.h), week: B.num(QN.h[0] / 4), fly: B.money(QN.fly), stay: B.money(QN.stay) }) + '</p>';
     } else if (id === 'tools') {
       if (!p.build) return '';
       intro = T('ad.tm.i');
@@ -3088,7 +3095,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
     var sup = full.map(function (k) { return B.PK[k].support; }).filter(function (n) { return n > 0; });
     var qcAll = B.PK.all.qc, v = { supLow: sup.length ? Math.min.apply(null, sup) : 0, supHigh: sup.length ? Math.max.apply(null, sup) : 0,
       supMax: B.SUPPORT[B.SUPPORT.length - 1], qcIn: qcAll === 1 ? plain('cv.qc.1') : plain('cv.qc', { n: qcAll }) }, items = '';
-    [['cv.1', 'price'], ['cv.2', 'stop'], ['cv.3', 'folder'], ['cv.4', 'fix'], [sup.length ? 'cv.5' : '', 'support'], [qcAll ? 'cv.6' : 'cv.6.none', 'qc'], ['cv.7', 'lock'], ['cv.8', 'quality'], ['cv.9', 'quality']].forEach(function (x) {
+    [['cv.1', 'price'], ['cv.2', 'stop'], ['cv.3', 'folder'], ['cv.4', 'fix'], [sup.length ? 'cv.5' : '', 'support'], [(qcAll ? 'cv.6' : 'cv.6.none') + (NUMS.qc.flyMine ? '' : '.fly'), 'qc'], ['cv.7', 'lock'], ['cv.8', 'quality'], ['cv.9', 'quality']].forEach(function (x) {
       if (x[0] && show(x[0])) items += '<li><span class="why-i">' + icon(x[1]) + '</span><div>' + T(x[0], v) + '</div></li>';
     });
     if (!items || !show('cv.h')) { el.hidden = true; el.innerHTML = ''; return; }
@@ -3592,8 +3599,9 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       B.CATS.forEach(function (c) { cs += numField('costs.' + g[0] + '.' + c, esc(plain('cost.' + c)) + ', parts', { min: 0 }); });
     });
     s += numGroup('costs', 'Materials and Running Costs', cs);
-    s += numGroup('qc', 'Quality Control on Site', '<p class="ed-note">Each month at the factory: the hours there, one round-trip flight for the stay, and housing each month. Nothing else is charged for it.</p>' +
-      numRange('qc.h', 'Hours on site, per month') + numRange('qc.fly', 'Round-trip flight, $') + numRange('qc.stay', 'Housing near the factory, per month, $') +
+    s += numGroup('qc', 'Quality Control on Site', '<p class="ed-note">Each month at the factory: four weeks of hours on the floor and housing near it. The round-trip flight is yours to cover, or charged once a stay. Nothing else is charged for it.</p>' +
+      numRange('qc.h', 'Hours on site, per month of four weeks') + numRange('qc.stay', 'Housing near the factory, per month, $') + numRange('qc.fly', 'Round-trip flight, $') +
+      numField('qc.flyMine', 'The flight is on me: 1 yes, 0 charge it once a stay', { min: 0, max: 1 }) +
       numField('qc.maxMonths', 'Most months a client can select', { min: 1 }));
     s += numGroup('tools', 'Steel Tools', '<p class="ed-note">One fixed price for all seven tools. If the toolmaker charges more, the difference is yours.</p>' +
       numField('tools.vn', 'Built in Vietnam, $', { min: 0 }) + numField('tools.us', 'Built in the United States, $', { min: 0 }));
