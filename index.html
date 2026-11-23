@@ -696,14 +696,14 @@ var BID_TEXT = {
   'pkg.consult.line': 'A single shape, printed and shipped, with no minimum commitment.',
   'pkg.consult.value': 'Good value when only the shape is missing and your own team does the rest.',
   'pkg.design.name': 'Structural Design',
-  'pkg.design.line': 'Shape, shell and internals, and a factory found to build your PCB and write its firmware, ready for you to prototype.',
+  'pkg.design.line': 'Shape, shell and internals, and a factory found to build your PCBs and write their firmware, ready for you to prototype.',
   'pkg.design.value': 'Good value when a factory will prototype and tool the mouse around its own board, and you want the structure, its source files and the right factory first.',
   'pkg.tested.name': 'Complete Design',
-  'pkg.tested.line': 'Everything in {pkgDesign}, plus my PCB and its firmware, with shell and board proven together in working prototypes before tooling.',
+  'pkg.tested.line': 'Everything in {pkgDesign}, plus my PCBs for the mouse and dongle and their firmware, with shell and boards proven together in working prototypes before tooling.',
   'pkg.tested.value': 'Good value when shell and board must be proven together, in your hand, before steel is cut. Each round takes about a week, not {low} to {high}.',
   'pkg.production.name': 'Production Ready',
   'pkg.production.line': 'Everything in {pkgTested}, plus the mold designs and G-code for every part, ready for any toolmaker.',
-  'pkg.production.value': 'Good value when you want to own the mold designs and the G-code as well as the PCB, and take them to any toolmaker.',
+  'pkg.production.value': 'Good value when you want to own the mold designs and the G-code as well as the PCBs, and take them to any toolmaker.',
   'pkg.all.name': 'Turnkey Tooling',
   'pkg.all.line': 'Everything in {pkgProduction}, plus the steel tools built and trialled, and finished sample mice at under 30 g.',
   'pkg.all.value': 'Good value when you want one person answerable from the first shape to the sample mice, with under 30 g verified before tooling.',
@@ -722,7 +722,7 @@ var BID_TEXT = {
   'row.shapes': 'Shapes, each printed and shipped',
   'row.weight': 'Weight and structure',
   'row.parts': 'Clicks, side buttons, base and internals',
-  'row.pcb': 'Mouse PCB',
+  'row.pcb': 'Mouse and dongle PCBs',
   'row.fw': 'Firmware',
   'row.wheel': 'Scroll wheel',
   'row.dongle': 'Dongle',
@@ -748,6 +748,7 @@ var BID_TEXT = {
   'cell.pcb.0': 'The factory’s',
   'cell.pcb.1': 'Designed by me',
   'cell.pcb.sub0': 'found for you',
+  'cell.pcb.sub1': 'a matched radio set',
   'cell.pcb.sub30': 'load-bearing',
   'cell.fw.0': 'The factory’s',
   'cell.fw.1': 'Basic, under 300 µs',
@@ -759,7 +760,6 @@ var BID_TEXT = {
   'cell.wheel.3': 'Design, mold design, G-code',
   'cell.dongle.DB': 'Basic',
   'cell.dongle.DS': 'Standard',
-  'cell.dongle.DF': 'Full',
   'cell.screen.1': 'with a screen',
   'cell.art': 'Plain base',
   'cell.art.n': '{n} revisions',
@@ -852,14 +852,14 @@ var BID_TEXT = {
   'ad.shapes.math': 'The first shape is a fixed {first} ({hFirst}). Each shape after it is a fixed {next} ({hNext}). {share} of each fee is materials, {print} of it for the two finished prints. Six paid shapes is the minimum.',
   'ad.shapes.v': 'Good value when the shape decides the product. Each added shape comes back in about a week, where a factory revision takes {low} to {high} weeks.',
 
-  'ad.weight.i': 'Under 30 g is offered only as a set: material-matched prototypes, so the strength of the shell is verified before tooling, and a PCB I design, because at that weight the board carries load as part of the structure. Under 34 g and under 38 g are available with any prototype plan.',
-  'ad.weight.i.no': 'Under 30 g comes only with prototypes in a material close to the molded one and a PCB I design, so it starts at {from}. {package} is offered under 34 g or under 38 g, with any prototype plan.',
-  'ad.W30.t': 'Under 30 g, with matched prototypes and my PCB',
-  'ad.W30.s': 'The target in your brief: a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a PCB designed as a load-bearing part of the structure.',
+  'ad.weight.i': 'Under 30 g is offered only as a set: material-matched prototypes, so the strength of the shell is verified before tooling, and the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. Under 34 g and under 38 g are available with any prototype plan.',
+  'ad.weight.i.no': 'Under 30 g comes only with prototypes in a material close to the molded one and the PCBs I design, so it starts at {from}. {package} is offered under 34 g or under 38 g, with any prototype plan.',
+  'ad.W30.t': 'Under 30 g, with matched prototypes and my PCBs',
+  'ad.W30.s': 'The target in your brief: a full lattice inside the shell, {n} prototype rounds in PPA-CF, and a mouse PCB designed as a load-bearing part of the structure.',
   'ad.W30.v': 'Good value when under 30 g is the headline of the launch. Its strength is checked in a material close to the molded one before tooling.',
-  'ad.W30.from': 'Offered from {from} up, where the prototypes and my PCB are part of the package.',
+  'ad.W30.from': 'Offered from {from} up, where the prototypes and my PCBs are part of the package.',
   'ad.W30.split': '{structure} for the structure and {protos} for the prototypes.',
-  'ad.W30.split3': '{structure} for the structure, {protos} for the prototypes and {board} for the PCB.',
+  'ad.W30.split3': '{structure} for the structure, {protos} for the prototypes and {board} for the PCBs.',
   'ad.W34.t': 'Under 34 g',
   'ad.W34.s': 'A lighter lattice pass.',
   'ad.W34.v': 'Good value when a weight near the ULX Small is light enough and the prototypes can stay in nylon.',
@@ -867,23 +867,23 @@ var BID_TEXT = {
   'ad.W38.s': 'Walls and ribs only, with no full lattice.',
   'ad.W38.v': 'Good value when stiffness and price matter more than the last few grams.',
   'ad.weight.math': 'Weights are without skates. Every target keeps the same pass mark: the shell holds 256 kg in simulation.',
-  'ad.pcb.i': 'Either way, I find the factory that builds the board. Its own board is the default, as in your brief. I can design the PCB instead, around the shell and the weight target rather than the other way round. From {pkgTested} up, the PCB is mine.',
-  'ad.pcb0.t': 'The factory’s PCB',
-  'ad.pcb0.s': 'The factory I find for you provides its own board, and I fit the shell and the internals to it.',
-  'ad.pcb0.v': 'Good value when the factory’s board already suits the shape, and the weight target is 34 g or more. Offered with {pkgDesign}.',
-  'ad.pcb1.t': 'PCB I design',
-  'ad.pcb1.s': 'Schematic, layout and two assembled prototype runs, to the minimums in this bid. The files are yours.',
-  'ad.pcb1.v': 'Good value when the board should fit the mouse, not the mouse the board. It also frees the mold designs from one factory’s board outline.',
-  'ad.pcb.tied': 'Under 30 g keeps the PCB I design, because at that weight the board carries load as part of the structure. To use the factory’s board, change the weight target first.',
+  'ad.pcb.i': 'The mouse and its dongle talk over one radio link, so their boards come as a set. Either way, I find the factory that builds them. Its own boards are the default, as in your brief. I can design both instead, around the shell and the weight target rather than the other way round. From {pkgTested} up, the boards are mine.',
+  'ad.pcb0.t': 'The factory’s PCBs',
+  'ad.pcb0.s': 'The factory I find for you provides its own mouse board and receiver, and I fit the shell, the internals and the dongle housing to them.',
+  'ad.pcb0.v': 'Good value when the factory’s boards already suit the shape, and the weight target is 34 g or more. Offered with {pkgDesign}.',
+  'ad.pcb1.t': 'PCBs I design, mouse and dongle',
+  'ad.pcb1.s': 'A matched radio set: the mouse’s main board and the dongle’s receiver, designed together for 8 kHz. Schematic, layout and two assembled prototype runs of each, to the minimums in this bid. The files are yours.',
+  'ad.pcb1.v': 'Good value when the boards should fit the mouse, not the mouse the boards. It also frees the mold designs from one factory’s board outline.',
+  'ad.pcb.tied': 'Under 30 g keeps the PCBs I design, because at that weight the mouse’s board carries load as part of the structure. To use the factory’s boards, change the weight target first.',
   'ad.notwith.pkg': 'Not with {package}',
-  'ad.pcb.stays': '{package} is offered only on the PCB I design, so the shell and the board are designed and tested as one. To build on the factory’s board, choose {pkgDesign}.',
+  'ad.pcb.stays': '{package} is offered only on the PCBs I design, so the shell and the boards are designed and tested as one. To build on the factory’s boards, choose {pkgDesign}.',
   'ad.fw.i': 'The factory’s firmware is the default. I also write the firmware for the mouse and its dongle, at two levels of latency.',
-  'ad.fw.i.board': 'A PCB I design needs firmware written for that board. The factory or a developer you choose can write it, or I can, for the mouse and its dongle, at two levels of latency.',
+  'ad.fw.i.board': 'PCBs I design need firmware written for those boards. The factory or a developer you choose can write it, or I can, for the mouse and its dongle, at two levels of latency.',
   'ad.fw.i.in': 'Firmware for the mouse and its dongle, with latency under 300 µs, comes with {package} at no added cost. Under 100 µs is an add-on, and the factory’s firmware remains a choice.',
   'ad.fw.i.in2': 'Low-latency firmware for the mouse and its dongle, under 100 µs, comes with {package} at no added cost. The factory’s firmware remains a choice.',
   'ad.fw0.t': 'The factory’s firmware',
   'ad.fw0.s': 'The firmware that comes with the factory’s electronics.',
-  'ad.fw0.s.board': 'The factory, or a developer you choose, writes the firmware for the PCB I design.',
+  'ad.fw0.s.board': 'The factory, or a developer you choose, writes the firmware for the PCBs I design.',
   'ad.fw0.v': 'Good value when the factory’s firmware already reaches the latency you want.',
   'ad.fw0.v.board': 'Good value when you already have a firmware developer who can write for the board.',
   'ad.fw1.t': 'Basic firmware, under 300 µs',
@@ -943,24 +943,21 @@ var BID_TEXT = {
   'ad.wh3.s': 'The machining programs for both molds.',
   'ad.wh3.v': 'Good value when the toolmaker should cut steel from finished programs, with nothing left to reinterpret.',
 
-  'ad.dongle.i': 'Three levels, each adding scope and revisions. A screen is one further option. The dongle’s firmware is written with the mouse’s, and is priced there.',
+  'ad.dongle.i': 'Two levels of housing. The receiver inside it comes with the PCBs: the factory’s, or the one I design with the mouse’s board. A screen is one further option. The dongle’s firmware is written with the mouse’s, and is priced there.',
   'ad.DB.t': 'Basic',
-  'ad.DB.s': 'Housing design around the factory’s receiver. 1 revision.',
-  'ad.DB.v': 'Good value when the factory’s receiver is the one you will ship and the housing only has to match the mouse.',
+  'ad.DB.s': 'Housing design around the receiver. 1 revision.',
+  'ad.DB.v': 'Good value when the housing only has to match the mouse, and your factory will make its mold.',
   'ad.DS.t': 'Standard',
   'ad.DS.s': 'Adds the housing’s mold design and G-code. 2 revisions.',
   'ad.DS.v': 'Good value when the dongle is molded alongside the mouse and its tool should be ready at the same time.',
-  'ad.DF.t': 'Full',
-  'ad.DF.s': 'Adds a receiver board I design for 8 kHz. 3 revisions.',
-  'ad.DF.v': 'Good value when 8 kHz wireless depends on the receiver and you want a board designed for it.',
   'ad.screen.h': 'Screen on the Dongle',
-  'ad.screen.i': 'A screen goes with any level. On Basic and Standard I design only the housing around it, and the factory adds the display to its receiver.',
+  'ad.screen.i': 'A screen goes with either level. With the factory’s PCBs, I design the housing around it and the factory adds the display to its receiver. With mine, the display goes on the receiver board I design.',
   'ad.sc0.t': 'No screen',
   'ad.sc0.s': 'A plain receiver.',
   'ad.sc0.v': 'Good value when the dongle only has to connect.',
   'ad.sc1.t': 'Screen',
   'ad.sc1.s': 'A display on the dongle. I choose the part with the factory, which adds it to its receiver, and I design the housing around it.',
-  'ad.sc1.s.full': 'A display on the dongle. I choose and test the part, add it to the receiver board I design, and design the housing around it.',
+  'ad.sc1.s.mine': 'A display on the dongle. I choose and test the part, add it to the receiver board I design, and design the housing around it.',
   'ad.sc1.fw': 'What it shows is part of my firmware.',
   'ad.sc1.fw.sup': 'With the factory’s firmware, the factory writes what it shows.',
   'ad.sc1.v': 'Good value when the dongle sits in view on the desk and should show the mouse’s status at a glance.',
@@ -1171,14 +1168,18 @@ var BID_TEXT = {
   'item.IL.name': 'Internal layout and electronics fit',
   'item.IL.what': 'Sensor slightly forward of centre, a hot-swap encoder, and a 200 mAh or larger LiPo positioned to balance the mouse vertically and horizontally between the thumb and ring finger. Fitted to the factory’s board, or to the PCB I design.',
   'item.PB.name': 'Mouse PCB design',
-  'item.PB.what': 'Schematic and layout for the mouse’s main board, to the minimums in this bid: PAW3955 or better, nRF54LM20A or better, 8 kHz wired and wireless. Two assembled prototype runs, and the manufacturing files. Under 30 g, the board is designed as a load-bearing part of the structure.',
+  'item.PB.what': 'Schematic and layout for the mouse’s main board, to the minimums in this bid: PAW3955 or better, nRF54LM20A or better, 8 kHz wired and wireless. Two assembled prototype runs, and the manufacturing files. Designed with the dongle’s receiver as one radio set. Under 30 g, the board is designed as a load-bearing part of the structure.',
   'item.PB.mat': 'Prototype boards and parts',
   'item.PB.matwhy': 'Two assembled prototype runs',
+  'item.DR.name': 'Dongle PCB design',
+  'item.DR.what': 'Schematic and layout for the dongle’s receiver, designed with the mouse’s board as one radio set: 8 kHz, on the same nRF54LM20A-class chip. Two assembled prototype runs, and the manufacturing files.',
+  'item.DR.mat': 'Dongle prototype boards and a dev kit',
+  'item.DR.matwhy': 'An nRF54LM20 development kit and two assembled prototype runs',
   'item.FB.name': 'Mouse and dongle firmware, basic',
   'item.FB.what': 'Firmware for the mouse and its dongle, with latency under 300 µs.',
   'item.FB.mat': 'Development kits and test hardware',
   'item.FB.matwhy': 'Development kits for the mouse and the dongle, a debug probe and cables',
-  'item.FS.name': 'Finding a factory for your PCB and firmware',
+  'item.FS.name': 'Finding a factory for your PCBs and firmware',
   'item.FS.what': 'A shortlist of factories that build mouse PCBs and write their firmware, their quotes side by side, samples of their work, and an introduction to the one you choose. If you already work with one, these hours go to briefing them instead.',
   'item.SP3.name': 'Production support, 3 months',
   'item.SP6.name': 'Production support, 6 months',
@@ -1218,19 +1219,15 @@ var BID_TEXT = {
   'item.AH.name': 'Assembly, tolerances and handoff files',
   'item.AH.what': 'Tolerance and assembly checks, then the handoff: full .F3D and .STEP source files.',
   'item.DB.name': 'Dongle Basic',
-  'item.DB.what': 'Housing design in the mouse’s design language, built around the factory’s 2.4 GHz receiver. 1 revision.',
+  'item.DB.what': 'Housing design in the mouse’s design language, built around the receiver. 1 revision.',
   'item.DB.mat': 'Dongle test prints',
   'item.DB.matwhy': 'Printed housings',
   'item.DS.name': 'Dongle Standard',
   'item.DS.what': 'Housing design, plus its mold design and G-code. 2 revisions.',
   'item.DS.mat': 'Dongle test prints',
   'item.DS.matwhy': 'Printed housings',
-  'item.DF.name': 'Dongle Full',
-  'item.DF.what': 'Housing, mold design and G-code, plus a receiver board I design for 8 kHz on an nRF54LM20A-class chip. 3 revisions.',
-  'item.DF.mat': 'Dongle prints, dev kit and prototype boards',
-  'item.DF.matwhy': 'Printed housings, an nRF54LM20 development kit and two rounds of prototype boards',
   'item.DP.name': 'Dongle screen',
-  'item.DP.what': 'A display on the dongle: the part chosen and tested, the housing designed around it, and what it shows added to the firmware. On Full it goes on the receiver board I design. On Basic and Standard the factory adds it to its own.',
+  'item.DP.what': 'A display on the dongle: the part chosen and tested, the housing designed around it, and what it shows added to the firmware. With my PCBs it goes on the receiver board I design. With the factory’s, the factory adds it to its own.',
   'item.DP.mat': 'Displays and test builds',
   'item.DP.matwhy': 'Display modules, connectors and the prints or boards to test them',
   'item.RN.name': 'Colorway renders',
@@ -1312,9 +1309,9 @@ var BID_TEXT = {
   'tl.s.kick': 'Kickoff: the brief and your selection are confirmed, and the deposit is paid.',
   'tl.s.shapes': 'Shapes, one at a time. Each is printed and shipped, and you choose the direction.',
   'tl.s.eng': 'Engineering: structure, clicks, base, internals, wheel and dongle.',
-  'tl.s.fab': 'A factory found for your PCB and firmware: shortlist, quotes, samples and an introduction.',
-  'tl.s.fab.pcb': 'A factory found to build the PCB: shortlist, quotes, samples and an introduction.',
-  'tl.s.pcb': 'The mouse PCB: schematic, layout and two assembled prototype runs.',
+  'tl.s.fab': 'A factory found for your PCBs and firmware: shortlist, quotes, samples and an introduction.',
+  'tl.s.fab.pcb': 'A factory found to build the PCBs: shortlist, quotes, samples and an introduction.',
+  'tl.s.pcb': 'The PCBs for the mouse and its dongle, as one radio set: schematic, layout and two assembled prototype runs of each.',
   'tl.s.fw.1': 'The firmware for the mouse and its dongle, with latency under 300 µs.',
   'tl.s.fw.2': 'The firmware for the mouse and its dongle, with latency under 100 µs and the sensor’s polling synchronized to the game.',
   'tl.s.proto': '{n} prototype rounds in {material}, each ending with a working mouse delivered to you.',
@@ -1346,10 +1343,10 @@ var BID_TEXT = {
   'nd.5': '',
   'nd.6': '',
   'ni.h': 'Not Included',
-  'ni.1': 'Building the mouse PCB and writing its firmware. The factory I find for you does both, and my work fits its board, unless you select mine.',
+  'ni.1': 'Building the mouse and dongle PCBs and writing their firmware. The factory I find for you does both, and my work fits its boards, unless you select mine.',
   'ni.1.fw': 'Writing the firmware for the mouse and its dongle. The factory does it, unless you select mine.',
-  'ni.1.pcb': 'Building the mouse PCB. The factory does it, and my work fits its board, unless you add mine as an option.',
-  'ni.1.consult': 'The mouse PCB and firmware, and finding a factory for them.',
+  'ni.1.pcb': 'Building the mouse and dongle PCBs. The factory does it, and my work fits its boards, unless you add mine as an option.',
+  'ni.1.consult': 'The mouse and dongle PCBs and firmware, and finding a factory for them.',
   'ni.2': 'Mass production.',
   'ni.3': 'FCC and CE certification.',
   'ni.4': 'Packaging.',
@@ -1387,8 +1384,8 @@ var BID_TEXT = {
   'sum.ch.weight': 'Weight target under {g} g',
   'sum.ch.proto': '{n} prototype rounds in {material}',
   'sum.ch.noproto': 'No prototype rounds',
-  'sum.ch.pcb.1': 'Mouse PCB designed by me',
-  'sum.ch.pcb.0': 'Mouse PCB from the factory',
+  'sum.ch.pcb.1': 'Mouse and dongle PCBs designed by me',
+  'sum.ch.pcb.0': 'Mouse and dongle PCBs from the factory',
   'sum.ch.fw.0': 'Mouse and dongle firmware from the factory',
   'sum.ch.fw.1': 'Mouse and dongle firmware: basic, under 300 µs',
   'sum.ch.fw.2': 'Mouse and dongle firmware: low latency, under 100 µs',
@@ -1428,7 +1425,7 @@ var BID_SPEC = [
   ] },
   { h: 'Weight and Balance', s: 'Under {wt} g without skates, balanced vertically and horizontally', rows: [
     ['Weight in your brief', 'Under 30.0 g', 'Assembled with the battery, skates removed, on a scale that reads to 0.01 g.', 'you'],
-    ['Weight in this selection', 'Under {wt}.0 g', 'Under 30 g is offered only as a set: at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a PCB I design as a load-bearing part of the structure.', 'me', 'full'],
+    ['Weight in this selection', 'Under {wt}.0 g', 'Under 30 g is offered only as a set: at least {n} prototype rounds in PPA-CF, so the strength of the shell is verified before tooling, and a mouse PCB I design as a load-bearing part of the structure.', 'me', 'full'],
     ['Balance', 'Centred vertically and horizontally', 'The centre of mass sits between the thumb and ring-finger contact points, in height and along the length. The battery is positioned to put it there.', 'both'],
     ['Balance test', 'Level within 2°', 'Pinched at the thumb and ring-finger contact points and lifted, the mouse stays level front to back and side to side.', 'prop'],
     ['Battery', '200 mAh or more', 'Lithium polymer, counted inside the weight target and positioned to balance the mouse vertically and horizontally.', 'me']
@@ -1462,7 +1459,7 @@ var BID_SPEC = [
     ['Sensor position', '5 mm ahead of mid-length', '54.5 mm from the front of a 119 mm mouse. Your brief asks for slightly forward of center.', 'prop'],
     ['Polling rate', '8,000 Hz', 'Wired and wireless.', 'me'],
     ['Wireless chip', 'nRF54LM20A or better', '', 'me'],
-    ['Receiver', 'Standard 2.4 GHz', 'From your PCB supplier. The dongle housing is designed around it.', 'you']
+    ['Receiver', 'Standard 2.4 GHz', 'Comes as a set with the mouse’s board: the factory’s, or one I design with it. The dongle housing is designed around it.', 'you']
   ] },
   { h: 'Material and Finish', s: 'Carbon fiber composite, with no imitation weave', rows: [
     ['Material', 'Carbon fiber composite', 'Injection molded from pellets with short carbon fibers dispersed through the plastic. There is no weave.', 'both'],
@@ -1513,8 +1510,9 @@ var BID_NUM = {
     mat: [300, 520]                           // bought for it: a reference mouse, the print, shipping
   },
   /* paid shapes are charged; extra shapes are included at no added cost.
-     pcb: the mouse PCB I design. 0: an add-on. 1: comes with the package, and can be handed back to the supplier.
-          2: comes with the package and stays, because the package is offered only on the PCB I design.
+     pcb: the PCBs I design, the mouse's board and the dongle's receiver, which talk over one radio link and so come as a set.
+          0: an add-on. 1: comes with the package, and can be handed back to the factory.
+          2: comes with the package and stays, because the package is offered only on the PCBs I design.
      fw: the mouse firmware the package comes with at no added cost: 0 none (the supplier's), 1 basic, 2 low latency.
          A level above it is an add-on, charged for the work beyond the level that is included.
      w30: 1 where under 30 g can be chosen. It comes only with six rounds of PPA-CF prototypes and the PCB I design,
@@ -1552,7 +1550,8 @@ var BID_NUM = {
     IL:   { h: [14, 22],  k: 'desk' },
     BS:   { h: [18, 26],  m: [30, 60],   k: 'make' },
     WD:   { h: [12, 18],  m: [40, 90],   k: 'make' },
-    PB:   { h: [48, 68],  m: [500, 900], k: 'elec' },            // the mouse PCB: schematic, layout, two assembled prototype runs
+    PB:   { h: [48, 68],  m: [500, 900], k: 'elec' },            // the mouse's board: schematic, layout, two assembled prototype runs
+    DR:   { h: [32, 47],  m: [140, 310], k: 'elec' },            // the dongle's receiver board, designed with the mouse's as one radio set: the same, at its size
     /* firmware for the mouse and its dongle, which are written together. Basic: latency under 300 µs. Low latency: under
        100 µs, sensor polling synchronized to the game, all of it (where a package comes with basic, the step up is the difference). */
     FB:   { h: [56, 75],  m: [220, 400], k: 'elec' },
@@ -1560,7 +1559,6 @@ var BID_NUM = {
     AH:   { h: [10, 16],  k: 'desk' },
     DB:   { h: [6, 9],    m: [10, 20],   k: 'make' },
     DS:   { h: [23, 33],  m: [30, 40],   k: 'make', fd: [1, 2] },
-    DF:   { h: [55, 80],  m: [170, 350], k: 'elec', fd: [1, 2] },
     DP:   { h: [28, 40],  m: [420, 700], k: 'elec' },            // a screen on the dongle, at any level: the display chosen and tested, the housing around it, what it shows
     RN:   { h: [8, 14] },
     FS:   { h: [16, 24] },                       // finding a factory to build the PCB and write its firmware: shortlist, quotes, samples, introduction
@@ -1655,7 +1653,7 @@ function makeBid(N) {
     design:     { proto: 'pa12',  wheel: 1, dongle: 'DB', mcIncluded: false, paint: false, molds: false, build: false },
     tested:     { proto: 'pa12',  wheel: 1, dongle: 'DB', mcIncluded: false, paint: true,  molds: false, build: false },
     production: { proto: 'pa12',  wheel: 3, dongle: 'DS', mcIncluded: true,  paint: true,  molds: true,  build: false },
-    all:        { proto: 'ppacf', wheel: 3, dongle: 'DF', mcIncluded: true,  paint: true,  molds: true,  build: true }
+    all:        { proto: 'ppacf', wheel: 3, dongle: 'DS', mcIncluded: true,  paint: true,  molds: true,  build: true }
   };
   ORDER.forEach(function (k) {
     if (k === 'consult') return;
@@ -1692,7 +1690,7 @@ function makeBid(N) {
     var p = PK[cfg.pkg];
     var tied = cfg.weight === 'W30';           // while under 30 g is selected, the prototypes stay material-matched and the PCB stays mine
     return { minAddShapes: SH.minPaid - p.paid, maxAddShapes: 24, minWheel: p.build ? 3 : 1,
-             dongles: p.build ? ['DS', 'DF'] : ['DB', 'DS', 'DF'], maxRounds: N.proto.maxRounds,
+             dongles: p.build ? ['DS'] : ['DB', 'DS'], maxRounds: N.proto.maxRounds,      // the dongle's housing: the receiver inside it comes with the PCBs
              tied: tied, minRounds: tied ? N.proto.plan.max : 0,
              weights: p.w30 ? ['W38', 'W34', 'W30'] : ['W38', 'W34'],     // under 30 g, where the package offers it
              board: tied ? 'weight' : p.pcbStays ? 'pkg' : '' };   // why the PCB cannot be handed back, if it cannot
@@ -1838,7 +1836,7 @@ function makeBid(N) {
     };
     hourly('eng', cfg.weight);
     hourly('eng', 'CL'); hourly('eng', 'IL'); hourly('eng', 'BS'); hourly('eng', 'WD');
-    if (cfg.pcb) hourly('eng', 'PB');
+    if (cfg.pcb) { hourly('eng', 'PB'); hourly('eng', 'DR'); }      // the mouse's board and the dongle's receiver: one radio set
     /* Mouse firmware. The level a package comes with is real work at no charge. A level above it is charged for
        what it takes beyond the included one (FU): its hours and what is bought for it, less the included level's. */
     var FW = { 1: 'FB', 2: 'FL' }, more = function (a, b) { return [Math.max(0, a[0] - b[0]), Math.max(0, a[1] - b[1])]; };
@@ -1950,7 +1948,7 @@ function makeBid(N) {
      labor, materials, steel tools. The rows add up to the totals above. */
   var ROWS = ['shapes', 'weight', 'parts', 'pcb', 'fw', 'wheel', 'dongle', 'art', 'renders', 'files', 'proto', 'paint', 'molds', 'mc', 'tools', 'samples', 'support', 'qc', 'calls', 'credit'];
   var ROW_OF = { SH1: 'shapes', SHN: 'shapes', SHX: 'shapes', CS1: 'shapes', CS2: 'shapes', W30: 'weight', W34: 'weight', W38: 'weight',
-    CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DF: 'dongle',
+    CL: 'parts', IL: 'parts', BS: 'parts', PB: 'pcb', FB: 'fw', FL: 'fw', FU: 'fw', WD: 'wheel', WM: 'wheel', WG: 'wheel', DB: 'dongle', DS: 'dongle', DR: 'pcb',
     DP: 'dongle',
     ART2: 'art', ART4: 'art', RN: 'renders', AH: 'files', PR: 'proto', DFM: 'molds', MT: 'molds', MK: 'molds', MB: 'molds', MS: 'molds',
     MC: 'mc', T: 'tools', TM: 'tools', TR: 'tools', SA: 'samples', FS: 'pcb', SP3: 'support', SP6: 'support', SP12: 'support', QC: 'qc', QX: 'qc' };
@@ -1959,7 +1957,7 @@ function makeBid(N) {
   var PROFS = ['id', 'me', 'ee', 'fw', 'mold', 'viz'];
   var PROF_OF = { CS1: 'id', CS2: 'id', SH1: 'id', SHN: 'id', SHX: 'id', ART2: 'id', ART4: 'id',
     W30: 'me', W34: 'me', W38: 'me', CL: 'me', IL: 'me', BS: 'me', WD: 'me', DB: 'me', DS: 'me', AH: 'me', PR: 'me', MC: 'me', TM: 'me', TR: 'me', SA: 'me',
-    PB: 'ee', DF: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee',
+    PB: 'ee', DR: 'ee', FB: 'fw', FL: 'fw', FU: 'fw', DP: 'fw', DFM: 'mold', MT: 'mold', MK: 'mold', MB: 'mold', MS: 'mold', WM: 'mold', WG: 'mold', RN: 'viz', FS: 'ee',
     SP3: 'me', SP6: 'me', SP12: 'me', QC: 'me', QX: 'me' };
   function profs(cfg) {
     var out = {};
@@ -2034,7 +2032,7 @@ function makeBid(N) {
   function levels(cfg) {
     if (cfg.pkg === 'consult') return {};
     var p = PK[cfg.pkg], d = defaults(cfg.pkg);
-    var W = { W38: 1, W34: 2, W30: 3 }, D = { DB: 1, DS: 2, DF: 3 }, A = { 0: 0, 2: 1, 4: 2 };
+    var W = { W38: 1, W34: 2, W30: 3 }, D = { DB: 1, DS: 2 }, A = { 0: 0, 2: 1, 4: 2 };
     var shape = function (total) { var lv = 0; shapeSteps.forEach(function (n) { if (total >= n) lv++; }); return Math.max(1, lv); };
     var plan = function (c) { return c.rounds === 0 ? 0 : c.proto === 'ppacf' ? 3 : c.rounds <= N.proto.plan.min ? 1 : 2; };
     var out = {
@@ -2043,7 +2041,7 @@ function makeBid(N) {
       pcb:    { n: 2, bars: 1, cur: cfg.pcb ? 1 : 0, def: d.pcb ? 1 : 0 },
       fw:     { n: 3, bars: 2, cur: cfg.fw, def: d.fw },
       wheel:  { n: 3, bars: 3, cur: cfg.wheel, def: d.wheel },
-      dongle: { n: 4, bars: 3, cur: D[cfg.dongle], def: D[d.dongle] },   // three levels. A screen goes with any of them, so it is not a step
+      dongle: { n: 3, bars: 2, cur: D[cfg.dongle], def: D[d.dongle] },   // two levels of housing. A screen goes with either, so it is not a step
       art:    { n: 3, bars: 2, cur: A[cfg.art], def: 0 },
       proto:  { n: 4, bars: 3, cur: plan(cfg), def: plan(d) },
       mc:     { n: 2, bars: 1, cur: (p.mcIncluded || cfg.mc) ? 1 : 0, def: p.mcIncluded ? 1 : 0 },
@@ -2485,7 +2483,7 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
         return { html: String(paid + p.extra), sub: sub.join(', ') };
       case 'weight': return { html: T('cell.weight.' + c.weight), sub: T('cell.weight.sub') };
       case 'parts': return yes;
-      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W30' ? T('cell.pcb.sub30') : B.defaults(k).pcb ? '' : T('cell.added') } : { html: T('cell.pcb.0'), sub: T('cell.pcb.sub0') };
+      case 'pcb': return c.pcb ? { html: T('cell.pcb.1'), sub: c.weight === 'W30' ? T('cell.pcb.sub30') : B.defaults(k).pcb ? T('cell.pcb.sub1') : T('cell.added') } : { html: T('cell.pcb.0'), sub: T('cell.pcb.sub0') };
       case 'fw': return { html: T('cell.fw.' + c.fw), sub: !c.fw ? '' : c.fw <= p.fw ? T('cell.fw.sub') : T('cell.fw.added') };     // up to the level the package comes with, it is at no added cost
       case 'wheel': return { html: T('cell.wheel.' + c.wheel) };
       case 'dongle': return { html: T('cell.dongle.' + c.dongle), sub: c.screen ? T('cell.screen.' + c.screen) : '' };
@@ -2727,16 +2725,16 @@ if (typeof module !== 'undefined') module.exports = { BID_NUM: BID_NUM, makeBid:
       }).join(''));
     } else if (id === 'dongle') {
       intro = T('ad.dongle.i');
-      body = radios('Dongle', ['DB', 'DS', 'DF'].map(function (k) {
+      body = radios('Dongle', ['DB', 'DS'].map(function (k) {
         var off = lim.dongles.indexOf(k) < 0;
         return opt(P + 'dg-' + k, cfg.dongle === k, T('ad.' + k + '.t'), T('ad.' + k + '.s') + ' <span class="mth">' + optMath('dongle', { dongle: k, screen: 0 }) + '</span>',
           off ? T('ad.notwith', { package: name }) : tagFor(dOpt({ dongle: k, screen: 0 }), def.dongle === k), { dongle: k }, off, val('ad.' + k + '.v'));
       }).join('')) +
         '<h5 class="ao-g">' + T('ad.screen.h') + '</h5><p class="ao-i">' + T('ad.screen.i') + '</p>' +
         radios('Screen on the dongle', [0, 1].map(function (n) {
-          /* The screen goes with any level. Whose board carries it follows the level, and what it shows is firmware:
-             mine where the selection has it, the supplier's where it does not. */
-          var sub = !n ? T('ad.sc0.s') : T(cfg.dongle === 'DF' ? 'ad.sc1.s.full' : 'ad.sc1.s') + ' ' + T(cfg.fw ? 'ad.sc1.fw' : 'ad.sc1.fw.sup');
+          /* The screen goes with either level. Whose board carries it follows the PCBs (the receiver is mine when the boards are),
+             and what it shows is firmware: mine where the selection has it, the factory's where it does not. */
+          var sub = !n ? T('ad.sc0.s') : T(cfg.pcb ? 'ad.sc1.s.mine' : 'ad.sc1.s') + ' ' + T(cfg.fw ? 'ad.sc1.fw' : 'ad.sc1.fw.sup');
           return opt(P + 'sc-' + n, !!cfg.screen === !!n, T('ad.sc' + n + '.t'), sub + (n ? ' <span class="mth">' + optMath('dongle', { screen: 1 }, ['DP']) + '</span>' : ''),
             n === def.screen ? T('ad.inpkg') : deltaText(dOpt({ screen: n })), { screen: n }, false, val('ad.sc' + n + '.v'));
         }).join(''));
